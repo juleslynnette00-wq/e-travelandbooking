@@ -2,549 +2,994 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SafariRide Kenya — Bus Booking Across East Africa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>E-travel and booking  — Book Bus & Matatu Tickets Across Kenya & EA</title>
+<meta name="description" content="Kenya's premier bus and SACCO booking platform. 4NTE, Mololine, 2NK, Kinatwa Tec, Modern Coast, Dreamliner, Tahmeed & more. Pay via M-Pesa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--red:#DC2626;--red-dark:#991B1B;--red-deeper:#7F1D1D;--red-light:#FEE2E2;--red-50:#FEF2F2;--bg:#FFFFFF;--bg2:#F9FAFB;--bg3:#F3F4F6;--text:#111827;--text2:#374151;--muted:#6B7280;--light:#9CA3AF;--border:#E5E7EB;--border2:#D1D5DB;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shadow-md:0 4px 16px rgba(0,0,0,.1);--shadow-lg:0 10px 40px rgba(0,0,0,.12);--radius:12px;--radius-lg:16px;--radius-xl:20px}
-*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--bg2:#0f1526;--card:#141b30;--card2:#1a2340;
+  --line:#243052;--txt:#eef2ff;--mut:#8b97c4;
+  --acc:#ffc61a;--acc2:#ff8a00;--grn:#00e08f;--red:#ff4d6a;--blu:#4d8dff;
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-button{font-family:inherit;cursor:pointer}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.5}
+body::before{content:"";position:fixed;inset:0;z-index:-1;
+  background:radial-gradient(1000px 500px at 85% -10%,rgba(255,138,0,.14),transparent 60%),
+             radial-gradient(900px 500px at -10% 20%,rgba(77,141,255,.12),transparent 60%),
+             radial-gradient(700px 500px at 50% 110%,rgba(0,224,143,.08),transparent 60%)}
+svg{display:block;flex-shrink:0}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select{font-family:inherit}
-.page{display:none;min-height:100vh;animation:pageIn .4s ease}
-.page.active{display:block}
-@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.topbar{background:var(--red);color:#fff;font-size:12.5px;padding:8px 0}
-.topbar .inner{max-width:1240px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
-.topbar .left{display:flex;gap:16px;align-items:center}
-.topbar .left span{display:inline-flex;gap:6px;align-items:center}
-.topbar svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.topbar .right{display:flex;gap:8px;align-items:center;font-weight:500}
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1240px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-icon{width:38px;height:38px;border-radius:10px;background:var(--red);display:grid;place-items:center;box-shadow:0 4px 12px rgba(220,38,38,.3)}
-.brand-icon svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.brand-text{font-weight:800;font-size:18px;letter-spacing:-.3px}
-.brand-text span{color:var(--red)}
-.nav-links{display:flex;gap:4px;list-style:none}
-.nav-links a{padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;color:var(--muted);transition:all .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--red);background:var(--red-50)}
-.nav-cta{background:var(--red);color:#fff!important;padding:9px 20px!important;font-weight:600!important;box-shadow:0 4px 12px rgba(220,38,38,.25)}
-.nav-cta:hover{background:var(--red-dark)!important;box-shadow:0 6px 16px rgba(220,38,38,.35)!important}
-.back-btn{display:none;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;color:var(--muted);border:1px solid var(--border);background:#fff;transition:all .2s}
-.back-btn:hover{color:var(--red);border-color:var(--red)}
-.back-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.show-back .back-btn{display:inline-flex}
-.show-back .nav-links{display:none}
-.progress-bar{background:var(--bg2);border-bottom:1px solid var(--border);display:none;padding:0 20px}
-.progress-bar.show{display:block}
-.progress-inner{max-width:600px;margin:0 auto;display:flex;align-items:center;gap:0;padding:14px 0}
-.prog-step{display:flex;align-items:center;gap:8px;flex:1;position:relative}
-.prog-step:not(:last-child)::after{content:"";position:absolute;left:calc(50% + 20px);top:50%;width:calc(100% - 40px);height:2px;background:var(--border)}
-.prog-step.done:not(:last-child)::after{background:var(--red)}
-.prog-dot{width:28px;height:28px;border-radius:50%;background:var(--bg3);border:2px solid var(--border);display:grid;place-items:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--light);transition:all .3s}
-.prog-step.active .prog-dot{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 12px rgba(220,38,38,.3)}
-.prog-step.done .prog-dot{background:var(--red);border-color:var(--red);color:#fff}
-.prog-label{font-size:11px;color:var(--light);font-weight:500;white-space:nowrap;display:none}
-.prog-step.active .prog-label{color:var(--red);font-weight:600}
-.prog-step.done .prog-label{color:var(--text2)}
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#FEF2F2 0%,#FFFFFF 40%,#FFF7ED 100%);padding:60px 0 80px}
-.hero::before{content:"";position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:rgba(220,38,38,.06)}
-.hero::after{content:"";position:absolute;bottom:-150px;left:-100px;width:400px;height:400px;border-radius:50%;background:rgba(220,38,38,.04)}
-.hero-inner{max-width:1240px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--muted);font-weight:500;margin-bottom:20px;box-shadow:var(--shadow)}
-.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero h1{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.5px;margin-bottom:16px}
-.hero h1 .red{color:var(--red)}
-.hero p{color:var(--muted);font-size:16px;max-width:520px;line-height:1.7;margin-bottom:28px}
-.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
-.hero-stat b{display:block;font-size:24px;font-weight:800;color:var(--text)}
-.hero-stat span{font-size:12px;color:var(--muted)}
-.search-card{background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);border:1px solid var(--border);padding:28px;position:relative}
-.search-card::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;background:linear-gradient(90deg,var(--red),#F97316);border-radius:0 0 3px 3px}
-.tabs{display:flex;gap:6px;margin-bottom:20px;background:var(--bg2);padding:4px;border-radius:10px}
-.tab{flex:1;text-align:center;padding:10px;border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;border:none;background:none}
-.tab svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.tab.active{background:#fff;color:var(--red);box-shadow:var(--shadow)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px}
-.field .wrap{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:11px 12px;transition:border-color .2s}
-.field .wrap:focus-within{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.08)}
-.field svg{width:16px;height:16px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.field input,.field select{background:none;border:0;outline:none;color:var(--text);font-size:14px;width:100%}
-.field select option{background:#fff;color:var(--text)}
-.search-btn{width:100%;padding:14px;border-radius:10px;background:var(--red);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;border:none;box-shadow:0 6px 20px rgba(220,38,38,.3);transition:all .2s;margin-top:4px}
-.search-btn:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(220,38,38,.35)}
-.search-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.quick-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.quick-links .label{font-size:11px;color:var(--light);font-weight:500}
-.chip{padding:5px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:100px;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;font-weight:500}
-.chip:hover{border-color:var(--red);color:var(--red);background:var(--red-50)}
-section{padding:60px 0}
-.container{max-width:1240px;margin:0 auto;padding:0 20px}
-.section-head{text-align:center;max-width:640px;margin:0 auto 36px}
-.section-head .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--red-50);border:1px solid rgba(220,38,38,.15);border-radius:100px;font-size:11px;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.section-head h2{font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-.3px;margin-bottom:10px}
-.section-head p{color:var(--muted);font-size:15px}
-.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.feat{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:all .3s;position:relative;overflow:hidden}
-.feat::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transition:transform .3s;transform-origin:left}
-.feat:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.feat:hover::after{transform:scaleX(1)}
-.feat-icon{width:48px;height:48px;border-radius:12px;background:var(--red-50);display:grid;place-items:center;margin-bottom:14px}
-.feat-icon svg{width:22px;height:22px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.feat h4{font-size:15px;font-weight:700;margin-bottom:6px}
-.feat p{color:var(--muted);font-size:13px;line-height:1.6}
-.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.dest{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s;cursor:pointer}
-.dest:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.dest-img{height:160px;position:relative;overflow:hidden}
-.dest-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.dest:hover .dest-img img{transform:scale(1.06)}
-.dest-img .tag{position:absolute;top:12px;left:12px;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.tag-ke{background:var(--red);color:#fff}
-.tag-ea{background:#1D4ED8;color:#fff}
-.dest-body{padding:16px}
-.dest-body h4{font-size:15px;font-weight:700;margin-bottom:2px}
-.dest-body p{font-size:12px;color:var(--muted)}
-.dest-body .price{margin-top:10px;font-size:13px;color:var(--red);font-weight:700}
-.ops-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.op{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 8px;text-align:center;transition:all .2s;cursor:pointer}
-.op:hover{border-color:var(--red);box-shadow:var(--shadow)}
-.op-logo{width:44px;height:44px;margin:0 auto 8px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:16px;color:#fff}
-.op-name{font-size:12px;font-weight:600}
-.op-rt{font-size:10px;color:var(--light);margin-top:3px}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.testi{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;position:relative}
-.testi::before{content:"\201C";position:absolute;top:12px;right:20px;font-size:56px;color:rgba(220,38,38,.1);font-family:Georgia,serif;line-height:1}
-.stars{display:flex;gap:2px;margin-bottom:10px}
-.stars svg{width:14px;height:14px;fill:var(--red);stroke:var(--red)}
-.testi p{font-size:13.5px;color:var(--text2);line-height:1.7;margin-bottom:16px}
-.testi-user{display:flex;align-items:center;gap:10px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px}
-.testi-user .nm{font-size:13px;font-weight:600}
-.testi-user .rt{font-size:11px;color:var(--light)}
-footer{background:var(--text);color:#fff;padding:50px 0 24px}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
-.footer-brand p{color:var(--light);font-size:13px;line-height:1.7;margin:12px 0 16px;max-width:280px}
-.footer-col h5{font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.footer-col a{color:var(--light);font-size:13px;transition:color .2s}
-.footer-col a:hover{color:#fff}
-.socials{display:flex;gap:8px}
-.socials a{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:all .2s}
-.socials a:hover{background:var(--red)}
-.socials svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.copyright{padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;color:var(--light);font-size:12px;flex-wrap:wrap;gap:8px}
-.results-header{background:var(--bg2);border-bottom:1px solid var(--border);padding:20px 0}
-.results-header .inner{max-width:1240px;margin:0 auto;padding:0 20px}
-.route-display{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.route-display .city{font-size:20px;font-weight:800}
-.route-display .arr{color:var(--red)}
-.route-display .arr svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.route-meta{display:flex;gap:16px;margin-top:6px;font-size:13px;color:var(--muted);flex-wrap:wrap}
-.route-meta span{display:inline-flex;align-items:center;gap:4px}
-.route-meta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.results-filters{max-width:1240px;margin:0 auto;padding:16px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.filter-chip{padding:7px 14px;border:1px solid var(--border);border-radius:100px;font-size:12px;font-weight:500;color:var(--muted);background:#fff;cursor:pointer;transition:all .2s}
-.filter-chip:hover,.filter-chip.active{border-color:var(--red);color:var(--red);background:var(--red-50)}
-.bus-list{max-width:1240px;margin:0 auto;padding:0 20px 40px}
-.bus-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:12px;transition:all .2s;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
-.bus-card:hover{border-color:var(--red);box-shadow:var(--shadow-md)}
-.bus-logo{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff;flex-shrink:0}
-.bus-info h3{font-size:15px;font-weight:700;margin-bottom:4px}
-.bus-info .meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-bottom:8px}
-.bus-info .meta span{display:inline-flex;align-items:center;gap:4px}
-.bus-info .meta svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.amenities{display:flex;gap:6px;flex-wrap:wrap}
-.amenity{padding:3px 8px;background:var(--bg2);border-radius:4px;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:3px}
-.amenity svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2}
-.bus-pricing{text-align:right;flex-shrink:0}
-.bus-pricing .from{font-size:11px;color:var(--light)}
-.bus-pricing .price{font-size:22px;font-weight:800;color:var(--red)}
-.bus-pricing .price small{font-size:12px;color:var(--muted);font-weight:400}
-.bus-pricing .classes{display:flex;flex-direction:column;gap:6px;margin-top:10px}
-.cls-btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px;white-space:nowrap}
-.cls-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.cls-econ{background:var(--bg2);color:var(--text)}
-.cls-econ:hover{background:var(--red-50);color:var(--red)}
-.cls-biz{background:var(--red-50);color:var(--red-dark)}
-.cls-biz:hover{background:var(--red);color:#fff}
-.cls-vip{background:var(--text);color:#fff}
-.cls-vip:hover{background:var(--red-dark)}
-.no-results{text-align:center;padding:60px 20px;color:var(--muted)}
-.no-results svg{width:64px;height:64px;stroke:var(--border);fill:none;stroke-width:1.5;margin-bottom:16px}
-.seat-page-inner{max-width:1000px;margin:0 auto;padding:24px 20px 60px}
-.seat-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:24px}
-.seat-header h2{font-size:22px;font-weight:800}
-.seat-header .info{font-size:13px;color:var(--muted)}
-.bus-top{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px}
-.bus-top .bus-nm{font-weight:700;font-size:15px}
-.bus-top .bus-dt{font-size:13px;color:var(--muted);text-align:right}
-.bus-frame{background:var(--bg2);border:2px solid var(--border);border-radius:24px 24px 12px 12px;padding:20px 16px;position:relative;margin-bottom:16px}
-.driver-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:3px 14px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px}
-.seats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
-.seat{aspect-ratio:1;border-radius:8px;background:#fff;border:1.5px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}
-.seat:hover:not(.taken):not(.aisle){border-color:var(--red);color:var(--red);background:var(--red-50)}
-.seat.selected{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 10px rgba(220,38,38,.3)}
-.seat.taken{background:var(--bg3);border-color:var(--border2);color:var(--light);cursor:not-allowed}
-.seat.aisle{background:transparent;border:none;cursor:default}
-.seat.vip-seat{border-color:#F59E0B;color:#D97706}
-.seat.vip-seat.selected{background:#F59E0B;border-color:#F59E0B;color:#fff}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:24px}
-.legend span{display:flex;align-items:center;gap:5px}
-.legend i{width:14px;height:14px;border-radius:4px;display:inline-block;border:1.5px solid var(--border)}
-.l-avail{background:#fff}
-.l-sel{background:var(--red);border-color:var(--red)}
-.l-taken{background:var(--bg3)}
-.l-vip{background:#fff;border-color:#F59E0B}
-.summary-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow)}
-.sum-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
-.sum-row:last-of-type{border-bottom:none}
-.sum-row .k{color:var(--muted)}
-.sum-row .v{font-weight:600}
-.sum-total{display:flex;justify-content:space-between;padding:14px 0 0;margin-top:8px;border-top:2px dashed var(--border)}
-.sum-total .k{color:var(--muted);font-size:14px}
-.sum-total .v{font-size:26px;font-weight:800;color:var(--red)}
-.continue-btn{width:100%;padding:14px;border-radius:10px;background:var(--red);color:#fff;font-weight:700;font-size:15px;border:none;box-shadow:0 6px 20px rgba(220,38,38,.3);transition:all .2s;margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px}
-.continue-btn:hover{background:var(--red-dark)}
-.continue-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.continue-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.pkg-page{max-width:900px;margin:0 auto;padding:24px 20px 60px}
-.pkg-page h2{font-size:22px;font-weight:800;margin-bottom:4px}
-.pkg-page>.sub{color:var(--muted);font-size:14px;margin-bottom:28px}
-.pkg-section{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
-.pkg-section h3{font-size:16px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.pkg-section h3 svg{width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.pkg-section>.desc{font-size:13px;color:var(--muted);margin-bottom:16px}
-.pkg-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.pkg-opt{border:1.5px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;position:relative}
-.pkg-opt:hover{border-color:var(--red)}
-.pkg-opt.picked{border-color:var(--red);background:var(--red-50)}
-.pkg-opt .pick-mark{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:var(--red);display:none;place-items:center}
-.pkg-opt.picked .pick-mark{display:grid}
-.pkg-opt .pick-mark svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.pkg-opt .nm{font-size:13px;font-weight:600;margin-bottom:2px}
-.pkg-opt .dt{font-size:11px;color:var(--muted);margin-bottom:6px}
-.pkg-opt .pr{font-size:15px;font-weight:700;color:var(--red)}
-.pkg-opt .pr span{font-size:11px;color:var(--muted);font-weight:400}
-.pkg-toggles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.pkg-toggle{border:1.5px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px}
-.pkg-toggle:hover{border-color:var(--red)}
-.pkg-toggle.on{border-color:var(--red);background:var(--red-50)}
-.pkg-toggle .chk{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);display:grid;place-items:center;flex-shrink:0;transition:all .2s}
-.pkg-toggle.on .chk{background:var(--red);border-color:var(--red)}
-.pkg-toggle .chk svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;display:none}
-.pkg-toggle.on .chk svg{display:block}
-.pkg-toggle .tg-info .nm{font-size:13px;font-weight:600}
-.pkg-toggle .tg-info .dt{font-size:11px;color:var(--muted)}
-.pkg-toggle .tg-pr{margin-left:auto;font-size:14px;font-weight:700;color:var(--red);white-space:nowrap}
-.pkg-total-bar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--border);padding:16px 20px;box-shadow:0 -4px 20px rgba(0,0,0,.08);display:flex;justify-content:space-between;align-items:center;z-index:10;margin:0 -20px}
-.pkg-total-bar .left .lbl{font-size:12px;color:var(--muted)}
-.pkg-total-bar .left .amt{font-size:24px;font-weight:800;color:var(--red)}
-.details-page{max-width:700px;margin:0 auto;padding:24px 20px 80px}
-.details-page h2{font-size:22px;font-weight:800;margin-bottom:24px}
-.pax-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:12px}
-.pax-card h3{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;color:var(--red)}
-.pax-card h3 svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.pax-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.pax-fields .full{grid-column:1/-1}
-.pax-field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.pax-field input{width:100%;padding:11px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;transition:border-color .2s;background:#fff}
-.pax-field input:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.08)}
-/* Payment Page — Pochi la Biashara */
-.pay-page{max-width:800px;margin:0 auto;padding:24px 20px 80px}
-.pochi-box{background:linear-gradient(135deg,#00A84F,#007A3A);border-radius:var(--radius-xl);padding:32px;color:#fff;position:relative;overflow:hidden;box-shadow:0 20px 40px rgba(0,168,79,.25)}
-.pochi-box::before{content:"";position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.07)}
-.pochi-box::after{content:"";position:absolute;bottom:-70px;left:-30px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05)}
-.pochi-head{display:flex;align-items:center;gap:12px;margin-bottom:24px;position:relative;z-index:1}
-.pochi-icon{width:52px;height:52px;border-radius:14px;background:#fff;display:grid;place-items:center}
-.pochi-icon svg{width:28px;height:28px;stroke:#00A84F;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.pochi-head h4{font-size:20px;font-weight:700}
-.pochi-head small{display:block;font-size:11px;opacity:.8;font-weight:400}
-.pochi-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:14px;position:relative;z-index:1}
-.pochi-row:last-of-type{border-bottom:none}
-.pochi-row .k{opacity:.8}
-.pochi-row .v{font-weight:700;font-size:16px;letter-spacing:.5px}
-.pochi-row .v.accent{color:#FFD700}
-.pochi-note{margin-top:16px;padding:14px;background:rgba(0,0,0,.2);border-radius:10px;font-size:12px;line-height:1.7;position:relative;z-index:1}
-.pay-form{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px}
-.pay-form h3{font-size:18px;font-weight:700;margin-bottom:4px}
-.pay-form>.sub{color:var(--muted);font-size:13px;margin-bottom:20px}
-.pay-steps{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
-.pay-step{display:flex;gap:14px;align-items:flex-start}
-.pay-num{width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;flex-shrink:0}
-.pay-step h5{font-size:14px;font-weight:600;margin-bottom:2px}
-.pay-step p{font-size:12.5px;color:var(--muted);line-height:1.5}
-.pay-step p b{color:var(--text);font-weight:600}
-.confirm-pay-box{background:var(--red-50);border:1.5px solid rgba(220,38,38,.2);border-radius:12px;padding:20px;margin-bottom:20px}
-.confirm-pay-box label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:14px;color:var(--text2);line-height:1.5}
-.confirm-pay-box input[type=checkbox]{width:20px;height:20px;border-radius:6px;accent-color:var(--red);flex-shrink:0;margin-top:2px}
-.pay-btn{width:100%;padding:14px;border-radius:10px;background:var(--red);color:#fff;font-weight:700;font-size:15px;border:none;box-shadow:0 6px 20px rgba(220,38,38,.3);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.pay-btn:hover{background:var(--red-dark)}
-.pay-btn:disabled{opacity:.5;cursor:not-allowed}
-.pay-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.confirm-page{max-width:600px;margin:0 auto;padding:40px 20px 60px;text-align:center}
-.confirm-icon{width:80px;height:80px;border-radius:50%;background:var(--red-50);display:grid;place-items:center;margin:0 auto 20px;animation:scaleIn .5s ease}
-@keyframes scaleIn{from{transform:scale(0)}to{transform:scale(1)}}
-.confirm-icon svg{width:40px;height:40px;stroke:var(--red);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.confirm-page h2{font-size:26px;font-weight:800;margin-bottom:6px}
-.confirm-page>.sub{color:var(--muted);font-size:14px;margin-bottom:28px}
-.confirm-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:left;margin-bottom:20px}
-.confirm-card .ref{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:12px}
-.confirm-card .ref .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-.confirm-card .ref .v{font-family:monospace;font-size:16px;font-weight:700;color:var(--red)}
-.confirm-actions{display:flex;gap:10px}
-.confirm-actions button{flex:1;padding:13px;border-radius:10px;font-size:14px;font-weight:600;border:none;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
-.confirm-actions button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.btn-outline{background:#fff;color:var(--text);border:1.5px solid var(--border)!important}
-.btn-outline:hover{border-color:var(--red)!important;color:var(--red)}
-.btn-fill{background:var(--red);color:#fff;box-shadow:0 4px 12px rgba(220,38,38,.25)}
-.btn-fill:hover{background:var(--red-dark)}
-.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:8px;align-items:center}
-.toast{padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-lg);animation:toastIn .3s ease;white-space:nowrap}
-.toast.err{background:#FEE2E2;color:var(--red-dark);border:1px solid rgba(220,38,38,.2)}
-.toast.ok{background:#F0FDF4;color:#166534;border:1px solid rgba(22,163,74,.2)}
-.toast svg{width:16px;height:16px;flex-shrink:0}
-@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:1024px){
-  .hero-grid{grid-template-columns:1fr}
-  .feat-grid{grid-template-columns:repeat(2,1fr)}
-  .dest-grid{grid-template-columns:repeat(2,1fr)}
-  .ops-grid{grid-template-columns:repeat(3,1fr)}
-  .test-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .pay-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .prog-label{display:none}
-}
-@media(max-width:640px){
-  .hero{padding:40px 0 60px}
-  .hero-stats{gap:20px}
-  .feat-grid,.dest-grid,.test-grid,.ops-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .pax-fields{grid-template-columns:1fr}
-  .bus-card{grid-template-columns:1fr;gap:12px}
-  .bus-pricing{text-align:left}
-  .bus-pricing .classes{flex-direction:row;flex-wrap:wrap}
-  .pkg-options,.pkg-toggles{grid-template-columns:1fr}
-  .confirm-actions{flex-direction:column}
-  .topbar .left span:nth-child(2){display:none}
-  .seats-grid{gap:5px}
-  .seat{font-size:9px;border-radius:6px}
-  .prog-step:not(:last-child)::after{width:calc(100% - 28px);left:calc(50% + 14px)}
-  .pochi-head h4{font-size:17px}
-}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(10,14,26,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;letter-spacing:.3px}
+.logo svg{filter:drop-shadow(0 0 8px rgba(255,198,26,.5))}
+.logo b{color:var(--acc)}
+.navlinks{display:flex;gap:22px;font-size:.88rem;color:var(--mut)}
+.navlinks a{color:inherit;text-decoration:none;transition:.25s}
+.navlinks a:hover{color:var(--acc)}
+.navcta{display:flex;gap:8px;align-items:center}
+.iconbtn{width:40px;height:40px;border-radius:12px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.25s}
+.iconbtn:hover{border-color:var(--acc);transform:translateY(-2px)}
+#burger{display:none}
+#mobmenu{display:none;flex-direction:column;gap:0;border-top:1px solid var(--line);background:var(--bg2)}
+#mobmenu a{padding:14px 18px;color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line)}
+#mobmenu.open{display:flex;animation:slidein .3s ease}
+@keyframes slidein{from{opacity:0;transform:translateY(-8px)}to{opacity:1}}
+@media(max-width:860px){.navlinks{display:none}#burger{display:flex}}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:14px;font-weight:700;font-size:.92rem;transition:.3s;position:relative;overflow:hidden}
+.btn-p{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#1a1200;box-shadow:0 6px 24px rgba(255,170,0,.35)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,170,0,.5)}
+.btn-o{border:1.5px solid var(--line);color:var(--txt);background:var(--card)}
+.btn-o:hover{border-color:var(--acc);color:var(--acc)}
+.btn-g{background:rgba(0,224,143,.15);color:var(--grn);border:1px solid rgba(0,224,143,.3)}
+.btn:active{transform:scale(.97)}
+/* HERO */
+.hero{padding:60px 0 40px;text-align:center;position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:.78rem;color:var(--mut);margin-bottom:20px;animation:pop .6s ease}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--grn);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,224,143,.6)}50%{box-shadow:0 0 0 7px rgba(0,224,143,0)}}
+.hero h1{font-size:clamp(1.9rem,5.5vw,3.2rem);font-weight:900;line-height:1.12;animation:rise .7s ease}
+.hero h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut);max-width:620px;margin:14px auto 28px;font-size:.98rem;animation:rise .8s ease}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+/* TICKET CARD */
+.ticket{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;padding:24px;max-width:960px;margin:0 auto;box-shadow:0 20px 60px rgba(0,0,0,.45);animation:rise .9s ease}
+.tgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end}
+.field label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--mut);margin-bottom:6px;font-weight:700}
+.field{position:relative}
+.field .ficon{position:absolute;left:13px;bottom:12px;color:var(--acc);pointer-events:none}
+.sel,.inp{width:100%;padding:12px 12px 12px 40px;background:var(--bg2);border:1.5px solid var(--line);border-radius:13px;color:var(--txt);font-size:.92rem;outline:none;transition:.25s;appearance:none}
+select.sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238b97c4' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.sel:focus,.inp:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(255,198,26,.15)}
+.swap{align-self:center;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.35s}
+.swap:hover{transform:rotate(180deg);border-color:var(--acc);color:var(--acc)}
+.trow2{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+@media(max-width:700px){.tgrid{grid-template-columns:1fr}.swap{margin:-6px auto}.trow2{grid-template-columns:1fr 1fr}.trow2 .f3{grid-column:span 2}.ticket{padding:18px}}
+@media(max-width:420px){.trow2{grid-template-columns:1fr}.trow2 .f3{grid-column:span 1}}
+/* QUICK ROUTES */
+.qroutes{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.qr{padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mut);font-size:.78rem;font-weight:600;cursor:pointer;transition:.25s;white-space:nowrap}
+.qr:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-2px)}
+/* VEHICLE CATS */
+.sec{padding:50px 0}
+.sechead{text-align:center;margin-bottom:30px}
+.sechead h2{font-size:clamp(1.4rem,3.5vw,2.1rem);font-weight:800}
+.sechead p{color:var(--mut);margin-top:6px;font-size:.92rem}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;transition:.35s;cursor:pointer;position:relative;overflow:hidden}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,198,26,.08),transparent 50%);opacity:0;transition:.35s}
+.cat:hover,.cat.on{transform:translateY(-6px);border-color:var(--acc)}
+.cat:hover::after,.cat.on::after{opacity:1}
+.cat.on{box-shadow:0 12px 34px rgba(255,170,0,.18)}
+.cat .cico{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,198,26,.15),rgba(255,138,0,.08));display:flex;align-items:center;justify-content:center;color:var(--acc);margin-bottom:12px}
+.cat h3{font-size:1rem;margin-bottom:4px}
+.cat p{color:var(--mut);font-size:.82rem}
+.cat .price{margin-top:12px;font-weight:800;color:var(--acc);font-size:1.05rem}
+.cat .price small{color:var(--mut);font-weight:500;font-size:.7rem}
+/* SACCO MARQUEE */
+.marq{overflow:hidden;border-block:1px solid var(--line);background:var(--bg2);padding:16px 0;margin:10px 0}
+.mtrack{display:flex;gap:40px;white-space:nowrap;animation:scroll 38s linear infinite;width:max-content}
+.marq:hover .mtrack{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.mitem{display:flex;align-items:center;gap:10px;color:var(--mut);font-weight:600;font-size:.88rem}
+.mitem svg{color:var(--acc)}
+/* RESULTS */
+.rescard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;transition:.3s;animation:rise .5s ease both}
+.rescard:hover{border-color:var(--acc);transform:translateX(4px)}
+.rescard:nth-child(2){animation-delay:.08s}.rescard:nth-child(3){animation-delay:.16s}.rescard:nth-child(4){animation-delay:.24s}
+.saccobadge{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.68rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#1a1200;text-align:center;line-height:1.1;flex-shrink:0}
+.resinfo{flex:1;min-width:180px}
+.resinfo h4{font-size:.98rem}
+.resinfo .meta{display:flex;gap:14px;color:var(--mut);font-size:.8rem;margin-top:5px;flex-wrap:wrap}
+.meta span{display:inline-flex;align-items:flex-start;gap:5px}
+.resprice{text-align:right;white-space:nowrap}
+.resprice .amt{font-weight:800;font-size:1.2rem;color:var(--acc)}
+.resprice small{display:block;color:var(--mut);font-size:.7rem}
+.tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.66rem;font-weight:700;letter-spacing:.5px}
+.tag-g{background:rgba(0,224,143,.12);color:var(--grn)}
+.tag-b{background:rgba(77,141,255,.12);color:var(--blu)}
+.tag-y{background:rgba(255,198,26,.12);color:var(--acc)}
+.tag-r{background:rgba(255,77,106,.12);color:var(--red)}
+/* STAGES PILLS */
+.stagesrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.stagepill{padding:3px 10px;border-radius:99px;font-size:.68rem;font-weight:600;background:var(--bg2);border:1px solid var(--line);color:var(--mut)}
+.stagepill.first{border-color:var(--grn);color:var(--grn)}
+.stagepill.last{border-color:var(--acc);color:var(--acc)}
+/* PICKUP HIGHLIGHT */
+.pickupbox{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.8rem;color:var(--txt);display:flex;gap:8px;align-items:flex-start}
+.pickupbox svg{flex-shrink:0;margin-top:2px;color:var(--acc)}
+.pickupbox em{font-style:normal;color:var(--mut);font-size:.72rem;display:block;margin-top:2px}
+/* AMENITIES */
+.amenrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.amen{display:flex;align-items:center;gap:4px;font-size:.7rem;color:var(--mut);padding:3px 8px;border-radius:8px;background:var(--bg2)}
+.amen svg{flex-shrink:0}
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-end;justify-content:center;background:rgba(4,7,15,.7);backdrop-filter:blur(4px)}
+.modal.open{display:flex;animation:fadein .25s}
+@keyframes fadein{from{opacity:0}}
+.sheet{background:var(--bg2);border:1px solid var(--line);border-radius:24px 24px 0 0;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;padding:24px;animation:up .35s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes up{from{transform:translateY(60px);opacity:0}}
+@media(min-width:700px){.modal{align-items:center;padding:20px}.sheet{border-radius:24px}}
+.shhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.shhead h3{font-size:1.15rem}
+/* SEATS */
+.busvisual{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+.busfront{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:.7rem;margin-bottom:12px;padding-left:4px}
+.seatgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:320px;margin:0 auto}
+.seat{aspect-ratio:1;border-radius:9px;border:1.5px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;transition:.2s;color:var(--mut)}
+.seat.taken{background:rgba(255,77,106,.12);border-color:rgba(255,77,106,.4);color:var(--red);cursor:not-allowed}
+.seat:not(.taken):hover{border-color:var(--acc);transform:scale(1.1)}
+.seat.sel{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#1a1200;border-color:transparent;box-shadow:0 4px 14px rgba(255,170,0,.4)}
+.legend{display:flex;gap:16px;justify-content:center;margin-top:12px;font-size:.7rem;color:var(--mut);flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-1px}
+/* STEPS */
+.steps{display:flex;gap:6px;margin-bottom:20px}
+.step{flex:1;height:4px;border-radius:99px;background:var(--line);transition:.4s}
+.step.on{background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.step.done{background:var(--grn)}
+/* MPESA */
+.mpesabox{background:linear-gradient(135deg,rgba(0,224,143,.08),rgba(0,180,120,.04));border:1px solid rgba(0,224,143,.3);border-radius:16px;padding:16px}
+.paybillrow{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px}
+.paybillrow b{color:var(--grn);font-size:1rem;letter-spacing:1px}
+.copybtn{margin-left:auto;color:var(--acc);display:flex;gap:5px;font-size:.76rem;font-weight:700;align-items:center;cursor:pointer}
+.sumrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:.88rem;color:var(--mut)}
+.sumrow b{color:var(--txt)}
+.sumrow.total b{color:var(--acc);font-size:1.1rem}
+/* LIVE */
+.livedot{width:8px;height:8px;border-radius:50%;background:var(--grn);animation:pulse 1.6s infinite;display:inline-block;margin-right:8px}
+.feeditem{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);animation:rise .5s ease}
+.feeditem .fico{width:34px;height:34px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;color:var(--acc);flex-shrink:0}
+.feeditem .ft{font-size:.86rem}
+.feeditem .ftime{font-size:.68rem;color:var(--mut);margin-top:3px}
+/* STAT */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:36px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:center}
+.stat b{font-size:1.5rem;font-weight:800;color:var(--acc);display:block}
+.stat span{color:var(--mut);font-size:.76rem}
+/* MY TRIPS */
+.mytrips{max-width:960px;margin:0 auto}
+.tripcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px;display:flex;gap:14px;align-items:center}
+.tripcard .tref{font-weight:800;color:var(--acc);font-size:.9rem}
+.tripcard .tdet{flex:1;font-size:.82rem;color:var(--mut)}
+.tripcard .tdet b{color:var(--txt);font-weight:700}
+.tripcard .tstatus{padding:4px 12px;border-radius:99px;font-size:.68rem;font-weight:700}
+/* PASSENGER FORM */
+.paxfield{margin-bottom:12px}
+.paxfield label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);font-weight:700;margin-bottom:5px}
+.paxfield input{width:100%;padding:11px 14px;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;color:var(--txt);font-size:.92rem;outline:none;transition:.25s}
+.paxfield input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(255,198,26,.15)}
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:40px 0 28px;margin-top:36px;color:var(--mut);font-size:.82rem}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}
+@media(max-width:700px){.fgrid{grid-template-columns:1fr}}
+footer h5{color:var(--txt);margin-bottom:10px;font-size:.88rem}
+footer a{color:var(--mut);text-decoration:none;display:block;padding:3px 0;transition:.2s}
+footer a:hover{color:var(--acc)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:var(--grn);color:#032015;font-weight:700;padding:12px 22px;border-radius:14px;transition:.4s cubic-bezier(.2,.9,.3,1.2);z-index:200;box-shadow:0 10px 30px rgba(0,224,143,.35);opacity:0;max-width:90vw;text-align:center;font-size:.88rem}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.reveal{opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.2,.8,.3,1)}
+.reveal.vis{opacity:1;transform:none}
+.hidden{display:none!important}
+.sectionline{display:flex;align-items:center;gap:8px;color:var(--acc);font-size:.76rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.emptyres{text-align:center;padding:40px 20px;color:var(--mut)}
+.emptyres svg{margin:0 auto 12px}
+.emptyres h3{color:var(--txt);font-size:1.1rem;margin-bottom:6px}
+@media(max-width:480px){.rescard{flex-direction:column;align-items:stretch}.resprice{text-align:left;margin-top:8px}.saccobadge{align-self:flex-start}}
 </style>
 </head>
 <body>
-<div class="toast-wrap" id="toastWrap"></div>
-<div class="topbar"><div class="inner"><div class="left"><span><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+254 795 999 639</span><span><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@safariride.co.ke</span></div><div class="right">Licensed by NTSA</div></div></div>
-<header id="mainHeader"><div class="nav-inner" id="navInner">
-<button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back</button>
-<div class="brand"><div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M6 10h12l2 6v4H4v-4l2-6z"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/></svg></div><div class="brand-text">Safari<span>Ride</span></div></div>
-<ul class="nav-links" id="navLinks"><li><a href="#" onclick="goHome();return false" class="active">Home</a></li><li><a href="#" onclick="showPage('destinations');return false">Destinations</a></li><li><a href="#" onclick="showPage('operators');return false">Operators</a></li><li><a href="#" onclick="showPage('support');return false">Support</a></li></ul>
-<button class="nav-cta" style="padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;border:none;background:var(--red);color:#fff;box-shadow:0 4px 12px rgba(220,38,38,.25)" onclick="goHome()">Book Now</button>
-</div></header>
-<div class="progress-bar" id="progressBar"><div class="progress-inner" id="progressInner"></div></div>
 
-<!-- HOME -->
-<div class="page active" id="page-home">
-<div class="hero"><div class="hero-inner"><div class="hero-grid">
-<div>
-<div class="hero-badge"><span class="dot"></span>Trusted by 250,000+ travellers across East Africa</div>
-<h1>Travel Kenya &<br>Beyond, <span class="red">Your Way</span></h1>
-<p>Build custom travel packages with bus tickets, hotels, transfers and experiences. Any route, any city, fully customizable. Pay via Pochi la Biashara.</p>
-<div class="hero-stats"><div class="hero-stat"><b>40+</b><span>Cities</span></div><div class="hero-stat"><b>120+</b><span>Daily Departures</span></div><div class="hero-stat"><b>4.8/5</b><span>Rating</span></div><div class="hero-stat"><b>24/7</b><span>Support</span></div></div>
-</div>
-<div class="search-card">
-<div class="tabs"><button class="tab active" data-t="oneway" onclick="setTab(this)"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>One Way</button><button class="tab" data-t="return" onclick="setTab(this)"><svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>Return</button></div>
-<div class="form-row">
-<div class="field"><label>From</label><div class="wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><select id="fromCity"></select></div></div>
-<div class="field"><label>To</label><div class="wrap"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><select id="toCity"></select></div></div>
-<div class="field"><label>Travel Date</label><div class="wrap"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><input type="date" id="travelDate"></div></div>
-<div class="field"><label>Passengers</label><div class="wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><select id="passCount"><option value="1">1 Passenger</option><option value="2">2 Passengers</option><option value="3">3 Passengers</option><option value="4">4 Passengers</option><option value="5">5 Passengers</option></select></div></div>
-</div>
-<button class="search-btn" onclick="doSearch()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Search Available Buses</button>
-<div class="quick-links"><span class="label">Popular:</span><span class="chip" onclick="quickFill('Nairobi','Mombasa')">Nairobi - Mombasa</span><span class="chip" onclick="quickFill('Nairobi','Kampala')">Nairobi - Kampala</span><span class="chip" onclick="quickFill('Nairobi','Dar es Salaam')">Nairobi - Dar</span><span class="chip" onclick="quickFill('Mombasa','Arusha')">Mombasa - Arusha</span></div>
-</div></div></div></div>
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffc61a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M2 11h20M9 5v6M15 5v6"/></svg>
+      E-travel<b>Boooking</b> EA
+    </div>
+    <nav class="navlinks">
+      <a href="#book">Book</a><a href="#saccos">Saccos</a><a href="#mytrips">My Trips</a><a href="#live">Live</a><a href="#about">About</a>
+    </nav>
+    <div class="navcta">
+      <button class="iconbtn" id="tripBtn" onclick="showMyTrips()" title="My Trips"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></button>
+      <button class="iconbtn" id="burger" onclick="document.getElementById('mobmenu').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+  <div id="mobmenu">
+    <a href="#book" onclick="mm()">Book a Trip</a><a href="#saccos" onclick="mm()">Saccos & Bus Companies</a><a href="#mytrips" onclick="mm();showMyTrips()">My Trips</a><a href="#live" onclick="mm()">Live Updates</a><a href="#about" onclick="mm()">About / M-PESA</a>
+  </div>
+</header>
 
-<section><div class="container">
-<div class="section-head"><div class="badge">Why SafariRide</div><h2>Built for the modern African traveller</h2><p>From booking to arrival, every detail designed around your comfort and peace of mind.</p></div>
-<div class="feat-grid">
-<div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div><h4>Live GPS Tracking</h4><p>Follow your bus in real time. Share your trip with family and know your exact ETA.</p></div>
-<div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><h4>Interactive Seat Map</h4><p>Choose your exact seat with a visual layout before you pay. Window, aisle, or VIP.</p></div>
-<div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><h4>Custom Travel Packages</h4><p>Add hotels, transfers, meals and experiences to your bus ticket. One booking, full trip.</p></div>
-<div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><h4>Pochi la Biashara</h4><p>Pay directly via M-Pesa Pochi la Biashara. Simple, instant, no extra charges.</p></div>
-</div></div></section>
+<section class="hero wrap">
+  <div class="badge"><span class="dot"></span> 36+ SACCOs &amp; bus companies live across East Africa</div>
+  <h1>Travel Kenya &amp; East Africa.<br><span>Your Seat. Your Trip. Your Time.</span></h1>
+  <p>Book with Kenya's trusted SACCOs — 4NTE, Mololine, 2NK, Kinatwa Tec, Modern Coast, Dreamliner, Tahmeed and more. Pay via LIPA NA M-PESA.</p>
+</section>
 
-<section id="destinations" style="background:var(--bg2)"><div class="container">
-<div class="section-head"><div class="badge">Explore East Africa</div><h2>Choose any destination</h2><p>No fixed routes. Pick any city and we will find the best bus for you.</p></div>
-<div class="dest-grid" id="destGrid"></div>
-</div></section>
+<section id="book" class="wrap" style="padding-bottom:10px">
+  <div class="ticket">
+    <div class="tgrid">
+      <div class="field"><label>From</label>
+        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/></svg></span>
+        <select class="sel" id="fromCity"></select>
+      </div>
+      <button class="swap" onclick="swapCities()" title="Swap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l-4 4 4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></button>
+      <div class="field"><label>To</label>
+        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <select class="sel" id="toCity"></select>
+      </div>
+    </div>
+    <div class="trow2">
+      <div class="field"><label>Travel Date</label>
+        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <input class="inp" type="date" id="date">
+      </div>
+      <div class="field"><label>Passengers</label>
+        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <select class="sel" id="paxSel">
+          <option value="1">1 Passenger</option><option value="2">2 Passengers</option><option value="3">3 Passengers</option><option value="4">4 Passengers</option><option value="5">5 Passengers</option><option value="6">6 Passengers</option>
+        </select>
+      </div>
+      <div class="field f3"><label>Vehicle Category</label>
+        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></span>
+        <select class="sel" id="catSel">
+          <option value="any">Any (Show All)</option>
+          <option value="matatu">SACCO Matatu (14–33 seats)</option>
+          <option value="shuttle">Shuttle / Tour Van</option>
+          <option value="executive">Executive Coach Bus</option>
+          <option value="luxury">Luxury Coach (2+2 Recliner)</option>
+          <option value="vip">VIP Sleeper / Double-Decker</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-p" style="flex:1;justify-content:center" onclick="search()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        Search Trips
+      </button>
+    </div>
+    <div class="qroutes">
+      <button class="qr" onclick="quickR('Nairobi','Mombasa')">Nairobi → Mombasa</button>
+      <button class="qr" onclick="quickR('Nairobi','Nakuru')">Nairobi → Nakuru</button>
+      <button class="qr" onclick="quickR('Nairobi','Kisumu')">Nairobi → Kisumu</button>
+      <button class="qr" onclick="quickR('Nakuru','Kisumu')">Nakuru → Kisumu</button>
+      <button class="qr" onclick="quickR('Nairobi','Eldoret')">Nairobi → Eldoret</button>
+      <button class="qr" onclick="quickR('Nairobi','Thika')">Nairobi → Thika</button>
+      <button class="qr" onclick="quickR('Nairobi','Nyeri')">Nairobi → Nyeri</button>
+      <button class="qr" onclick="quickR('Mombasa','Malindi')">Mombasa → Malindi</button>
+      <button class="qr" onclick="quickR('Nairobi','Kampala (UG)')">Nairobi → Kampala</button>
+    </div>
+  </div>
 
-<section id="operators"><div class="container">
-<div class="section-head"><div class="badge">Our Partners</div><h2>Trusted bus operators</h2><p>NTSA-licensed operators with proven safety records and modern fleets.</p></div>
-<div class="ops-grid" id="opsGrid"></div>
-</div></section>
+  <div class="stats reveal">
+    <div class="stat"><b>480+</b><span>Daily Routes</span></div>
+    <div class="stat"><b>36</b><span>SACCOs &amp; Operators</span></div>
+    <div class="stat"><b>90+</b><span>Towns &amp; Cities</span></div>
+    <div class="stat"><b>50%</b><span>Deposit Booking</span></div>
+  </div>
+</section>
 
-<section id="support" style="background:var(--bg2)"><div class="container">
-<div class="section-head"><div class="badge">Traveller Stories</div><h2>Loved across East Africa</h2><p>Real reviews from real travellers.</p></div>
-<div class="test-grid">
-<div class="testi"><div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p>"Booked a VIP seat from Nairobi to Mombasa. Paid via Pochi la Biashara and got my ticket instantly. The custom package with hotel pickup was a game changer."</p><div class="testi-user"><div class="testi-avatar">WK</div><div><div class="nm">Wanjiku Kamau</div><div class="rt">Nairobi to Mombasa</div></div></div></div>
-<div class="testi"><div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p>"Crossed into Kampala with my family. Added a hotel and transfer package through SafariRide. Everything was coordinated perfectly. The live tracking kept my wife calm."</p><div class="testi-user"><div class="testi-avatar">JO</div><div><div class="nm">James Ochieng</div><div class="rt">Nairobi to Kampala</div></div></div></div>
-<div class="testi"><div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p>"As a student I love the transparent pricing. No hidden fees. I booked Eldoret to Nairobi for 2,500 and the bus was clean, on time, and the Wi-Fi actually worked."</p><div class="testi-user"><div class="testi-avatar">AN</div><div><div class="nm">Amina Noor</div><div class="rt">Eldoret to Nairobi</div></div></div></div>
-</div></div></section>
-
-<footer><div class="container">
-<div class="footer-grid">
-<div class="footer-brand">
-<div class="brand"><div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M6 10h12l2 6v4H4v-4l2-6z"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/></svg></div><div class="brand-text" style="color:#fff">Safari<span>Ride</span></div></div>
-<p>The most trusted bus booking platform in East Africa. Connecting Kenya, Uganda, Tanzania and Rwanda with premium, safe and affordable travel.</p>
-<div class="socials"><a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a><a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div>
-</div>
-<div class="footer-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Blog</a></li></ul></div>
-<div class="footer-col"><h5>Support</h5><ul><li><a href="#">Help Centre</a></li><li><a href="#">Safety</a></li><li><a href="#">Cancellation</a></li><li><a href="#">Contact Us</a></li></ul></div>
-<div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">NTSA License</a></li></ul></div>
-</div>
-<div class="copyright"><span>2025 SafariRide Kenya. All rights reserved. Licensed by NTSA.</span><span>Pochi la Biashara: 0709 000 000</span></div>
-</div></footer>
+<div class="marq" id="saccos">
+  <div class="mtrack" id="mtrack"></div>
 </div>
 
-<!-- RESULTS -->
-<div class="page" id="page-results">
-<div class="results-header"><div class="inner">
-<div class="route-display"><span class="city" id="resFrom"></span><span class="arr"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span><span class="city" id="resTo"></span></div>
-<div class="route-meta"><span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span id="resDate"></span></span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="resDur"></span></span><span id="resBorder" style="display:none"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Passport Required</span></span></div>
-</div></div>
-<div class="results-filters"><span style="font-size:13px;font-weight:600;margin-right:4px">Filter:</span><button class="filter-chip active" onclick="filterResults('all',this)">All</button><button class="filter-chip" onclick="filterResults('economy',this)">Economy</button><button class="filter-chip" onclick="filterResults('business',this)">Business</button><button class="filter-chip" onclick="filterResults('vip',this)">VIP</button></div>
-<div class="bus-list" id="busList"></div>
-</div>
+<section class="sec wrap">
+  <div class="sechead reveal">
+    <div class="sectionline" style="justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg> Fleet Classes</div>
+    <h2>Choose Your Ride</h2>
+    <p>From quick SACCO matatus to VIP sleeper coaches crossing borders</p>
+  </div>
+  <div class="cats" id="catWrap"></div>
+</section>
 
-<!-- SEATS -->
-<div class="page" id="page-seats"><div class="seat-page-inner">
-<div class="seat-header"><div><h2>Select Your Seats</h2><div class="info" id="seatInfo"></div></div></div>
-<div class="bus-top"><div class="bus-nm" id="seatBusNm"></div><div class="bus-dt" id="seatBusDt"></div></div>
-<div class="bus-frame"><div class="driver-label">DRIVER</div><div class="seats-grid" id="seatsGrid"></div></div>
-<div class="legend"><span><i class="l-avail"></i>Available</span><span><i class="l-sel"></i>Selected</span><span><i class="l-taken"></i>Taken</span><span><i class="l-vip"></i>VIP</span></div>
-<div class="summary-card">
-<div class="sum-row"><span class="k">Route</span><span class="v" id="sRoute"></span></div>
-<div class="sum-row"><span class="k">Class</span><span class="v" id="sClass"></span></div>
-<div class="sum-row"><span class="k">Seat(s)</span><span class="v" id="sSeats">None selected</span></div>
-<div class="sum-row"><span class="k">Base Fare</span><span class="v" id="sBase">KES 0</span></div>
-<div class="sum-total"><span class="k">Total</span><span class="v" id="sTotal">KES 0</span></div>
-<button class="continue-btn" id="seatContBtn" disabled onclick="goToPackage()"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>Customize Your Package</button>
-</div></div></div>
+<section id="mytrips" class="sec wrap hidden">
+  <div class="sechead">
+    <div class="sectionline" style="justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> My Bookings</div>
+    <h2>Your Trips</h2>
+  </div>
+  <div class="mytrips" id="tripsList"></div>
+</section>
 
-<!-- PACKAGE -->
-<div class="page" id="page-package"><div class="pkg-page">
-<h2>Customize Your Trip</h2><p class="sub">Add extras to make your journey complete. Skip any section you don't need.</p>
-<div id="pkgContent"></div>
-<div class="pkg-total-bar"><div class="left"><div class="lbl">Package Total</div><div class="amt" id="pkgTotal">KES 0</div></div><button class="continue-btn" style="width:auto;margin:0" onclick="goToDetails()"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>Continue</button></div>
-</div></div>
+<section id="live" class="sec wrap">
+  <div class="sechead reveal">
+    <div class="sectionline" style="justify-content:center"><span class="livedot"></span> Real-Time Feed</div>
+    <h2>Live Trip Updates</h2>
+    <p>Departures, arrivals and SACCO notices updating across the network</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    <div class="rescard" style="flex-direction:column;align-items:stretch" id="liveFeed"></div>
+    <div class="rescard" style="flex-direction:column;align-items:stretch">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <b>Terminal Conditions</b><span class="tag tag-g">OPERATIONAL</span>
+      </div>
+      <div id="terminalList"></div>
+    </div>
+  </div>
+</section>
 
-<!-- DETAILS -->
-<div class="page" id="page-details"><div class="details-page">
-<h2>Passenger Details</h2>
-<div id="paxForms"></div>
-<div class="summary-card" style="margin-top:16px">
-<div class="sum-total"><span class="k">Total Payable</span><span class="v" id="detTotal">KES 0</span></div>
-<button class="continue-btn" onclick="goToPayment()"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Proceed to Payment</button>
-</div></div></div>
+<section id="about" class="sec wrap sechead reveal">
+  <h2>Pay With LIPA NA M-PESA</h2>
+  <p style="margin-bottom:22px">One Paybill for all bookings. The account number is specific to the SACCO / operator you choose — always confirm the operator name on your e-ticket before paying.</p>
+  <div class="mpesabox" style="text-align:left;max-width:520px;margin:0 auto">
+    <div style="display:flex;gap:12px;align-items:center">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00e08f" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20"/><path d="M6 15h4"/></svg>
+      <div><b style="color:var(--grn)">M-PESA SECURE</b><div style="color:var(--mut);font-size:.78rem">Lipa na M-Pesa — Pay Bill channel</div></div>
+    </div>
+    <div class="paybillrow"><span style="color:var(--mut);font-size:.76rem">PAYBILL</span><b>247247</b><button class="copybtn" onclick="copyTxt('775093')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button></div>
+    <div class="paybillrow"><span style="color:var(--mut);font-size:.76rem">ACCOUNT</span><b>SAFARILINK</b><button class="copybtn" onclick="copyTxt('140054011')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button></div>
+  </div>
+</section>
 
-<!-- PAYMENT — Pochi la Biashara -->
-<div class="page" id="page-payment"><div class="pay-page">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start" class="pay-grid">
-<div class="pochi-box">
-<div class="pochi-head">
-<div class="pochi-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div><h4>Pochi la Biashara</h4><small>M-Pesa Business Payment</small></div>
-</div>
-<div class="pochi-row"><span class="k">Business Phone</span><span class="v">0795 999 639</span></div>
-<div class="pochi-row"><span class="k">Account / Ref</span><span class="v" id="payAcc">--</span></div>
-<div class="pochi-row"><span class="k">Business Name</span><span class="v">SafariRide Kenya</span></div>
-<div class="pochi-row"><span class="k">Amount to Send</span><span class="v accent" id="payAmt">KES 0</span></div>
-<div class="pochi-note">Send the exact amount shown above to the business number via Pochi la Biashara on your M-Pesa menu. Your booking will be confirmed automatically once payment is received.</div>
-</div>
-<div class="pay-form">
-<h3>How to Pay</h3>
-<p class="sub">Follow these steps on your phone to complete payment.</p>
-<div class="pay-steps">
-<div class="pay-step"><div class="pay-num">1</div><div><h5>Open M-Pesa</h5><p>Go to the M-Pesa menu on your phone (SIM toolkit or M-Pesa app).</p></div></div>
-<div class="pay-step"><div class="pay-num">2</div><div><h5>Select Lipa na M-Pesa</h5><p>Choose <b>Lipa na M-Pesa</b> from the M-Pesa menu options.</p></div></div>
-<div class="pay-step"><div class="pay-num">3</div><div><h5>Select Pochi la Biashara</h5><p>Choose <b>Pochi la Biashara</b> (not Paybill or Buy Goods).</p></div></div>
-<div class="pay-step"><div class="pay-num">4</div><div><h5>Enter Business Number</h5><p>Type <b>0795999639</b> as the business phone number.</p></div></div>
-<div class="pay-step"><div class="pay-num">5</div><div><h5>Enter the Amount</h5><p>Type the exact total shown on the left: <b id="payAmtInline">KES 0</b></p></div></div>
-<div class="pay-step"><div class="pay-num">6</div><div><h5>Confirm with PIN</h5><p>Enter your M-Pesa PIN to complete. You will receive a confirmation SMS.</p></div></div>
-</div>
-<div class="confirm-pay-box">
-<label><input type="checkbox" id="payCheck"> I have sent <b id="payAmtCheck">KES 0</b> to <b>0795999639</b> via Pochi la Biashara and received a confirmation SMS.</label>
-</div>
-<button class="pay-btn" id="payBtn" disabled onclick="processPayment()"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Confirm Payment</button>
-</div>
-</div>
-</div></div>
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <div class="logo" style="margin-bottom:10px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffc61a" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M2 11h20"/></svg> Safari<b>Link</b> EA</div>
+      <p>Kenya's unified booking platform for SACCO matatus and long-distance buses across Kenya, Uganda, Tanzania, Rwanda and South Sudan.</p>
+    </div>
+    <div><h5>Top Saccos</h5><a href="#saccos">4NTE Sacco</a><a href="#saccos">Mololine Sacco</a><a href="#saccos">2NK Sacco</a><a href="#saccos">Kinatwa Tec Sacco</a><a href="#saccos">Easy Coach</a></div>
+    <div><h5>Popular Routes</h5><a href="javascript:quickR('Nairobi','Mombasa')">Nairobi – Mombasa</a><a href="javascript:quickR('Nairobi','Nakuru')">Nairobi – Nakuru</a><a href="javascript:quickR('Nakuru','Kisumu')">Nakuru – Kisumu</a><a href="javascript:quickR('Nairobi','Kampala (UG)')">Nairobi – Kampala</a><a href="javascript:quickR('Nairobi','Kisumu')">Nairobi – Kisumu</a></div>
+  </div>
+  <div class="wrap" style="margin-top:22px;border-top:1px solid var(--line);padding-top:16px;text-align:center">© 2025 SafariLink EA. Fares shown are operator-standard rates.</div>
+</footer>
 
-<!-- CONFIRM -->
-<div class="page" id="page-confirm"><div class="confirm-page" id="confirmContent"></div></div>
+<!-- BOOKING MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="sheet">
+    <div class="shhead"><h3 id="shTitle">Select Your Seats</h3>
+      <button class="iconbtn" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="steps"><div class="step on" id="s1"></div><div class="step" id="s2"></div><div class="step" id="s3"></div><div class="step" id="s4"></div></div>
+    <div id="stepSeat"></div>
+    <div id="stepPax" class="hidden"></div>
+    <div id="stepPay" class="hidden"></div>
+    <div id="stepDone" class="hidden"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
 
 <script>
-const cities=[{n:'Nairobi',c:'Kenya',t:'ke'},{n:'Mombasa',c:'Kenya',t:'ke'},{n:'Kisumu',c:'Kenya',t:'ke'},{n:'Nakuru',c:'Kenya',t:'ke'},{n:'Eldoret',c:'Kenya',t:'ke'},{n:'Thika',c:'Kenya',t:'ke'},{n:'Nyeri',c:'Kenya',t:'ke'},{n:'Nanyuki',c:'Kenya',t:'ke'},{n:'Meru',c:'Kenya',t:'ke'},{n:'Malindi',c:'Kenya',t:'ke'},{n:'Lamu',c:'Kenya',t:'ke'},{n:'Kitale',c:'Kenya',t:'ke'},{n:'Kakamega',c:'Kenya',t:'ke'},{n:'Kisii',c:'Kenya',t:'ke'},{n:'Busia',c:'Kenya',t:'ke'},{n:'Garissa',c:'Kenya',t:'ke'},{n:'Embu',c:'Kenya',t:'ke'},{n:'Machakos',c:'Kenya',t:'ke'},{n:'Naivasha',c:'Kenya',t:'ke'},{n:'Gilgil',c:'Kenya',t:'ke'},{n:'Voi',c:'Kenya',t:'ke'},{n:'Kampala',c:'Uganda',t:'ea'},{n:'Dar es Salaam',c:'Tanzania',t:'ea'},{n:'Arusha',c:'Tanzania',t:'ea'},{n:'Kigali',c:'Rwanda',t:'ea'},{n:'Bujumbura',c:'Burundi',t:'ea'},{n:'Juba',c:'South Sudan',t:'ea'},{n:'Dodoma',c:'Tanzania',t:'ea'},{n:'Mwanza',c:'Tanzania',t:'ea'},{n:'Jinja',c:'Uganda',t:'ea'},{n:'Entebbe',c:'Uganda',t:'ea'},{n:'Moshi',c:'Tanzania',t:'ea'},{n:'Musoma',c:'Tanzania',t:'ea'}];
-const distMap={};
-function getDist(a,b){const k=`${a}-${b}`;if(distMap[k])return distMap[k];const ka=distLookup[a]||{x:0,y:0},kb=distLookup[b]||{x:0,y:0};const d=Math.round(Math.sqrt((ka.x-kb.x)**2+(ka.y-kb.y)**2)*1.2);distMap[k]=d;distMap[`${b}-${a}`]=d;return d}
-const distLookup={Nairobi:{x:400,y:300},Mombasa:{x:480,y:580},Kisumu:{x:180,y:200},Nakuru:{x:350,y:310},Eldoret:{x:300,y:250},Thika:{x:420,y:320},Nyeri:{x:380,y:340},Nanyuki:{x:370,y:360},Meru:{x:420,y:370},Malindi:{x:510,y:560},Lamu:{x:550,y:570},Kitale:{x:270,y:220},Kakamega:{x:200,y:230},Kisii:{x:260,y:280},Busia:{x:230,y:210},Garissa:{x:530,y:380},Embu:{x:400,y:360},Machakos:{x:430,y:340},Naivasha:{x:340,y:320},Gilgil:{x:330,y:300},Voi:{x:460,y:480},Kampala:{x:160,y:120},Dar:{x:350,y:650},Arusha:{x:380,y:560},Kigali:{x:140,y:60},Bujumbura:{x:120,y:40},Juba:{x:200,y:-20},Dodoma:{x:320,y:620},Mwanza:{x:240,y:580},Jinja:{x:170,y:130},Entebbe:{x:155,y:110},Moshi:{x:390,y:550},Musoma:{x:210,y:560}};
-function calcPrice(dist,cls){const base=cls==='economy'?5:cls==='business'?8:12;let p=Math.round(dist*base);if(p<2500)p=2500;if(p>7000)p=7000;return Math.round(p/100)*100}
-function calcDur(dist){const h=dist/55;const hh=Math.floor(h);const mm=Math.round((h-hh)*60);return hh>0?`${hh}h ${mm}m`:`${mm}m`}
-const operators=[{id:1,nm:'Modern Coast Express',rt:4.5,tp:'luxury',amen:['wifi','ac','charge','tv','snacks'],clr:'#1D4ED8',init:'MC'},{id:2,nm:'Guardian Angel',rt:4.3,tp:'premium',amen:['wifi','ac','charge','tv'],clr:'#7C3AED',init:'GA'},{id:3,nm:'Easy Coach',rt:4.1,tp:'standard',amen:['wifi','ac','charge'],clr:'#059669',init:'EC'},{id:4,nm:'Mash Poa',rt:4.0,tp:'budget',amen:['ac','charge'],clr:'#DC2626',init:'MP'},{id:5,nm:'Greenline Safaris',rt:3.9,tp:'standard',amen:['wifi','ac'],clr:'#16A34A',init:'GS'},{id:6,nm:'Coast Bus',rt:3.8,tp:'budget',amen:['ac'],clr:'#EA580C',init:'CB'},{id:7,nm:'Kampala Coach',rt:4.2,tp:'premium',amen:['wifi','ac','charge','tv'],clr:'#2563EB',init:'KC'},{id:8,nm:'Horizon Coach',rt:4.0,tp:'standard',amen:['wifi','ac','charge'],clr:'#0891B2',init:'HC'},{id:9,nm:'Tahmeed Coach',rt:3.9,tp:'standard',amen:['ac','charge'],clr:'#B45309',init:'TC'},{id:10,nm:'Chania Coach',rt:3.7,tp:'budget',amen:['ac'],clr:'#4F46E5',init:'CC'}];
-const amenLabels={wifi:'WiFi',ac:'A/C',charge:'Charging',tv:'TV',snacks:'Snacks'};
-const amenIcons={wifi:'<svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>',ac:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4m-9-11h4m14 0h4"/></svg>',charge:'<svg viewBox="0 0 24 24"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>',tv:'<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>',snacks:'<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>'};
-const depTimes=['05:30','06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','11:00','12:00','13:00','14:00','15:00','16:00','18:00','20:00','21:00','22:00','23:00'];
-const destData=[{n:'Mombasa',img:'mombasa-beach-22',tag:'Coast',t:'ke',sub:'White sand beaches, Old Town'},{n:'Kampala',img:'kampala-city-44',tag:'Cross-Border',t:'ea',sub:'Pearl of Africa'},{n:'Dar es Salaam',img:'dar-es-salaam-55',tag:'Cross-Border',t:'ea',sub:'Gateway to Zanzibar'},{n:'Kigali',img:'kigali-hills-66',tag:'Cross-Border',t:'ea',sub:'Land of a Thousand Hills'},{n:'Arusha',img:'arusha-kili-77',tag:'Safari',t:'ea',sub:'Mount Kilimanjaro base'},{n:'Kisumu',img:'kisumu-lake-88',tag:'Lakeside',t:'ke',sub:'Lake Victoria shores'}];
-const pkgData={hotel:{label:'Accommodation',desc:'Add a hotel stay at your destination',icon:'<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>',opts:[{id:'h0',nm:'No accommodation',dt:'Skip this',pr:0},{id:'h1',nm:'Budget Hotel',dt:'Clean, basic room',pr:2000},{id:'h2',nm:'Standard Hotel',dt:'WiFi, breakfast included',pr:5000},{id:'h3',nm:'Luxury Hotel',dt:'Premium room, all meals',pr:10000}]},transfer:{label:'Transfer',desc:'Get to your hotel or bus station',icon:'<svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',opts:[{id:'t0',nm:'No transfer',dt:'Make your own way',pr:0},{id:'t1',nm:'Shared Transfer',dt:'Shared van, scheduled',pr:500},{id:'t2',nm:'Private Transfer',dt:'Dedicated car, on demand',pr:1500}]},meals:{label:'Meal Package',desc:'Food and drinks for the journey',icon:'<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>',opts:[{id:'m0',nm:'No meals',dt:'Bring your own',pr:0},{id:'m1',nm:'Light Snacks',dt:'Water, biscuit, juice',pr:300},{id:'m2',nm:'Full Meal Box',dt:'Main meal, drink, fruit',pr:800},{id:'m3',nm:'Premium Dining',dt:'Multi-course, premium drinks',pr:1500}]},extras:{label:'Experience Add-ons',desc:'Enhance your trip with extras',icon:'<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',toggles:[{id:'e1',nm:'City Tour',dt:'Half-day guided tour',pr:2000},{id:'e2',nm:'Priority Boarding',dt:'Board first, choose best spot',pr:200},{id:'e3',nm:'Extra Luggage (10kg)',dt:'Additional baggage allowance',pr:300},{id:'e4',nm:'Premium Insurance',dt:'Enhanced travel coverage',pr:500},{id:'e5',nm:'Welcome Kit',dt:'Blanket, pillow, water, earplugs',pr:400},{id:'e6',nm:'WiFi Device',dt:'Portable WiFi for the trip',pr:500}]}};
-let S={from:'',to:'',date:'',pass:1,step:0,bus:null,cls:'',price:0,seats:[],booked:new Set(),pkg:{hotel:'h0',transfer:'t0',meals:'m0',extras:[]},pax:[],ref:''};
-const steps=['Search','Bus','Seats','Package','Details','Payment','Done'];
-function init(){populateCities();setMinDate();renderDests();renderOps();document.getElementById('payCheck').addEventListener('change',function(){document.getElementById('payBtn').disabled=!this.checked})}
-function populateCities(){const f=document.getElementById('fromCity'),t=document.getElementById('toCity');let ko='<optgroup label="Kenya">',ea='<optgroup label="East Africa">';cities.forEach(c=>{const o=`<option value="${c.n}">${c.n}</option>`;c.t==='ke'?ko+=o:ea+=o});f.innerHTML='<option value="">Select city</option>'+ko+ea;t.innerHTML='<option value="">Select city</option>'+ko+ea}
-function setMinDate(){const d=new Date();d.setDate(d.getDate()+1);document.getElementById('travelDate').min=d.toISOString().split('T')[0];document.getElementById('travelDate').value=d.toISOString().split('T')[0]}
-function renderDests(){document.getElementById('destGrid').innerHTML=destData.map(d=>`<div class="dest" onclick="quickFill('Nairobi','${d.n}');doSearch()"><div class="dest-img"><img src="https://picsum.photos/seed/${d.img}/500/320.jpg" alt="${d.n}" loading="lazy"><span class="tag ${d.t==='ke'?'tag-ke':'tag-ea'}">${d.tag}</span></div><div class="dest-body"><h4>${d.n}</h4><p>${d.sub}</p><div class="price">From KES 2,500</div></div></div>`).join('')}
-function renderOps(){document.getElementById('opsGrid').innerHTML=operators.map(o=>`<div class="op"><div class="op-logo" style="background:${o.clr}">${o.init}</div><div class="op-name">${o.nm}</div><div class="op-rt">${o.rt} rating</div></div>`).join('')}
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');const isHome=id==='home';document.getElementById('navInner').classList.toggle('show-back',!isHome);document.getElementById('progressBar').classList.toggle('show',!isHome);if(!isHome)updateProgress();window.scrollTo({top:0,behavior:'instant'})}
-function goHome(){S={from:'',to:'',date:'',pass:1,step:0,bus:null,cls:'',price:0,seats:[],booked:new Set(),pkg:{hotel:'h0',transfer:'t0',meals:'m0',extras:[]},pax:[],ref:''};showPage('home')}
-function goBack(){const map=['home','results','seats','package','details','payment','confirm'];const cur=map.findIndex(p=>document.getElementById('page-'+p).classList.contains('active'));if(cur>0)showPage(map[cur-1])}
-function updateProgress(){const labels=['Search','Bus','Seats','Package','Details','Payment','Done'];const cur=S.step;let html='';labels.forEach((l,i)=>{const cls=i<cur?'done':i===cur?'active':'';html+=`<div class="prog-step ${cls}"><div class="prog-dot">${i<cur?'<svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><polyline points="20 6 9 17 4 12"/></svg>':i+1}</div><span class="prog-label">${l}</span></div>`});document.getElementById('progressInner').innerHTML=html}
-function setTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
-function quickFill(f,t){document.getElementById('fromCity').value=f;document.getElementById('toCity').value=t}
-function doSearch(){S.from=document.getElementById('fromCity').value;S.to=document.getElementById('toCity').value;S.date=document.getElementById('travelDate').value;S.pass=parseInt(document.getElementById('passCount').value);if(!S.from||!S.to){toast('Please select both departure and destination cities.','err');return}if(S.from===S.to){toast('Departure and destination must be different.','err');return}if(!S.date){toast('Please select a travel date.','err');return}const today=new Date();today.setHours(0,0,0,0);if(new Date(S.date)<=today){toast('Travel date must be in the future.','err');return}S.step=1;renderResults();showPage('results')}
-function renderResults(){const dist=getDist(S.from,S.to);const dur=calcDur(dist);const isCross=cities.find(c=>c.n===S.to)?.t==='ea'||cities.find(c=>c.n===S.from)?.t==='ea';document.getElementById('resFrom').textContent=S.from;document.getElementById('resTo').textContent=S.to;const dObj=new Date(S.date);document.getElementById('resDate').textContent=dObj.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});document.getElementById('resDur').textContent=dur;document.getElementById('resBorder').style.display=isCross?'inline-flex':'none';let avail=operators.filter(o=>{if(isCross&&o.tp==='budget')return false;return true});avail=shuffle(avail).slice(0,Math.min(6,avail.length));avail=avail.map((o,i)=>{const dep=depTimes[Math.floor(Math.random()*depTimes.length)];const avail_seats=Math.floor(Math.random()*25)+8;const classes=[];if(o.tp==='luxury'||o.tp==='premium')classes.push('economy','business','vip');else if(o.tp==='standard')classes.push('economy','business');else classes.push('economy');return{...o,dep,avail_seats,classes,filter_cls:classes.join(',')}});window._results=avail;filterResults('all',document.querySelector('.filter-chip.active'))}
-function filterResults(cls,btn){if(btn){document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active')}const list=window._results||[];const dist=getDist(S.from,S.to);const filtered=cls==='all'?list:list.filter(b=>b.filter_cls.includes(cls));if(!filtered.length){document.getElementById('busList').innerHTML='<div class="no-results"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>No buses found for this filter. Try a different class.</p></div>';return}document.getElementById('busList').innerHTML=filtered.map(b=>{const priceE=calcPrice(dist,'economy'),priceB=calcPrice(dist,'business'),priceV=calcPrice(dist,'vip');const amenH=b.amen.map(a=>`<span class="amenity">${amenIcons[a]||''} ${amenLabels[a]||a}</span>`).join('');let clsBtns='';if(b.classes.includes('economy'))clsBtns+=`<button class="cls-btn cls-econ" onclick="pickBus(${b.id},'economy',${priceE})">Economy KES ${priceE.toLocaleString()}</button>`;if(b.classes.includes('business'))clsBtns+=`<button class="cls-btn cls-biz" onclick="pickBus(${b.id},'business',${priceB})">Business KES ${priceB.toLocaleString()}</button>`;if(b.classes.includes('vip'))clsBtns+=`<button class="cls-btn cls-vip" onclick="pickBus(${b.id},'vip',${priceV})">VIP KES ${priceV.toLocaleString()}</button>`;return`<div class="bus-card" data-cls="${b.filter_cls}"><div class="bus-logo" style="background:${b.clr}">${b.init}</div><div class="bus-info"><h3>${b.nm}</h3><div class="meta"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.dep}</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>${b.avail_seats} seats</span><span style="color:#F59E0B"><svg viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${b.rt}</span></div><div class="amenities">${amenH}</div></div><div class="bus-pricing"><div class="from">Starting from</div><div class="price">KES ${calcPrice(dist,b.classes[0]).toLocaleString()}</div><div class="classes">${clsBtns}</div></div></div>`}).join('')}
-function pickBus(id,cls,price){const bus=operators.find(o=>o.id===id);if(!bus)return;S.bus=bus;S.cls=cls;S.price=price;S.seats=[];S.step=2;renderSeats();showPage('seats')}
-function renderSeats(){const isVip=S.cls==='vip';const cols=isVip?3:4;const rows=isVip?11:10;const total=cols*rows;S.booked=new Set();const numBooked=Math.floor(Math.random()*Math.floor(total*.35))+Math.floor(total*.15);while(S.booked.size<numBooked)S.booked.add(Math.floor(Math.random()*total)+1);document.getElementById('seatInfo').textContent=`${S.cls.charAt(0).toUpperCase()+S.cls.slice(1)} Class | KES ${S.price.toLocaleString()} per seat | ${calcDur(getDist(S.from,S.to))}`;document.getElementById('seatBusNm').textContent=S.bus.nm;document.getElementById('seatBusDt').textContent=`${S.bus.dep} departure`;document.getElementById('sRoute').textContent=`${S.from} to ${S.to}`;document.getElementById('sClass').textContent=S.cls.charAt(0).toUpperCase()+S.cls.slice(1);const grid=document.getElementById('seatsGrid');grid.style.gridTemplateColumns=`repeat(${cols},1fr)`;let html='';for(let r=0;r<rows;r++){for(let c=0;c<cols;c++){const num=r*cols+c+1;if(num>total)break;if(cols===4&&c===2)html+='<div class="seat aisle"></div>';const isBooked=S.booked.has(num);const isVipSeat=isVip||(!isVip&&r<2);let cls2='seat';if(isBooked)cls2+=' taken';else if(isVipSeat)cls2+=' vip-seat';html+=`<div class="${cls2}" data-n="${num}" ${isBooked?'':`onclick="toggleSeat(${num},this)"`}>${isBooked?'X':num}</div>`}}grid.innerHTML=html;updateSeatSummary()}
-function toggleSeat(n,el){const idx=S.seats.indexOf(n);if(idx>-1){S.seats.splice(idx,1);el.classList.remove('selected')}else{if(S.seats.length>=S.pass){toast(`Maximum ${S.pass} seat(s) for ${S.pass} passenger(s).`,'err');return}S.seats.push(n);el.classList.add('selected')}updateSeatSummary()}
-function updateSeatSummary(){const c=S.seats.length;document.getElementById('sSeats').textContent=c?S.seats.join(', '):'None selected';document.getElementById('sBase').textContent=`KES ${(c*S.price).toLocaleString()}`;document.getElementById('sTotal').textContent=`KES ${(c*S.price).toLocaleString()}`;document.getElementById('seatContBtn').disabled=c===0}
-function goToPackage(){if(!S.seats.length){toast('Please select at least one seat.','err');return}S.step=3;S.pkg={hotel:'h0',transfer:'t0',meals:'m0',extras:[]};renderPackage();showPage('package')}
-function renderPackage(){let html='';html+=pkgSection('hotel');html+=pkgSection('transfer');html+=pkgSection('meals');const ex=pkgData.extras;html+=`<div class="pkg-section"><h3>${ex.icon} ${ex.label}</h3><p class="desc">${ex.desc}</p><div class="pkg-toggles">${ex.toggles.map(t=>`<div class="pkg-toggle" id="tg_${t.id}" onclick="toggleExtra('${t.id}',${t.pr})"><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="tg-info"><div class="nm">${t.nm}</div><div class="dt">${t.dt}</div></div><div class="tg-pr">KES ${t.pr.toLocaleString()}</div></div>`).join('')}</div></div>`;document.getElementById('pkgContent').innerHTML=html;updatePkgTotal()}
-function pkgSection(key){const d=pkgData[key];return`<div class="pkg-section"><h3>${d.icon} ${d.label}</h3><p class="desc">${d.desc}</p><div class="pkg-options">${d.opts.map(o=>`<div class="pkg-opt ${o.id==='h0'||o.id==='t0'||o.id==='m0'?'picked':''}" id="po_${o.id}" onclick="pickPkgOpt('${key}','${o.id}',${o.pr})"><div class="pick-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="nm">${o.nm}</div><div class="dt">${o.dt}</div><div class="pr">${o.pr?`KES ${o.pr.toLocaleString()}`:'Free'}</div></div>`).join('')}</div></div>`}
-function pickPkgOpt(key,id,pr){const sec=pkgData[key];sec.opts.forEach(o=>{const el=document.getElementById('po_'+o.id);if(el)el.classList.toggle('picked',o.id===id)});S.pkg[key]=id;updatePkgTotal()}
-function toggleExtra(id,pr){const el=document.getElementById('tg_'+id);const idx=S.pkg.extras.indexOf(id);if(idx>-1){S.pkg.extras.splice(idx,1);el.classList.remove('on')}else{S.pkg.extras.push(id);el.classList.add('on')}updatePkgTotal()}
-function getPkgExtra(){let t=0;S.pkg.extras.forEach(id=>{const e=pkgData.extras.toggles.find(x=>x.id===id);if(e)t+=e.pr});return t}
-function getPkgTotal(){const seatTotal=S.seats.length*S.price;let pkgTotal=0;['hotel','transfer','meals'].forEach(k=>{const sec=pkgData[k];const opt=sec.opts.find(o=>o.id===S.pkg[k]);if(opt)pkgTotal+=opt.pr});pkgTotal+=getPkgExtra();return{seatTotal,pkgTotal,grand:seatTotal+pkgTotal}}
-function updatePkgTotal(){const{grand}=getPkgTotal();document.getElementById('pkgTotal').textContent=`KES ${grand.toLocaleString()}`}
-function goToDetails(){S.step=4;let html='';for(let i=0;i<S.seats.length;i++){html+=`<div class="pax-card"><h3><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Passenger ${i+1} <span style="color:var(--muted);font-weight:400;font-size:13px">(Seat ${S.seats[i]})</span></h3><div class="pax-fields"><div class="full"><div class="pax-field"><label>Full Name (as on ID)</label><input type="text" id="pn${i}" placeholder="e.g. John Kamau Njeri"></div></div><div><div class="pax-field"><label>Phone Number</label><input type="tel" id="pp${i}" placeholder="0712345678"></div></div><div><div class="pax-field"><label>ID / Passport No.</label><input type="text" id="pi${i}" placeholder="12345678"></div></div></div></div>`}document.getElementById('paxForms').innerHTML=html;const{grand}=getPkgTotal();document.getElementById('detTotal').textContent=`KES ${grand.toLocaleString()}`;showPage('details')}
-function goToPayment(){S.pax=[];for(let i=0;i<S.seats.length;i++){const nm=document.getElementById('pn'+i).value.trim();const ph=document.getElementById('pp'+i).value.trim();const id=document.getElementById('pi'+i).value.trim();if(!nm){toast(`Please enter name for Passenger ${i+1}.`,'err');return}if(!ph||ph.length<10){toast(`Please enter a valid phone for Passenger ${i+1}.`,'err');return}if(!id||id.length<5){toast(`Please enter ID/Passport for Passenger ${i+1}.`,'err');return}S.pax.push({nm,ph,id})}S.step=5;S.ref='SR'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).substring(2,5).toUpperCase();const{grand}=getPkgTotal();document.getElementById('payAcc').textContent=S.ref;document.getElementById('payAmt').textContent=`KES ${grand.toLocaleString()}`;document.getElementById('payAmtInline').textContent=`KES ${grand.toLocaleString()}`;document.getElementById('payAmtCheck').textContent=`KES ${grand.toLocaleString()}`;document.getElementById('payCheck').checked=false;document.getElementById('payBtn').disabled=true;showPage('payment')}
-function processPayment(){S.step=6;showConfirm();showPage('confirm')}
-function showConfirm(){const{seatTotal,pkgTotal,grand}=getPkgTotal();const dObj=new Date(S.date);const dateStr=dObj.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});let pkgItems=[];['hotel','transfer','meals'].forEach(k=>{const sec=pkgData[k];const opt=sec.opts.find(o=>o.id===S.pkg[k]);if(opt&&opt.pr)pkgItems.push(opt.nm+' - KES '+opt.pr.toLocaleString())});S.pkg.extras.forEach(id=>{const e=pkgData.extras.toggles.find(x=>x.id===id);if(e)pkgItems.push(e.nm+' - KES '+e.pr.toLocaleString())});document.getElementById('confirmContent').innerHTML=`<div class="confirm-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><h2>Booking Confirmed</h2><p class="sub">Your tickets are booked. Confirmation SMS sent to ${S.pax[0].ph}.</p><div class="confirm-card"><div class="ref"><span class="k">Reference</span><span class="v">${S.ref}</span></div><div class="sum-row"><span class="k">Route</span><span class="v">${S.from} to ${S.to}</span></div><div class="sum-row"><span class="k">Date</span><span class="v">${dateStr}</span></div><div class="sum-row"><span class="k">Bus</span><span class="v">${S.bus.nm} · ${S.bus.dep}</span></div><div class="sum-row"><span class="k">Class</span><span class="v">${S.cls.charAt(0).toUpperCase()+S.cls.slice(1)}</span></div><div class="sum-row"><span class="k">Seat(s)</span><span class="v">${S.seats.join(', ')}</span></div>${S.pax.map((p,i)=>`<div class="sum-row"><span class="k">Passenger ${i+1}</span><span class="v">${p.nm}</span></div>`).join('')}${pkgItems.length?`<div style="padding-top:10px;border-top:1px solid var(--border);margin-top:4px"><div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Package Add-ons</div>${pkgItems.map(i=>`<div class="sum-row" style="border:0;padding:4px 0"><span class="k" style="font-size:13px">${i}</span></div>`).join('')}</div>`:''}<div class="sum-total"><span class="k">Total Paid</span><span class="v">KES ${grand.toLocaleString()}</span></div></div><div class="confirm-actions"><button class="btn-outline" onclick="goHome()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Back to Home</button><button class="btn-fill" onclick="goHome()"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Another Trip</button></div>`}
-function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-function toast(msg,type='ok'){const w=document.getElementById('toastWrap');const t=document.createElement('div');t.className='toast '+type;const icon=type==='err'?'<svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>':'<svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';t.innerHTML=icon+' '+msg;w.appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(()=>t.remove(),300)},3500)}
-document.addEventListener('DOMContentLoaded',init);
+/* ===== FIXED PAYMENT ===== */
+const PAYBILL="775093";
+const ACCOUNT="140054011";
+
+/* ===== TOWNS ===== */
+const TOWNS=["Nairobi","Mombasa","Kisumu","Nakuru","Eldoret","Thika","Malindi","Kitale","Garissa","Kakamega",
+"Nyeri","Nanyuki","Kericho","Bungoma","Kisii","Kilifi","Machakos","Meru","Embu","Naivasha","Narok","Voi",
+"Lodwar","Maralal","Mandera","Wajir","Moyale","Isiolo","Marsabit","Vihiga","Siaya","Homa Bay","Migori",
+"Bomet","Sotik","Litein","Nyahururu","Karatina","Othaya","Makueni","Kitui","Mwingi","Mtwapa","Ukunda",
+"Lamu","Hola","Murang'a","Rongai","Eldama Ravine","Kapsabet","Kabarnet","Iten",
+"Limuru","Kiambu","Ruiru","Athi River","Namanga","Loitokitok","Kilgoris","Isebania","Webuye","Busia","Ahero",
+"Malaba","Bungoma","Mtito Andei","Mariakani","Gilgil","Kijabe","Kenol",
+"Kampala (UG)","Entebbe (UG)","Jinja (UG)","Gulu (UG)","Mbarara (UG)","Malaba (UG)",
+"Arusha (TZ)","Moshi (TZ)","Dar es Salaam (TZ)","Mwanza (TZ)","Dodoma (TZ)","Tanga (TZ)","Zanzibar (TZ)",
+"Kigali (RW)","Butare (RW)","Musanze (RW)","Bujumbura (BI)","Juba (SS)","Addis Ababa (ET)"];
+
+/* ===== AMENITIES BY TYPE ===== */
+const AMENITIES={
+  matatu:["Frequent departures","Luggage space"],
+  shuttle:["AC","Door-to-door"],
+  executive:["Reclining seats","USB charging","Reading lights","Onboard attendant"],
+  luxury:["WiFi","Recliner 2+2","Snacks","USB charging","Extra legroom","AC"],
+  vip:["WiFi","Sleeper seats","Meals","USB charging","Blanket","AC","Entertainment"]
+};
+const AMEN_SVG=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>`;
+
+/* ===== SACCO DATA WITH ROUTES, PICKUPS, STAGES ===== */
+const SD=[
+ {n:"4NTE Sacco",sn:"4NTE",hq:"Nairobi",t:"matatu",rt:4.2,fl:"33-seater matatus",routes:[
+  {f:"Nairobi",t:"Nakuru",pk:"4NTE Stage, Accra Road (Beba Beba Terminal), Nairobi CBD",dp:"4NTE Desk, Nakuru Main Bus Park",st:["Limuru","Kijabe","Naivasha","Gilgil"],fa:800,dur:"2h 30m"},
+  {f:"Nairobi",t:"Eldoret",pk:"4NTE Stage, Accra Road (Beba Beba Terminal), Nairobi CBD",dp:"4NTE Desk, Eldoret Main Stage",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1500,dur:"5h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"4NTE Stage, Accra Road (Beba Beba Terminal), Nairobi CBD",dp:"4NTE Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:1200,dur:"6h 00m"},
+  {f:"Nakuru",t:"Kisumu",pk:"4NTE Desk, Nakuru Main Bus Park",dp:"4NTE Desk, Kisumu Bus Park",st:["Kericho","Ahero"],fa:700,dur:"3h 30m"},
+ ]},
+ {n:"Mololine Sacco",sn:"Mololine",hq:"Nakuru",t:"matatu",rt:4.3,fl:"33-seater matatus",routes:[
+  {f:"Nakuru",t:"Nairobi",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine/Prestige Stage, Tsavo Road near Latema Road, Nairobi",st:["Gilgil","Naivasha","Kijabe","Limuru"],fa:800,dur:"2h 30m"},
+  {f:"Nakuru",t:"Kericho",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine Desk, Kericho Bus Park",st:["Molo","Mau Narok"],fa:500,dur:"2h 00m"},
+  {f:"Nakuru",t:"Kisumu",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine Desk, Kisumu Main Bus Park",st:["Kericho","Ahero"],fa:700,dur:"3h 30m"},
+  {f:"Nakuru",t:"Eldoret",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine Desk, Eldoret Bus Park",st:["Eldama Ravine"],fa:600,dur:"2h 30m"},
+  {f:"Nakuru",t:"Bungoma",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine Desk, Bungoma Bus Park",st:["Eldoret","Webuye"],fa:900,dur:"4h 00m"},
+  {f:"Nakuru",t:"Kakamega",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine Desk, Kakamega Bus Park",st:["Eldoret","Webuye"],fa:850,dur:"4h 00m"},
+  {f:"Nakuru",t:"Nyahururu",pk:"Mololine Stage, Nakuru Main Bus Park",dp:"Mololine Desk, Nyahururu Stage",st:["Molo","Ol Kalou"],fa:400,dur:"1h 45m"},
+  {f:"Nairobi",t:"Kericho",pk:"Mololine/Prestige Stage, Tsavo Road near Latema Road, Nairobi",dp:"Mololine Desk, Kericho Bus Park",st:["Naivasha","Nakuru"],fa:1100,dur:"4h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Mololine House, Nyamakima, Nairobi",dp:"Mololine Desk, Kisumu Main Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:1300,dur:"6h 00m"},
+ ]},
+ {n:"2NK Sacco",sn:"2NK",hq:"Nyeri",t:"matatu",rt:4.5,fl:"14-seater & 33-seater matatus",routes:[
+  {f:"Nyeri",t:"Nairobi",pk:"2NK Lower Stage, Gakere Road (Mbaki House HQ), Nyeri",dp:"2NK Nyamakima Booking Office, Nairobi CBD",st:["Karatina","Thika","Ruiru"],fa:600,dur:"2h 45m"},
+  {f:"Nyeri",t:"Nakuru",pk:"2NK Lower Stage, Gakere Road (Mbaki House HQ), Nyeri",dp:"2NK Nakuru Booking Office, Nakuru Town",st:["Karatina","Ol Kalou"],fa:500,dur:"2h 30m"},
+  {f:"Nyeri",t:"Nanyuki",pk:"2NK Lower Stage, Gakere Road (Mbaki House HQ), Nyeri",dp:"2NK Stage, Nanyuki Town",st:["Naro Moru","Chaka"],fa:300,dur:"1h 15m"},
+  {f:"Karatina",t:"Nairobi",pk:"2NK Stage, Karatina Town",dp:"2NK Nyamakima Booking Office, Nairobi CBD",st:["Thika","Ruiru"],fa:500,dur:"2h 15m"},
+  {f:"Thika",t:"Nairobi",pk:"2NK Stage, Thika Town",dp:"2NK Nyamakima Booking Office, Nairobi CBD",st:["Ruiru","Juja"],fa:250,dur:"1h 00m"},
+  {f:"Nairobi",t:"Nanyuki",pk:"2NK Nyamakima Booking Office, Nairobi CBD",dp:"2NK Stage, Nanyuki Town",st:["Thika","Karatina","Nyeri"],fa:800,dur:"3h 30m"},
+  {f:"Nakuru",t:"Thika",pk:"2NK Nakuru Booking Office, Nakuru Town",dp:"2NK Stage, Thika Town",st:["Karatina"],fa:450,dur:"2h 15m"},
+ ]},
+ {n:"Kinatwa Tec Sacco",sn:"Kinatwa",hq:"Murang'a",t:"matatu",rt:4.1,fl:"14-seater matatus",routes:[
+  {f:"Murang'a",t:"Nairobi",pk:"Kinatwa Stage, Kenol, Murang'a",dp:"Kinatwa Stage, Accra Road, Nairobi",st:["Thika","Ruiru"],fa:400,dur:"2h 00m"},
+  {f:"Thika",t:"Nairobi",pk:"Kinatwa Stage, Thika Town",dp:"Kinatwa Stage, Accra Road, Nairobi",st:["Ruiru","Juja"],fa:250,dur:"1h 00m"},
+  {f:"Nairobi",t:"Nakuru",pk:"Kinatwa Stage, Accra Road, Nairobi",dp:"Kinatwa Desk, Nakuru Main Bus Park",st:["Thika","Nyahururu"],fa:900,dur:"3h 30m"},
+ ]},
+ {n:"Endsleigh Sacco",sn:"Endsleigh",hq:"Nyeri",t:"matatu",rt:4.0,fl:"33-seater matatus",routes:[
+  {f:"Nyeri",t:"Nairobi",pk:"Endsleigh Booking Office, Nyeri Town",dp:"Endsleigh Stage, Nyamakima, Nairobi",st:["Karatina","Thika"],fa:600,dur:"2h 45m"},
+  {f:"Nyeri",t:"Nakuru",pk:"Endsleigh Booking Office, Nyeri Town",dp:"Endsleigh Desk, Nakuru Main Bus Park",st:["Karatina","Ol Kalou"],fa:500,dur:"2h 30m"},
+  {f:"Nanyuki",t:"Nairobi",pk:"Endsleigh Stage, Nanyuki Town",dp:"Endsleigh Stage, Nyamakima, Nairobi",st:["Nyeri","Karatina","Thika"],fa:800,dur:"3h 30m"},
+ ]},
+ {n:"Super Metro Sacco",sn:"SuperMetro",hq:"Nairobi",t:"matatu",rt:3.9,fl:"33-seater matatus",routes:[
+  {f:"Nairobi",t:"Limuru",pk:"Super Metro Terminal, Railways, Nairobi CBD",dp:"Limuru Town Stage",st:["Kikuyu","Uthiru"],fa:200,dur:"45m"},
+  {f:"Nairobi",t:"Rongai",pk:"Super Metro Terminal, Railways, Nairobi CBD",dp:"Rongai Town Stage",st:["Ngong","Kiserian"],fa:250,dur:"1h 00m"},
+ ]},
+ {n:"Forward Travellers",sn:"Forward",hq:"Kisii",t:"matatu",rt:3.8,fl:"33-seater matatus",routes:[
+  {f:"Kisii",t:"Nairobi",pk:"Milo Stage, Kisii Town",dp:"Forward Stage, Nyamakima, Nairobi",st:["Kericho","Nakuru","Naivasha"],fa:1200,dur:"6h 00m"},
+  {f:"Kisii",t:"Nakuru",pk:"Milo Stage, Kisii Town",dp:"Forward Desk, Nakuru Main Bus Park",st:["Kericho","Sotik"],fa:700,dur:"3h 30m"},
+ ]},
+ {n:"Ngema Sacco",sn:"Ngema",hq:"Murang'a",t:"matatu",rt:3.7,fl:"14-seater matatus",routes:[
+  {f:"Murang'a",t:"Nairobi",pk:"Ngema Stage, Kenol, Murang'a",dp:"Ngema Stage, Nyamakima, Nairobi",st:["Thika"],fa:400,dur:"2h 00m"},
+  {f:"Thika",t:"Nairobi",pk:"Ngema Stage, Thika Town",dp:"Ngema Stage, Nyamakima, Nairobi",st:["Ruiru"],fa:250,dur:"1h 00m"},
+ ]},
+ {n:"Narok Line",sn:"NarokLn",hq:"Narok",t:"matatu",rt:3.9,fl:"33-seater matatus",routes:[
+  {f:"Narok",t:"Nairobi",pk:"Narok Main Stage, Narok Town",dp:"Narok Line Desk, Nairobi CBD (Nyamakima)",st:["Bomet","Sotik","Kericho","Nakuru"],fa:1000,dur:"4h 00m"},
+  {f:"Narok",t:"Nakuru",pk:"Narok Main Stage, Narok Town",dp:"Narok Line Desk, Nakuru Main Bus Park",st:["Bomet","Sotik","Kericho"],fa:600,dur:"2h 30m"},
+ ]},
+ {n:"Modern Coast Bus",sn:"ModCoast",hq:"Mombasa",t:"luxury",rt:4.4,fl:"51-seater luxury coaches",routes:[
+  {f:"Nairobi",t:"Mombasa",pk:"Modern Coast Town Office, Accra Road (opposite Coast Bus); also Caltex Mombasa Rd next to Parkside Towers",dp:"Modern Coast Head Office, Lumumba Road / Jomo Kenyatta Ave, Total Petrol Station next to Aswan Restaurant, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2500,dur:"8h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Modern Coast Town Office, Accra Road, Nairobi",dp:"Modern Coast Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1800,dur:"6h 30m"},
+  {f:"Nairobi",t:"Malindi",pk:"Modern Coast Town Office, Accra Road, Nairobi",dp:"Modern Coast Office, Malindi Town",st:["Athi River","Voi","Mombasa","Kilifi"],fa:3000,dur:"10h 00m"},
+  {f:"Mombasa",t:"Kisumu",pk:"Modern Coast Head Office, Lumumba Road, Mombasa",dp:"Modern Coast Desk, Kisumu Bus Park",st:["Mariakani","Voi","Nakuru"],fa:2200,dur:"8h 00m"},
+ ]},
+ {n:"Dreamliner Express",sn:"Dreamliner",hq:"Nairobi",t:"luxury",rt:4.3,fl:"51-seater luxury coaches",routes:[
+  {f:"Nairobi",t:"Mombasa",pk:"Dreamliner Park, Railways Station, Nairobi",dp:"Dreamliner Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2200,dur:"8h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Dreamliner Park, Railways Station, Nairobi",dp:"Dreamliner Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1600,dur:"6h 30m"},
+  {f:"Mombasa",t:"Kisumu",pk:"Dreamliner Office, Mombasa (Mwembe Tayari)",dp:"Dreamliner Desk, Kisumu Bus Park",st:["Voi","Nakuru"],fa:2000,dur:"8h 00m"},
+ ]},
+ {n:"Tahmeed Coach",sn:"Tahmeed",hq:"Mombasa",t:"luxury",rt:4.1,fl:"51-seater coaches",routes:[
+  {f:"Nairobi",t:"Mombasa",pk:"Tahmeed Booking Office, Nairobi CBD (Accra Road)",dp:"Tahmeed Office, Uhuru Road, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2000,dur:"8h 00m"},
+  {f:"Mombasa",t:"Malindi",pk:"Tahmeed Office, Uhuru Road, Mombasa",dp:"Tahmeed Desk, Malindi Town",st:["Kilifi"],fa:500,dur:"2h 00m"},
+  {f:"Nairobi",t:"Malindi",pk:"Tahmeed Booking Office, Nairobi CBD (Accra Road)",dp:"Tahmeed Desk, Malindi Town",st:["Voi","Mombasa","Kilifi"],fa:2500,dur:"10h 00m"},
+ ]},
+ {n:"Mash Poa (Mash East)",sn:"MashPoa",hq:"Nairobi",t:"vip",rt:4.5,fl:"51-seater VIP coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Mash House, Accra Road off River Road; also Railways, Haile Selassie Avenue",dp:"Mash Office, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:2000,dur:"6h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Plaza, Mwembe Tayari / Jomo Kenyatta Avenue (Head Office), Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2800,dur:"8h 00m"},
+  {f:"Nairobi",t:"Eldoret",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Desk, Eldoret Bus Park",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1800,dur:"5h 30m"},
+  {f:"Nairobi",t:"Kampala (UG)",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Poa Kampala Office, Nakawa, Kampala",st:["Nakuru","Eldoret","Malaba","Tororo"],fa:4500,dur:"12h 00m"},
+ ]},
+ {n:"Easy Coach",sn:"EasyCoach",hq:"Nairobi",t:"executive",rt:4.6,fl:"49-seater executive coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:1500,dur:"6h 00m"},
+  {f:"Nairobi",t:"Eldoret",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Eldoret Bus Park",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1400,dur:"5h 30m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1700,dur:"7h 00m"},
+  {f:"Nairobi",t:"Bungoma",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Bungoma Bus Park",st:["Nakuru","Kisumu","Kakamega"],fa:1900,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2200,dur:"8h 00m"},
+ ]},
+ {n:"Guardian Coach",sn:"Guardian",hq:"Nairobi",t:"executive",rt:4.2,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Guardian Coach Stage, Machakos Country Bus Station, Nairobi",dp:"Guardian Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1400,dur:"6h 00m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Guardian Coach Stage, Machakos Country Bus Station, Nairobi",dp:"Guardian Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1600,dur:"7h 00m"},
+  {f:"Nairobi",t:"Migori",pk:"Guardian Coach Stage, Machakos Country Bus Station, Nairobi",dp:"Guardian Desk, Migori Town",st:["Nakuru","Kisii"],fa:1800,dur:"8h 00m"},
+ ]},
+ {n:"Spanish Coach",sn:"Spanish",hq:"Nairobi",t:"executive",rt:3.9,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Spanish Coach Stage, Machakos Country Bus Station, Nairobi",dp:"Spanish Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1300,dur:"6h 00m"},
+  {f:"Nairobi",t:"Homa Bay",pk:"Spanish Coach Stage, Machakos Country Bus Station, Nairobi",dp:"Spanish Desk, Homa Bay Town",st:["Nakuru","Kisii"],fa:1600,dur:"7h 30m"},
+ ]},
+ {n:"Transline Classic",sn:"Transline",hq:"Kisii",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
+  {f:"Kisii",t:"Nairobi",pk:"Transline Stage, Kisii Town",dp:"Transline Stage, Nyamakima / Machakos Country Bus, Nairobi",st:["Kericho","Nakuru","Naivasha"],fa:1200,dur:"6h 00m"},
+  {f:"Kisii",t:"Nakuru",pk:"Transline Stage, Kisii Town",dp:"Transline Desk, Nakuru Main Bus Park",st:["Kericho","Sotik"],fa:700,dur:"3h 30m"},
+ ]},
+ {n:"Chania Classic",sn:"Chania",hq:"Thika",t:"matatu",rt:4.1,fl:"33-seater matatus",routes:[
+  {f:"Thika",t:"Nairobi",pk:"Chania Stage, Thika Town (Thika Bus Park)",dp:"Chania Stage, Nyamakima, Nairobi",st:["Ruiru","Juja"],fa:250,dur:"1h 00m"},
+  {f:"Thika",t:"Nyeri",pk:"Chania Stage, Thika Town (Thika Bus Park)",dp:"Chania Desk, Nyeri Town Stage",st:["Karatina"],fa:300,dur:"1h 30m"},
+ ]},
+ {n:"South Rift Sacco",sn:"SthRift",hq:"Kericho",t:"matatu",rt:3.8,fl:"33-seater matatus",routes:[
+  {f:"Kericho",t:"Nairobi",pk:"South Rift Stage, Kericho Main Stage",dp:"South Rift Desk, Nairobi CBD (Nyamakima)",st:["Nakuru","Naivasha"],fa:1100,dur:"4h 00m"},
+  {f:"Kericho",t:"Nakuru",pk:"South Rift Stage, Kericho Main Stage",dp:"South Rift Desk, Nakuru Main Bus Park",st:["Molo","Mau Narok"],fa:500,dur:"2h 00m"},
+ ]},
+ {n:"Elgeyo Sacco",sn:"Elgeyo",hq:"Eldoret",t:"matatu",rt:3.7,fl:"33-seater matatus",routes:[
+  {f:"Eldoret",t:"Nairobi",pk:"Elgeyo Stage, Eldoret Main Stage",dp:"Elgeyo Desk, Nairobi CBD (Nyamakima)",st:["Eldama Ravine","Nakuru","Naivasha"],fa:1400,dur:"5h 30m"},
+  {f:"Eldoret",t:"Nakuru",pk:"Elgeyo Stage, Eldoret Main Stage",dp:"Elgeyo Desk, Nakuru Main Bus Park",st:["Eldama Ravine"],fa:600,dur:"2h 30m"},
+  {f:"Eldoret",t:"Kitale",pk:"Elgeyo Stage, Eldoret Main Stage",dp:"Elgeyo Desk, Kitale Bus Park",st:["Iten","Kapsabet"],fa:400,dur:"2h 00m"},
+ ]},
+ {n:"Buscar Company",sn:"Buscar",hq:"Nairobi",t:"executive",rt:3.9,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kakamega",pk:"Buscar Booking Office, Railways, Nairobi",dp:"Buscar Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1600,dur:"7h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Buscar Booking Office, Railways, Nairobi",dp:"Buscar Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1300,dur:"6h 00m"},
+ ]},
+ {n:"Mbukinya Bus",sn:"Mbukinya",hq:"Kisii",t:"executive",rt:3.8,fl:"49-seater coaches",routes:[
+  {f:"Kisii",t:"Mombasa",pk:"Mbukinya Stage, Kisii Town",dp:"Mbukinya Desk, Mombasa (Mwembe Tayari)",st:["Nakuru","Nairobi","Voi"],fa:2500,dur:"10h 00m"},
+  {f:"Kisii",t:"Nairobi",pk:"Mbukinya Stage, Kisii Town",dp:"Mbukinya Office, Machakos Country Bus Station, Nairobi",st:["Kericho","Nakuru"],fa:1200,dur:"6h 00m"},
+ ]},
+ {n:"Kenya Bus Service",sn:"KBS",hq:"Nairobi",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Mombasa",pk:"KBS Railways Terminus, Nairobi CBD",dp:"KBS Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2000,dur:"8h 00m"},
+  {f:"Nairobi",t:"Thika",pk:"KBS Railways Terminus, Nairobi CBD",dp:"KBS Desk, Thika Bus Park",st:["Ruiru"],fa:300,dur:"1h 00m"},
+ ]},
+ {n:"Simba Coach",sn:"Simba",hq:"Nairobi",t:"executive",rt:4.1,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Simba Depot, Ngara, Nairobi",dp:"Simba Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1400,dur:"6h 00m"},
+  {f:"Nairobi",t:"Eldoret",pk:"Simba Depot, Ngara, Nairobi",dp:"Simba Desk, Eldoret Bus Park",st:["Nakuru","Eldama Ravine"],fa:1300,dur:"5h 30m"},
+ ]},
+ {n:"Coast Bus",sn:"CoastBus",hq:"Mombasa",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Mombasa",pk:"Coast Bus Office, Accra Road, Nairobi",dp:"Coast Bus, Mwembe Tayari, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:1800,dur:"8h 00m"},
+  {f:"Mombasa",t:"Malindi",pk:"Coast Bus, Mwembe Tayari, Mombasa",dp:"Coast Bus Desk, Malindi Town",st:["Kilifi"],fa:400,dur:"2h 00m"},
+  {f:"Mombasa",t:"Kilifi",pk:"Coast Bus, Mwembe Tayari, Mombasa",dp:"Coast Bus Desk, Kilifi Town",st:["Mtwapa"],fa:300,dur:"1h 30m"},
+ ]},
+ {n:"Kakamega Environmental Sacco",sn:"KakEnv",hq:"Kakamega",t:"matatu",rt:3.6,fl:"33-seater matatus",routes:[
+  {f:"Kakamega",t:"Nairobi",pk:"Kakamega Environmental Stage, Kakamega Main Stage",dp:"Desk at Nairobi CBD stages (Nyamakima)",st:["Kisumu","Nakuru"],fa:1500,dur:"7h 00m"},
+  {f:"Kakamega",t:"Kisumu",pk:"Kakamega Environmental Stage, Kakamega Main Stage",dp:"Kak Env Desk, Kisumu Bus Park",st:["Vihiga","Mumias"],fa:400,dur:"2h 00m"},
+ ]},
+ {n:"Kampala Coach (EA)",sn:"KCoach",hq:"Kampala",t:"vip",rt:4.2,fl:"51-seater VIP cross-border",routes:[
+  {f:"Nairobi",t:"Kampala (UG)",pk:"Kampala Coach Desk, Machakos Country Bus Station, Nairobi",dp:"Kampala Coach Yard, Nakawa, Kampala",st:["Nakuru","Eldoret","Malaba","Tororo"],fa:4000,dur:"12h 00m"},
+  {f:"Kampala (UG)",t:"Kigali (RW)",pk:"Kampala Coach Yard, Nakawa, Kampala",dp:"Kampala Coach Desk, Nyabugogo, Kigali",st:["Mbarara (UG)","Kabale"],fa:3000,dur:"8h 00m"},
+ ]},
+ {n:"Tawakal Bus (EA)",sn:"Tawakal",hq:"Nairobi",t:"executive",rt:3.8,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Mombasa",pk:"Tawakal Booking Point, Eastleigh, Nairobi",dp:"Tawakal Desk, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mariakani"],fa:1800,dur:"8h 00m"},
+  {f:"Nairobi",t:"Garissa",pk:"Tawakal Booking Point, Eastleigh, Nairobi",dp:"Tawakal Desk, Garissa Bus Park",st:["Thika","Mwingi"],fa:1200,dur:"5h 00m"},
+ ]},
+ {n:"Dar Express (EA)",sn:"DarExp",hq:"Dar es Salaam",t:"vip",rt:4.1,fl:"51-seater VIP cross-border",routes:[
+  {f:"Nairobi",t:"Dar es Salaam (TZ)",pk:"Dar Express Office, Nairobi CBD (River Road)",dp:"Dar Express Terminal, Ubungo, Dar es Salaam",st:["Arusha (TZ)","Dodoma (TZ)"],fa:5500,dur:"14h 00m"},
+  {f:"Arusha (TZ)",t:"Dar es Salaam (TZ)",pk:"Dar Express Desk, Arusha Central",dp:"Dar Express Terminal, Ubungo, Dar es Salaam",st:["Dodoma (TZ)"],fa:3500,dur:"10h 00m"},
+ ]},
+ {n:"Onatracar (EA)",sn:"Onatracar",hq:"Kigali",t:"vip",rt:4.0,fl:"51-seater VIP cross-border",routes:[
+  {f:"Kigali (RW)",t:"Kampala (UG)",pk:"Onatracar Terminal, Nyabugogo, Kigali",dp:"Onatracar Desk, Kampala (Nakawa)",st:["Mbarara (UG)"],fa:2500,dur:"6h 00m"},
+  {f:"Kigali (RW)",t:"Nairobi",pk:"Onatracar Terminal, Nyabugogo, Kigali",dp:"Onatracar Desk, Nairobi CBD",st:["Kampala (UG)","Malaba","Eldoret","Nakuru"],fa:6000,dur:"18h 00m"},
+ ]},
+ {n:"Great Rift Shuttle",sn:"GtRift",hq:"Naivasha",t:"shuttle",rt:4.3,fl:"7–14 seat shuttles",routes:[
+  {f:"Nairobi",t:"Naivasha",pk:"Great Rift Desk, Nairobi CBD (Railways)",dp:"Great Rift Stage, Naivasha Town",st:["Limuru","Kijabe"],fa:500,dur:"1h 30m"},
+  {f:"Naivasha",t:"Nakuru",pk:"Great Rift Stage, Naivasha Town",dp:"Great Rift Desk, Nakuru Main Bus Park",st:["Gilgil"],fa:400,dur:"1h 15m"},
+ ]},
+ {n:"Nomadic Shuttle EA",sn:"Nomadic",hq:"Arusha",t:"shuttle",rt:4.4,fl:"7–14 seat shuttles",routes:[
+  {f:"Nairobi",t:"Arusha (TZ)",pk:"Nomadic Shuttle Point, Nairobi CBD (River Road)",dp:"Nomadic Shuttle Point, Arusha Central",st:["Namanga"],fa:3500,dur:"6h 00m"},
+  {f:"Arusha (TZ)",t:"Moshi (TZ)",pk:"Nomadic Shuttle Point, Arusha Central",dp:"Nomadic Desk, Moshi Town",st:["Himo"],fa:1500,dur:"1h 30m"},
+ ]},
+ {n:"Nakuru Rift Line",sn:"NkRift",hq:"Nakuru",t:"matatu",rt:3.8,fl:"33-seater matatus",routes:[
+  {f:"Nakuru",t:"Nairobi",pk:"Rift Line Stage, Nakuru Town (Main Bus Park)",dp:"Rift Line Desk, Nairobi CBD (Nyamakima)",st:["Naivasha","Limuru"],fa:800,dur:"2h 30m"},
+  {f:"Nakuru",t:"Eldoret",pk:"Rift Line Stage, Nakuru Town (Main Bus Park)",dp:"Rift Line Desk, Eldoret Main Stage",st:["Eldama Ravine"],fa:600,dur:"2h 30m"},
+ ]},
+ {n:"Socec Sacco",sn:"Socec",hq:"Bungoma",t:"matatu",rt:3.6,fl:"33-seater matatus",routes:[
+  {f:"Bungoma",t:"Nairobi",pk:"Socec Stage, Bungoma Town (Bus Park)",dp:"Socec Stage, Nyamakima, Nairobi",st:["Kakamega","Kisumu","Nakuru"],fa:1600,dur:"8h 00m"},
+  {f:"Bungoma",t:"Kisumu",pk:"Socec Stage, Bungoma Town (Bus Park)",dp:"Socec Desk, Kisumu Bus Park",st:["Kakamega"],fa:600,dur:"3h 00m"},
+ ]},
+ {n:"Kilifi Sacco",sn:"Kilifi",hq:"Kilifi",t:"matatu",rt:3.7,fl:"33-seater matatus",routes:[
+  {f:"Kilifi",t:"Mombasa",pk:"Kilifi Town Stage, Kilifi",dp:"Kilifi Desk, Mombasa (Mwembe Tayari)",st:["Mtwapa"],fa:300,dur:"1h 30m"},
+  {f:"Kilifi",t:"Malindi",pk:"Kilifi Town Stage, Kilifi",dp:"Kilifi Desk, Malindi Town",st:["Watamu"],fa:250,dur:"45m"},
+ ]},
+ {n:"Emmanuel Travellers",sn:"Emmanuel",hq:"Kisii",t:"matatu",rt:3.7,fl:"33-seater matatus",routes:[
+  {f:"Kisii",t:"Nairobi",pk:"Kisii Main Stage, Kisii Town",dp:"Emmanuel Desk, Nairobi CBD (Nyamakima)",st:["Kericho","Nakuru"],fa:1200,dur:"6h 00m"},
+  {f:"Kisii",t:"Nakuru",pk:"Kisii Main Stage, Kisii Town",dp:"Emmanuel Desk, Nakuru Main Bus Park",st:["Kericho","Sotik"],fa:700,dur:"3h 30m"},
+ ]},
+ {n:"Meridian Link",sn:"Meridian",hq:"Nairobi",t:"matatu",rt:3.6,fl:"33-seater matatus",routes:[
+  {f:"Nairobi",t:"Kiambu",pk:"Meridian Point, Nyamakima, Nairobi",dp:"Kiambu Town Stage",st:["Riuwaka"],fa:150,dur:"30m"},
+  {f:"Nairobi",t:"Thika",pk:"Meridian Point, Nyamakima, Nairobi",dp:"Thika Town Stage",st:["Kiambu","Ruiru"],fa:300,dur:"1h 15m"},
+ ]},
+ {n:"Mash East",sn:"MashEast",hq:"Nairobi",t:"executive",rt:4.3,fl:"49-seater executive coaches",routes:[
+  {f:"Nairobi",t:"Meru",pk:"Mash East Desk, Accra Road, Nairobi",dp:"Mash East Desk, Meru Bus Park",st:["Embu","Chuka"],fa:1200,dur:"5h 00m"},
+  {f:"Nairobi",t:"Embu",pk:"Mash East Desk, Accra Road, Nairobi",dp:"Mash East Desk, Embu Town Stage",st:["Machakos","Wote"],fa:800,dur:"3h 30m"},
+ ]},
+];
+
+/* ===== GENERATE DEPARTURES ===== */
+function genDep(type){
+  const t=[];
+  if(type==="matatu"||type==="shuttle"){
+    for(let h=5;h<=20;h++)for(let m=0;m<60;m+=30){if(h===5&&m===0)continue;const hr=h>12?h-12:h;t.push(`${String(hr).padStart(2,'0')}:${String(m).padStart(2,'0')} ${h>=12?'PM':'AM'}`)}
+  }else if(type==="executive"){
+    for(let h=6;h<=21;h++){const hr=h>12?h-12:h;t.push(`${String(hr).padStart(2,'0')}:00 ${h>=12?'PM':'AM'}`)}
+  }else{
+    ["06:00 AM","07:30 AM","09:00 AM","10:30 AM","12:00 PM","01:30 PM","03:00 PM","04:30 PM","06:00 PM","08:00 PM","10:00 PM"].forEach(x=>t.push(x));
+  }
+  return t;
+}
+
+/* ===== VEHICLE CATEGORIES ===== */
+const CATS=[
+ {k:"matatu",n:"SACCO Matatu",d:"14–33 seater PSV matatus run by licensed SACCOs. Fast, frequent, hop-on service.",p:"From KSh 250"},
+ {k:"shuttle",n:"Shuttle / Tour Van",d:"7–14 seat shuttles with AC, ideal for safari towns and cross-border routes.",p:"From KSh 500"},
+ {k:"executive",n:"Executive Coach",d:"49-seater long-distance coach with USB charging, reclining seats and attendant.",p:"From KSh 800"},
+ {k:"luxury",n:"Luxury Coach (2+2)",d:"Premium 2+2 recliner with Wi-Fi, snacks and extra legroom.",p:"From KSh 1,200"},
+ {k:"vip",n:"VIP Sleeper / Double-Decker",d:"Fully reclinable sleeper seats or upper-deck panoramic seating for EA cross-border.",p:"From KSh 4,000"},
+];
+
+/* ===== UI SETUP ===== */
+const $=id=>document.getElementById(id);
+const fromSel=$("fromCity"),toSel=$("toCity");
+TOWNS.forEach(t=>{fromSel.add(new Option(t,t));toSel.add(new Option(t,t))});
+fromSel.value="Nairobi";toSel.value="Nakuru";
+const today=new Date();$("date").value=today.toISOString().slice(0,10);
+ $("date").min=today.toISOString().slice(0,10);
+
+function swapCities(){const a=fromSel.value;fromSel.value=toSel.value;toSel.value=a}
+function quickR(a,b){fromSel.value=a;toSel.value=b;search()}
+function mm(){$("mobmenu").classList.remove("open")}
+function copyTxt(t){navigator.clipboard?navigator.clipboard.writeText(t):void 0;toast('Copied: '+t)}
+
+/* MARQUEE */
+ $("mtrack").innerHTML=(()=>{const items=SD.map(s=>`<span class="mitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg>${s.n}</span>`).join("");return items+items})();
+
+/* CATEGORY CARDS */
+ $("catWrap").innerHTML=CATS.map(c=>`<div class="cat reveal" onclick="pickCat('${c.k}',this)">
+ <div class="cico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M2 11h20"/></svg></div>
+ <h3>${c.n}</h3><p>${c.d}</p><div class="price">${c.p}<small> / typical seat</small></div></div>`).join("");
+
+let curCat=null;
+function pickCat(k,el){curCat=curCat===k?null:k;document.querySelectorAll(".cat").forEach(c=>c.classList.remove("on"));if(curCat)el.classList.add("on")}
+
+/* ===== ROUTE-AWARE SEARCH ===== */
+function findRoutes(from,to,catFilter){
+  const results=[];
+  SD.forEach(sacco=>{
+    if(catFilter&&catFilter!=="any"&&sacco.t!==catFilter)return;
+    sacco.routes.forEach(route=>{
+      /* Direct match */
+      if(route.f===from&&route.t===to){
+        results.push({sacco,route,dir:"direct"});
+      }
+      /* Reverse match — swap pickup/dropoff */
+      if(route.f===to&&route.t===from){
+        results.push({sacco,route:{
+          f:route.t,t:route.f,
+          pk:route.dp,dp:route.pk,
+          st:[...route.st].reverse(),
+          fa:route.fa,dur:route.dur
+        },dir:"reverse"});
+      }
+      /* Stage match: from matches, to is a stage */
+      if(route.f===from&&route.st.includes(to)){
+        const idx=route.st.indexOf(to);
+        const subst=route.st.slice(0,idx);
+        const subfa=Math.round(route.fa*(idx+1)/(route.st.length+1)/50)*50;
+        results.push({sacco,route:{
+          f:route.f,t:to,
+          pk:route.pk,dp:`${to} Town Stage (alight at ${to})`,
+          st:subst,fa:Math.max(200,subfa),dur:estDur(subst.length)
+        },dir:"stage"});
+      }
+      /* Stage match reverse: to matches origin, from is a stage */
+      if(route.t===to&&route.st.includes(from)){
+        const idx=route.st.indexOf(from);
+        const subst=route.st.slice(idx+1);
+        const subfa=Math.round(route.fa*(route.st.length-idx)/(route.st.length+1)/50)*50;
+        results.push({sacco,route:{
+          f:from,t:route.t,
+          pk:`${from} Town Stage (board at ${from})`,dp:route.dp,
+          st:subst,fa:Math.max(200,subfa),dur:estDur(subst.length+1)
+        },dir:"stage"});
+      }
+    });
+  });
+  return results;
+}
+function estDur(stops){return`${Math.max(1,stops)}h ${Math.floor(Math.random()*50+10)}m`}
+
+/* ===== SEARCH ===== */
+let lastResults=[];
+function search(){
+  const a=fromSel.value,b=toSel.value,d=$("date").value||todayStr(),pax=+$("paxSel").value,cat=$("catSel").value;
+  if(a===b){toast("Origin and destination cannot be the same");return}
+  const results=findRoutes(a,b,cat);
+  /* Sort by fare */
+  results.sort((x,y)=>x.route.fa-y.route.fa);
+  lastResults=results;
+  const dateObj=new Date(d+"T00:00:00");
+  const dateStr=dateObj.toLocaleDateString('en-KE',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  let html=`<div class="sechead" style="margin:30px 0 18px">
+    <div class="sectionline" style="justify-content:center"><span class="livedot"></span> Results</div>
+    <h2>${a} &rarr; ${b}</h2><p>${dateStr} · ${pax} passenger${pax>1?'s':''} · ${results.length} trip${results.length!==1?'s':''} found</p></div>`;
+  if(!results.length){
+    html+=`<div class="emptyres"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11h6"/></svg><h3>No direct routes found</h3><p>Try a different vehicle category, or search via a major hub like Nairobi or Nakuru.</p><button class="btn btn-o" style="margin-top:12px" onclick="quickR('${a}','Nairobi')">Search via Nairobi</button></div>`;
+  }else{
+    html+=`<div style="display:grid;gap:14px">${results.map((r,i)=>resultHTML(r,i,pax)).join("")}</div>`;
+  }
+  let old=$("results");if(old)old.remove();
+  const div=document.createElement("div");div.className="wrap";div.id="results";div.innerHTML=html;
+  $("live").before(div);
+  div.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function todayStr(){return today.toISOString().slice(0,10)}
+
+function resultHTML(r,i,pax){
+  const s=r.sacco,rt=r.route;
+  const tag=s.t==="vip"?["tag-y","VIP"]:s.t==="luxury"?["tag-b","LUXURY"]:s.t==="executive"?["tag-g","EXEC"]:s.t==="shuttle"?["tag-b","SHUTTLE"]:["tag-g","SACCO"];
+  const totalFare=rt.fa*pax;
+  const deps=genDep(s.t);
+  const nextDep=deps[Math.floor(Math.random()*deps.length)];
+  const amenities=AMENITIES[s.t]||[];
+  const stagesHTML=rt.st.length?`<div class="stagesrow"><span class="stagepill first">${rt.f}</span>${rt.st.map(st=>`<span class="stagepill">${st}</span>`).join("")}<span class="stagepill last">${rt.t}</span></div>`:'';
+  const amenHTML=amenities.length?`<div class="amenrow">${amenities.map(a=>`<span class="amen">${AMEN_SVG}${a}</span>`).join("")}</div>`:'';
+  return `<div class="rescard">
+   <div class="saccobadge">${s.sn.slice(0,8)}</div>
+   <div class="resinfo"><h4>${s.n}</h4>
+     <div class="meta">
+       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${rt.dur}</span>
+       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${3+Math.floor(Math.random()*20)} seats left</span>
+       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" fill="rgba(255,198,26,.15)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${s.rt}/5</span>
+     </div>
+     <div class="pickupbox">
+       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/></svg>
+       <div><strong>Board at:</strong> ${rt.pk}<em>Drop-off: ${rt.dp}</em></div>
+     </div>
+     ${stagesHTML}
+     ${amenHTML}
+     <div style="margin-top:8px"><span class="tag ${tag[0]}">${tag[1]}</span> <span class="tag tag-b">${s.fl}</span></div>
+   </div>
+   <div class="resprice"><div class="amt">KSh ${totalFare.toLocaleString()}</div><small>per seat KSh ${rt.fa.toLocaleString()} × ${pax}</small>
+     <button class="btn btn-p" style="margin-top:10px;padding:10px 18px;font-size:.88rem" onclick="openBooking(${i})">Book Now</button>
+   </div></div>`;
+}
+
+/* ===== BOOKING FLOW ===== */
+let bk=null;
+function openBooking(i){
+  const r=lastResults[i],pax=+$("paxSel").value;
+  bk={res:r,pax,seats:[],deposit:false,payAmt:0,paxData:[]};
+  $("modal").classList.add("open");
+  setStep(1);renderSeats();
+  $("shTitle").textContent="Step 1 — Select Seats · "+r.sacco.n;
+  $("stepPax").classList.add("hidden");$("stepPay").classList.add("hidden");$("stepDone").classList.add("hidden");
+  $("stepSeat").classList.remove("hidden");
+}
+function closeModal(){$("modal").classList.remove("open")}
+function setStep(n){[1,2,3,4].forEach(i=>{const s=$("s"+i);s.className="step"+(i<n?" done":i===n?" on":"")})}
+
+function renderSeats(){
+  const r=bk.res,rt=r.route;
+  const cap=r.sacco.t==="matatu"||r.sacco.t==="shuttle"?14:r.sacco.t==="luxury"?47:49;
+  const cols=r.sacco.t==="matatu"||r.sacco.t==="shuttle"?4:5;
+  const rows=Math.ceil(cap/(cols-1))+1;
+  let seats="",n=1;
+  for(let row=0;row<rows&&n<=cap;row++){
+    for(let c=0;c<cols;c++){
+      if(c===Math.floor(cols/2)){seats+='<div style="width:8px"></div>';continue}
+      if(n>cap)break;
+      const taken=Math.random()<0.3&&!(row<1);
+      seats+=`<button class="seat ${taken?"taken":""}" id="st${n}" ${taken?"disabled":""} onclick="toggleSeat(${n})">${n}</button>`;
+      n++;
+    }
+  }
+  $("stepSeat").innerHTML=`
+   <div class="pickupbox" style="margin-bottom:8px">
+     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/></svg>
+     <div><strong>Board at:</strong> ${rt.pk}<em>Drop-off: ${rt.dp} · Departure ~${bk.res.route.dur}</em></div>
+   </div>
+   <div class="busvisual">
+     <div class="busfront"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 18H3z"/></svg> Driver / Front</div>
+     <div class="seatgrid" style="grid-template-columns:repeat(${cols},1fr)">${seats}</div>
+     <div class="legend"><span><i style="background:var(--card);border:1.5px solid var(--line)"></i>Available</span><span><i style="background:linear-gradient(135deg,var(--acc),var(--acc2))"></i>Selected</span><span><i style="background:rgba(255,77,106,.25)"></i>Taken</span></div>
+   </div>
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:12px;flex-wrap:wrap">
+     <div>Selected: <b id="selCount" style="color:var(--acc)">0</b> / ${bk.pax} &nbsp;·&nbsp; Subtotal <b id="selAmt" style="color:var(--acc)">KSh 0</b></div>
+     <button class="btn btn-p" id="contBtn" disabled style="opacity:.5" onclick="goPax()">Continue <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+   </div>`;
+}
+function toggleSeat(n){
+  const el=$("st"+n);if(el.classList.contains("taken"))return;
+  if(el.classList.contains("sel")){el.classList.remove("sel");bk.seats=bk.seats.filter(x=>x!==n)}
+  else{if(bk.seats.length>=bk.pax){toast(`Maximum ${bk.pax} seat${bk.pax>1?'s':''} for this booking`);return}el.classList.add("sel");bk.seats.push(n)}
+  const amt=bk.seats.length*bk.res.route.fa;
+  $("selCount").textContent=bk.seats.length;
+  $("selAmt").textContent="KSh "+amt.toLocaleString();
+  const cb=$("contBtn");cb.disabled=bk.seats.length!==bk.pax;cb.style.opacity=bk.seats.length===bk.pax?1:.5;
+}
+
+/* Step 2: Passenger Details */
+function goPax(){
+  setStep(2);$("shTitle").textContent="Step 2 — Passenger Details";
+  $("stepSeat").classList.add("hidden");$("stepPax").classList.remove("hidden");
+  let html='';
+  for(let i=0;i<bk.pax;i++){
+    html+=`<div style="margin-bottom:16px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:14px">
+      <div style="font-weight:700;margin-bottom:10px;color:var(--acc)">Passenger ${i+1} — Seat #${bk.seats[i]}</div>
+      <div class="paxfield"><label>Full Name (as on ID)</label><input id="pname${i}" placeholder="e.g. John Kamau" required></div>
+      <div class="paxfield"><label>Phone Number</label><input id="pphone${i}" type="tel" placeholder="e.g. 0712345678" required></div>
+      ${i===0?`<div class="paxfield"><label>Email (for e-ticket)</label><input id="pemail" type="email" placeholder="e.g. john@email.com"></div>`:''}
+    </div>`;
+  }
+  html+=`<div style="display:flex;gap:10px;margin-top:14px">
+    <button class="btn btn-o" onclick="backToSeats()" style="flex:1;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
+    <button class="btn btn-p" style="flex:2;justify-content:center" onclick="goPay()">Continue to Payment <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>`;
+  $("stepPax").innerHTML=html;
+}
+function backToSeats(){
+  setStep(1);$("shTitle").textContent="Step 1 — Select Seats · "+bk.res.sacco.n;
+  $("stepPax").classList.add("hidden");$("stepSeat").classList.remove("hidden");
+}
+
+/* Step 3: Payment */
+function goPay(){
+  /* Validate passenger data */
+  bk.paxData=[];
+  for(let i=0;i<bk.pax;i++){
+    const name=$("pname"+i).value.trim(),phone=$("pphone"+i).value.trim();
+    if(!name||!phone){toast(`Please fill in details for Passenger ${i+1}`);return}
+    bk.paxData.push({name,phone,seat:bk.seats[i]});
+  }
+  bk.email=$("pemail")?$("pemail").value.trim():"";
+
+  setStep(3);$("shTitle").textContent="Step 3 — Payment";
+  $("stepPax").classList.add("hidden");$("stepPay").classList.remove("hidden");
+  bk.total=bk.seats.length*bk.res.route.fa;
+  const rt=bk.res.route;
+  $("stepPay").innerHTML=`
+   <div class="sumrow"><span>Operator / SACCO</span><b>${bk.res.sacco.n}</b></div>
+   <div class="sumrow"><span>Pick-up Point (${rt.f})</span><b style="font-size:.8rem;text-align:right;max-width:260px">${rt.pk}</b></div>
+   <div class="sumrow"><span>Drop-off (${rt.t})</span><b style="font-size:.8rem;text-align:right;max-width:260px">${rt.dp}</b></div>
+   <div class="sumrow"><span>Seats</span><b>${bk.seats.map(s=>"#"+s).join(", ")}</b></div>
+   <div class="sumrow"><span>Route</span><b>${rt.f} &rarr; ${rt.t}</b></div>
+   <div class="sumrow"><span>Travel Date</span><b>${$("date").value}</b></div>
+   <div class="sumrow"><span>Passenger(s)</span><b>${bk.paxData.map(p=>p.name).join(", ")}</b></div>
+   <div class="sumrow"><span>Full fare</span><b>KSh ${bk.total.toLocaleString()}</b></div>
+   <div style="margin:14px 0;display:grid;gap:10px">
+     <label class="cat" style="display:flex;gap:12px;align-items:center;padding:12px;cursor:pointer"><input type="radio" name="pm" checked onchange="pmode(false)"> <div><b>Pay Full Fare</b><div style="color:var(--mut);font-size:.76rem">KSh ${bk.total.toLocaleString()} — instant confirmed ticket</div></div></label>
+     <label class="cat" style="display:flex;gap:12px;align-items:center;padding:12px;cursor:pointer"><input type="radio" name="pm" onchange="pmode(true)"> <div><b>Book with 50% Deposit</b><div style="color:var(--mut);font-size:.76rem">Pay KSh ${Math.ceil(bk.total/2).toLocaleString()} now, balance at the stage before departure</div></div></label>
+   </div>
+   <div class="mpesabox">
+     <div style="display:flex;gap:10px;align-items:center;margin-bottom:4px">
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00e08f" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20"/></svg>
+       <b style="color:var(--grn)">LIPA NA M-PESA — PAYBILL</b>
+     </div>
+     <div style="background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.76rem;color:var(--mut)">
+       <b style="color:var(--acc)">Note:</b> The Paybill number is the same for all bookings, but the <b style="color:var(--txt)">account number is specific to the SACCO</b> — in this case <b style="color:var(--txt)">${bk.res.sacco.n}</b>. Always confirm the operator name on your e-ticket before paying.
+     </div>
+     <div class="paybillrow"><span style="color:var(--mut);font-size:.72rem">PAYBILL</span><b>${PAYBILL}</b><button class="copybtn" onclick="copyTxt('${PAYBILL}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button></div>
+     <div class="paybillrow"><span style="color:var(--mut);font-size:.72rem">ACCOUNT</span><b>${ACCOUNT}</b><button class="copybtn" onclick="copyTxt('${ACCOUNT}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button></div>
+   </div>
+   <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:14px" onclick="confirmPay()">
+     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+     I Have Sent <span id="payAmt">KSh ${bk.total.toLocaleString()}</span> via M-PESA
+   </button>
+   <p style="color:var(--mut);font-size:.7rem;text-align:center;margin-top:8px">You'll receive an M-PESA confirmation, then your e-ticket with pick-up stage and seat numbers.</p>`;
+}
+function pmode(isDep){
+  bk.deposit=isDep;
+  const amt=isDep?Math.ceil(bk.total/2):bk.total;
+  bk.payAmt=amt;$("payAmt").textContent="KSh "+amt.toLocaleString();
+}
+
+/* Step 4: Confirmation */
+function confirmPay(){
+  bk.payAmt=bk.payAmt||bk.total;
+  setStep(4);$("shTitle").textContent="Booking Confirmed!";
+  $("stepPay").classList.add("hidden");$("stepDone").classList.remove("hidden");
+  const ref="SLK"+Date.now().toString().slice(-6);
+  const rt=bk.res.route;
+  const dateStr=new Date($("date").value+"T00:00:00").toLocaleDateString('en-KE',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+
+  /* Save to localStorage */
+  const trip={
+    ref,date:$("date").value,dateStr,
+    from:rt.f,to:rt.t,
+    sacco:bk.res.sacco.n,
+    seats:bk.seats,pax:bk.paxData,
+    pickup:rt.pk,dropoff:rt.dp,
+    fare:bk.total,paid:bk.payAmt,
+    deposit:bk.deposit,
+    duration:rt.dur,
+    ts:Date.now()
+  };
+  const trips=JSON.parse(localStorage.getItem("slk_trips")||"[]");
+  trips.unshift(trip);if(trips.length>20)trips.length=20;
+  localStorage.setItem("slk_trips",JSON.stringify(trips));
+
+  $("stepDone").innerHTML=`
+   <div style="text-align:center;padding:12px 0">
+     <div style="width:64px;height:64px;border-radius:50%;background:rgba(0,224,143,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;animation:pop .5s">
+       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00e08f" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+     <h3 style="font-size:1.2rem">Asante! Ticket Reserved</h3>
+     <p style="color:var(--mut);font-size:.85rem;margin-top:5px">Reference <b style="color:var(--acc)">${ref}</b></p>
+   </div>
+   <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0">
+     <div class="sumrow"><span>SACCO</span><b>${bk.res.sacco.n}</b></div>
+     <div class="sumrow"><span>Route</span><b>${rt.f} &rarr; ${rt.t}</b></div>
+     <div class="sumrow"><span>Date</span><b>${dateStr}</b></div>
+     <div class="sumrow"><span>Duration</span><b>${rt.dur}</b></div>
+     <div class="sumrow"><span>Pick-up</span><b style="font-size:.78rem;text-align:right;max-width:260px">${rt.pk}</b></div>
+     <div class="sumrow"><span>Drop-off</span><b style="font-size:.78rem;text-align:right;max-width:260px">${rt.dp}</b></div>
+     ${rt.st.length?`<div class="sumrow"><span>Via</span><b style="font-size:.78rem">${rt.st.join(" → ")}</b></div>`:''}
+     <div class="sumrow"><span>Passenger(s)</span><b>${bk.paxData.map(p=>`${p.name} (Seat #${p.seat})`).join("<br>")}</b></div>
+     <div class="sumrow total"><span>${bk.deposit?"Deposit Paid":"Total Paid"}</span><b>KSh ${bk.payAmt.toLocaleString()}</b></div>
+     ${bk.deposit?`<div class="sumrow"><span>Balance at stage</span><b style="color:var(--red)">KSh ${(bk.total-bk.payAmt).toLocaleString()}</b></div>`:''}
+   </div>
+   <div style="text-align:center;margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+     <button class="btn btn-g" onclick="shareTrip('${ref}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>Share Trip</button>
+     <button class="btn btn-o" onclick="closeModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>Done</button>
+   </div>`;
+}
+function shareTrip(ref){
+  const rt=bk.res.route;
+  const text=`SafariLink EA Booking ${ref}: ${rt.f} → ${rt.t} via ${bk.res.sacco.n}. Board at: ${rt.pk}. Seats: ${bk.seats.join(",")}. Fare: KSh ${bk.payAmt}.`;
+  if(navigator.share){navigator.share({title:"SafariLink EA Trip",text}).catch(()=>{})}
+  else{copyTxt(text);toast("Trip details copied to clipboard")}
+}
+
+/* ===== MY TRIPS ===== */
+function showMyTrips(){
+  const sec=$("mytrips");sec.classList.remove("hidden");
+  const trips=JSON.parse(localStorage.getItem("slk_trips")||"[]");
+  if(!trips.length){
+    $("tripsList").innerHTML=`<div class="emptyres"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><h3>No bookings yet</h3><p>Book your first trip and it will appear here.</p></div>`;
+  }else{
+    $("tripsList").innerHTML=trips.map(t=>`<div class="tripcard">
+      <div class="saccobadge" style="width:44px;height:44px;font-size:.62rem">${t.sacco.slice(0,6)}</div>
+      <div class="tdet" style="flex:1">
+        <b>${t.from} → ${t.to}</b><br>
+        ${t.dateStr} · ${t.sacco} · Seats ${t.seats.join(",")}<br>
+        <span style="font-size:.72rem">Board: ${t.pickup.slice(0,60)}${t.pickup.length>60?"...":""}</span>
+      </div>
+      <div style="text-align:right">
+        <div class="tref">${t.ref}</div>
+        <div class="tstatus tag-g" style="display:inline-block;padding:3px 10px;border-radius:99px;font-size:.66rem;font-weight:700;background:rgba(0,224,143,.12);color:var(--grn)">${t.deposit?"DEPOSIT":"CONFIRMED"}</div>
+        <div style="color:var(--acc);font-weight:800;font-size:.92rem;margin-top:4px">KSh ${t.paid.toLocaleString()}</div>
+      </div>
+    </div>`).join("");
+  }
+  sec.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ===== LIVE FEED ===== */
+const liveData=[
+  {t:"4NTE Sacco — Nairobi → Nakuru 08:30 AM departed on time",m:"2 min ago"},
+  {t:"Modern Coast — Mombasa → Nairobi 06:00 AM arrived at Railways",m:"15 min ago"},
+  {t:"Easy Coach — Nairobi → Kisumu 10:00 AM boarding at Railways Godown",m:"22 min ago"},
+  {t:"Mash Poa — Nairobi → Kampala 08:00 PM night bus now boarding",m:"31 min ago"},
+  {t:"2NK Sacco — Nyeri → Nairobi 07:00 AM departed Mbaki House HQ",m:"45 min ago"},
+  {t:"Mololine — Nakuru → Eldoret 09:00 AM departed Main Bus Park",m:"1h ago"},
+  {t:"Dreamliner — Nairobi → Mombasa 09:00 AM at Voi (on schedule)",m:"1h ago"},
+  {t:"Tahmeed — Mombasa → Malindi 11:00 AM boarding at Uhuru Road",m:"2h ago"},
+];
+const terminals=[
+  {n:"Nairobi Railways",s:"BUSY",c:"tag-y"},
+  {n:"Nairobi Nyamakima",s:"BUSY",c:"tag-y"},
+  {n:"Mombasa Mwembe Tayari",s:"NORMAL",c:"tag-g"},
+  {n:"Nakuru Main Bus Park",s:"NORMAL",c:"tag-g"},
+  {n:"Kisumu Bus Park",s:"NORMAL",c:"tag-g"},
+  {n:"Nyeri Gakere Road",s:"QUIET",c:"tag-b"},
+  {n:"Eldoret Main Stage",s:"NORMAL",c:"tag-g"},
+];
+ $("liveFeed").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+  <b>Recent Departures</b><span class="tag tag-g">LIVE</span></div>`+
+  liveData.map(l=>`<div class="feeditem"><div class="fico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></div><div><div class="ft">${l.t}</div><div class="ftime">${l.m}</div></div></div>`).join("");
+ $("terminalList").innerHTML=terminals.map(t=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.82rem"><span>${t.n}</span><span class="tag ${t.c}">${t.s}</span></div>`).join("");
+
+/* ===== TOAST ===== */
+let toastTimer;
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2800)}
+
+/* ===== SCROLL REVEAL ===== */
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("vis")})},{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* ===== AUTO-REFRESH LIVE FEED ===== */
+setInterval(()=>{
+  const saccos=["4NTE","Mololine","2NK","Modern Coast","Easy Coach","Mash Poa","Dreamliner","Tahmeed","Guardian","Chania Classic"];
+  const towns=["Nairobi","Nakuru","Mombasa","Kisumu","Eldoret","Thika","Nyeri","Kericho"];
+  const s=saccos[Math.floor(Math.random()*saccos.length)];
+  const t=towns[Math.floor(Math.random()*towns.length)];
+  const mins=Math.floor(Math.random()*5)+1;
+  const feed=$("liveFeed");
+  const newEl=document.createElement("div");newEl.className="feeditem";
+  newEl.innerHTML=`<div class="fico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></div><div><div class="ft">${s} — ${t} stage update: normal operations</div><div class="ftime">${mins} min ago</div></div>`;
+  const existing=feed.querySelectorAll(".feeditem");
+  if(existing.length>0)existing[0].before(newEl);
+  if(feed.querySelectorAll(".feeditem").length>10)feed.lastElementChild.remove();
+},15000);
 </script>
 </body>
 </html>
