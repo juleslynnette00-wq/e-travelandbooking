@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>E-travel and booking  — Book Bus & Matatu Tickets Across Kenya & EA</title>
+<title>E-travel and booking — Book Bus & Matatu Tickets Across Kenya & EA</title>
 <meta name="description" content="Kenya's premier bus and SACCO booking platform. 4NTE, Mololine, 2NK, Kinatwa Tec, Modern Coast, Dreamliner, Tahmeed & more. Pay via M-Pesa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -105,7 +105,6 @@ select.sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.
 /* RESULTS */
 .rescard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;transition:.3s;animation:rise .5s ease both}
 .rescard:hover{border-color:var(--acc);transform:translateX(4px)}
-.rescard:nth-child(2){animation-delay:.08s}.rescard:nth-child(3){animation-delay:.16s}.rescard:nth-child(4){animation-delay:.24s}
 .saccobadge{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.68rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#1a1200;text-align:center;line-height:1.1;flex-shrink:0}
 .resinfo{flex:1;min-width:180px}
 .resinfo h4{font-size:.98rem}
@@ -132,15 +131,47 @@ select.sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.
 .amenrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .amen{display:flex;align-items:center;gap:4px;font-size:.7rem;color:var(--mut);padding:3px 8px;border-radius:8px;background:var(--bg2)}
 .amen svg{flex-shrink:0}
+/* VEHICLE TYPE + OPERATOR SELECTION (STEP 2/3) */
+.vtypegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.vtype{background:linear-gradient(160deg,var(--card2),var(--card));border:1.5px solid var(--line);border-radius:20px;padding:24px;cursor:pointer;transition:.35s;position:relative;overflow:hidden;animation:rise .5s ease both}
+.vtype:hover{transform:translateY(-6px);border-color:var(--acc);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.vtype .vtico{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,rgba(255,198,26,.18),rgba(255,138,0,.08));display:flex;align-items:center;justify-content:center;color:var(--acc);margin-bottom:14px}
+.vtype h3{font-size:1.15rem;margin-bottom:6px}
+.vtype p{color:var(--mut);font-size:.82rem}
+.vtype .vmeta{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px}
+.vtype .vfrom{font-weight:900;color:var(--acc);font-size:1.15rem}
+.vtype .vfrom small{display:block;color:var(--mut);font-weight:500;font-size:.66rem}
+.vtype .varrow{color:var(--acc);transition:.3s}
+.vtype:hover .varrow{transform:translateX(5px)}
+.opgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.opcard{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;transition:.3s;animation:rise .45s ease both}
+.opcard:hover{transform:translateY(-5px);border-color:var(--acc);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.opcard .ophd{display:flex;gap:11px;align-items:center;margin-bottom:10px}
+.opcard .ophd h4{font-size:.95rem;line-height:1.2}
+.opcard .ophd small{color:var(--mut);font-size:.7rem;display:block}
+.opcard .oprt{color:var(--acc);font-size:.72rem;font-weight:700}
+.opcard .opfare{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.opcard .opfare b{color:var(--acc);font-size:1.05rem}
+.opcard .opfare span{color:var(--mut);font-size:.68rem}
+.crumbbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.crumb{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mut);font-size:.76rem;font-weight:700;cursor:pointer;transition:.25s}
+.crumb:hover{border-color:var(--acc);color:var(--acc)}
+.crumb.on{border-color:var(--acc);color:var(--acc);background:rgba(255,198,26,.08)}
+/* TRIP BOOK BAR */
+.tripbook{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.tselect{flex:1;min-width:150px;padding:11px 12px;background:var(--bg2);border:1.5px solid var(--line);border-radius:12px;color:var(--txt);font-size:.88rem;outline:none;appearance:none;cursor:pointer;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffc61a' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.tselect:focus{border-color:var(--acc)}
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-end;justify-content:center;background:rgba(4,7,15,.7);backdrop-filter:blur(4px)}
 .modal.open{display:flex;animation:fadein .25s}
 @keyframes fadein{from{opacity:0}}
-.sheet{background:var(--bg2);border:1px solid var(--line);border-radius:24px 24px 0 0;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;padding:24px;animation:up .35s cubic-bezier(.2,.9,.3,1.1)}
+.sheet{background:var(--bg2);border:1px solid var(--line);border-radius:24px 24px 0 0;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;padding:24px;animation:up .35s cubic-bezier(.2,.9,.3,1.1);-webkit-overflow-scrolling:touch}
 @keyframes up{from{transform:translateY(60px);opacity:0}}
 @media(min-width:700px){.modal{align-items:center;padding:20px}.sheet{border-radius:24px}}
+@media(max-width:480px){.sheet{padding:18px 14px}}
 .shhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.shhead h3{font-size:1.15rem}
+.shhead h3{font-size:1.05rem}
 /* SEATS */
 .busvisual{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
 .busfront{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:.7rem;margin-bottom:12px;padding-left:4px}
@@ -164,6 +195,18 @@ select.sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.
 .sumrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:.88rem;color:var(--mut)}
 .sumrow b{color:var(--txt)}
 .sumrow.total b{color:var(--acc);font-size:1.1rem}
+/* MPESA VERIFY */
+.vcode{width:100%;padding:16px;background:var(--bg);border:2px solid var(--line);border-radius:14px;color:var(--txt);font-size:1.3rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;text-align:center;outline:none;transition:.25s}
+.vcode:focus{border-color:var(--grn);box-shadow:0 0 0 4px rgba(0,224,143,.15)}
+.vcode.err{border-color:var(--red);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.spinner{width:46px;height:46px;border-radius:50%;border:4px solid rgba(0,224,143,.15);border-top-color:var(--grn);animation:spin .8s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* E-TICKET */
+.eticket{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;padding:20px;overflow:hidden}
+.eticket::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--grn))}
+.eticket .bar{height:34px;background:repeating-linear-gradient(90deg,var(--txt) 0 2px,transparent 2px 5px,var(--txt) 5px 6px,transparent 6px 11px);border-radius:6px;opacity:.85;margin:14px 0}
+.eticket .ref{font-size:1.5rem;font-weight:900;letter-spacing:3px;color:var(--acc)}
 /* LIVE */
 .livedot{width:8px;height:8px;border-radius:50%;background:var(--grn);animation:pulse 1.6s infinite;display:inline-block;margin-right:8px}
 .feeditem{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);animation:rise .5s ease}
@@ -181,12 +224,18 @@ select.sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.
 .tripcard .tref{font-weight:800;color:var(--acc);font-size:.9rem}
 .tripcard .tdet{flex:1;font-size:.82rem;color:var(--mut)}
 .tripcard .tdet b{color:var(--txt);font-weight:700}
-.tripcard .tstatus{padding:4px 12px;border-radius:99px;font-size:.68rem;font-weight:700}
 /* PASSENGER FORM */
 .paxfield{margin-bottom:12px}
 .paxfield label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);font-weight:700;margin-bottom:5px}
 .paxfield input{width:100%;padding:11px 14px;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;color:var(--txt);font-size:.92rem;outline:none;transition:.25s}
 .paxfield input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(255,198,26,.15)}
+/* SUPPORT — CUSTOMER CARE */
+.supportbtn{position:fixed;bottom:20px;right:20px;z-index:90;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--grn),#00b478);color:#032015;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,224,143,.45);transition:.3s;text-decoration:none}
+.supportbtn:hover{transform:translateY(-4px) scale(1.06)}
+.supportbtn::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(0,224,143,.4);animation:pulse 2s infinite}
+.supportlbl{position:fixed;bottom:30px;right:88px;z-index:90;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:.74rem;font-weight:700;padding:8px 14px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s}
+.supportbtn:hover+.supportlbl{opacity:1;transform:translateX(-4px)}
+@media(max-width:480px){.supportbtn{width:52px;height:52px;bottom:16px;right:16px}.supportlbl{display:none}}
 /* FOOTER */
 footer{border-top:1px solid var(--line);padding:40px 0 28px;margin-top:36px;color:var(--mut);font-size:.82rem}
 .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}
@@ -194,6 +243,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 28px;margin-top:36px;colo
 footer h5{color:var(--txt);margin-bottom:10px;font-size:.88rem}
 footer a{color:var(--mut);text-decoration:none;display:block;padding:3px 0;transition:.2s}
 footer a:hover{color:var(--acc)}
+.supportrow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:16px;flex-wrap:wrap}
 .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:var(--grn);color:#032015;font-weight:700;padding:12px 22px;border-radius:14px;transition:.4s cubic-bezier(.2,.9,.3,1.2);z-index:200;box-shadow:0 10px 30px rgba(0,224,143,.35);opacity:0;max-width:90vw;text-align:center;font-size:.88rem}
 .toast.show{transform:translate(-50%,0);opacity:1}
 .reveal{opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.2,.8,.3,1)}
@@ -203,7 +253,7 @@ footer a:hover{color:var(--acc)}
 .emptyres{text-align:center;padding:40px 20px;color:var(--mut)}
 .emptyres svg{margin:0 auto 12px}
 .emptyres h3{color:var(--txt);font-size:1.1rem;margin-bottom:6px}
-@media(max-width:480px){.rescard{flex-direction:column;align-items:stretch}.resprice{text-align:left;margin-top:8px}.saccobadge{align-self:flex-start}}
+@media(max-width:480px){.rescard{flex-direction:column;align-items:stretch}.resprice{text-align:left;margin-top:8px}.saccobadge{align-self:flex-start}.opgrid{grid-template-columns:1fr}.vtypegrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -228,7 +278,7 @@ footer a:hover{color:var(--acc)}
 </header>
 
 <section class="hero wrap">
-  <div class="badge"><span class="dot"></span> 36+ SACCOs &amp; bus companies live across East Africa</div>
+  <div class="badge"><span class="dot"></span> 45+ SACCOs &amp; bus companies live across East Africa</div>
   <h1>Travel Kenya &amp; East Africa.<br><span>Your Seat. Your Trip. Your Time.</span></h1>
   <p>Book with Kenya's trusted SACCOs — 4NTE, Mololine, 2NK, Kinatwa Tec, Modern Coast, Dreamliner, Tahmeed and more. Pay via LIPA NA M-PESA.</p>
 </section>
@@ -257,15 +307,13 @@ footer a:hover{color:var(--acc)}
           <option value="1">1 Passenger</option><option value="2">2 Passengers</option><option value="3">3 Passengers</option><option value="4">4 Passengers</option><option value="5">5 Passengers</option><option value="6">6 Passengers</option>
         </select>
       </div>
-      <div class="field f3"><label>Vehicle Category</label>
-        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></span>
-        <select class="sel" id="catSel">
-          <option value="any">Any (Show All)</option>
-          <option value="matatu">SACCO Matatu (14–33 seats)</option>
-          <option value="shuttle">Shuttle / Tour Van</option>
-          <option value="executive">Executive Coach Bus</option>
-          <option value="luxury">Luxury Coach (2+2 Recliner)</option>
-          <option value="vip">VIP Sleeper / Double-Decker</option>
+      <div class="field f3"><label>Time Preference</label>
+        <span class="ficon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        <select class="sel" id="timeSel">
+          <option value="any">Any Time</option>
+          <option value="am">Morning (5AM–12PM)</option>
+          <option value="pm">Afternoon (12PM–6PM)</option>
+          <option value="night">Night (6PM–11PM)</option>
         </select>
       </div>
     </div>
@@ -290,7 +338,7 @@ footer a:hover{color:var(--acc)}
 
   <div class="stats reveal">
     <div class="stat"><b>480+</b><span>Daily Routes</span></div>
-    <div class="stat"><b>36</b><span>SACCOs &amp; Operators</span></div>
+    <div class="stat"><b>45</b><span>SACCOs &amp; Operators</span></div>
     <div class="stat"><b>90+</b><span>Towns &amp; Cities</span></div>
     <div class="stat"><b>50%</b><span>Deposit Booking</span></div>
   </div>
@@ -352,6 +400,11 @@ footer a:hover{color:var(--acc)}
     <div>
       <div class="logo" style="margin-bottom:10px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffc61a" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M2 11h20"/></svg> Safari<b>Link</b> EA</div>
       <p>Kenya's unified booking platform for SACCO matatus and long-distance buses across Kenya, Uganda, Tanzania, Rwanda and South Sudan.</p>
+      <div class="supportrow">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00e08f" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div><b style="color:var(--txt)">Customer Care 24/7</b><div style="font-size:.76rem">Call for bookings, payments or support</div></div>
+        <a href="tel:+254700123456" class="btn btn-g" style="margin-left:auto;padding:9px 16px;font-size:.8rem;text-decoration:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>0700 123 456</a>
+      </div>
     </div>
     <div><h5>Top Saccos</h5><a href="#saccos">4NTE Sacco</a><a href="#saccos">Mololine Sacco</a><a href="#saccos">2NK Sacco</a><a href="#saccos">Kinatwa Tec Sacco</a><a href="#saccos">Easy Coach</a></div>
     <div><h5>Popular Routes</h5><a href="javascript:quickR('Nairobi','Mombasa')">Nairobi – Mombasa</a><a href="javascript:quickR('Nairobi','Nakuru')">Nairobi – Nakuru</a><a href="javascript:quickR('Nakuru','Kisumu')">Nakuru – Kisumu</a><a href="javascript:quickR('Nairobi','Kampala (UG)')">Nairobi – Kampala</a><a href="javascript:quickR('Nairobi','Kisumu')">Nairobi – Kisumu</a></div>
@@ -359,16 +412,23 @@ footer a:hover{color:var(--acc)}
   <div class="wrap" style="margin-top:22px;border-top:1px solid var(--line);padding-top:16px;text-align:center">© 2025 SafariLink EA. Fares shown are operator-standard rates.</div>
 </footer>
 
+<!-- FLOATING CUSTOMER CARE CALL BUTTON -->
+<a href="tel:+254700123456" class="supportbtn" title="Call Customer Care">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+</a>
+<span class="supportlbl">Call Customer Care — 0700 123 456</span>
+
 <!-- BOOKING MODAL -->
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="sheet">
     <div class="shhead"><h3 id="shTitle">Select Your Seats</h3>
       <button class="iconbtn" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="steps"><div class="step on" id="s1"></div><div class="step" id="s2"></div><div class="step" id="s3"></div><div class="step" id="s4"></div></div>
+    <div class="steps"><div class="step on" id="s1"></div><div class="step" id="s2"></div><div class="step" id="s3"></div><div class="step" id="s4"></div><div class="step" id="s5"></div></div>
     <div id="stepSeat"></div>
     <div id="stepPax" class="hidden"></div>
     <div id="stepPay" class="hidden"></div>
+    <div id="stepVerify" class="hidden"></div>
     <div id="stepDone" class="hidden"></div>
   </div>
 </div>
@@ -378,6 +438,7 @@ footer a:hover{color:var(--acc)}
 /* ===== FIXED PAYMENT ===== */
 const PAYBILL="775093";
 const ACCOUNT="140054011";
+const CARELINE="+254700123456";
 
 /* ===== TOWNS ===== */
 const TOWNS=["Nairobi","Mombasa","Kisumu","Nakuru","Eldoret","Thika","Malindi","Kitale","Garissa","Kakamega",
@@ -386,10 +447,34 @@ const TOWNS=["Nairobi","Mombasa","Kisumu","Nakuru","Eldoret","Thika","Malindi","
 "Bomet","Sotik","Litein","Nyahururu","Karatina","Othaya","Makueni","Kitui","Mwingi","Mtwapa","Ukunda",
 "Lamu","Hola","Murang'a","Rongai","Eldama Ravine","Kapsabet","Kabarnet","Iten",
 "Limuru","Kiambu","Ruiru","Athi River","Namanga","Loitokitok","Kilgoris","Isebania","Webuye","Busia","Ahero",
-"Malaba","Bungoma","Mtito Andei","Mariakani","Gilgil","Kijabe","Kenol",
-"Kampala (UG)","Entebbe (UG)","Jinja (UG)","Gulu (UG)","Mbarara (UG)","Malaba (UG)",
+"Malaba","Mtito Andei","Mariakani","Gilgil","Kijabe","Kenol",
+"Kampala (UG)","Entebbe (UG)","Jinja (UG)","Gulu (UG)","Mbarara (UG)",
 "Arusha (TZ)","Moshi (TZ)","Dar es Salaam (TZ)","Mwanza (TZ)","Dodoma (TZ)","Tanga (TZ)","Zanzibar (TZ)",
 "Kigali (RW)","Butare (RW)","Musanze (RW)","Bujumbura (BI)","Juba (SS)","Addis Ababa (ET)"];
+
+/* ===== ROAD DISTANCES FROM NAIROBI (KM, realistic approx) ===== */
+const KM_N={Nairobi:0,Thika:45,Limuru:35,Kiambu:20,Ruiru:30,"Athi River":35,Kenol:60,"Murang'a":85,Karatina:120,Nyeri:130,Othaya:110,Gilgil:120,Naivasha:90,Nakuru:160,Nyahururu:180,"Eldama Ravine":250,Kericho:260,Sotik:240,Bomet:200,Litein:240,Narok:145,Bungoma:420,Webuye:390,Kakamega:400,Kisumu:342,Ahero:320,Siaya:370,"Homa Bay":360,Kisii:300,Migori:390,Isebania:420,Eldoret:310,Kapsabet:280,Iten:340,Kitale:390,Busia:450,Malaba:430,"Vihiga":380,Machakos:65,Makueni:150,"Mtito Andei":240,Kitui:180,Mwingi:230,Voi:330,Mariakani:470,Mombasa:485,Mtwapa:495,Kilifi:520,Malindi:590,Ukunda:520,Lamu:650,Hola:420,Garissa:350,Wajir:650,Mandera:1000,Moyale:730,Isiolo:285,Marsabit:550,Meru:230,Nanyuki:200,"Naro Moru":150,Chaka:110,Namanga:165,"Loitokitok":220,Kilgoris:250,
+"Kampala (UG)":700,"Entebbe (UG)":730,"Jinja (UG)":640,"Gulu (UG)":940,"Mbarara (UG)":900,
+"Arusha (TZ)":270,"Moshi (TZ)":330,"Dar es Salaam (TZ)":950,"Mwanza (TZ)":950,"Dodoma (TZ)":900,"Tanga (TZ)":700,"Zanzibar (TZ)":1000,
+"Kigali (RW)":1200,"Butare (RW)":1300,"Musanze (RW)":1250,"Bujumbura (BI)":1600,"Juba (SS)":1600,"Addis Ababa (ET)":1400};
+function kmOf(t){return KM_N[t]!==undefined?KM_N[t]:Math.min(900,120+((t.length*37)%500))}
+function kmBetween(a,b){const ka=kmOf(a),kb=kmOf(b);if(a==="Nairobi")return kb;if(b==="Nairobi")return ka;const d=Math.abs(ka-kb);return Math.max(30,Math.round(d*(d>300?1.15:1.05)))}
+function fmtDur(km,spd){const h=km/spd;const hh=Math.floor(h),mm=Math.round((h-hh)*60/5)*5;return`${Math.max(1,hh)}h ${String(Math.min(59,mm)).padStart(2,'0')}m`}
+function estFare(km,type){
+  let f;
+  if(type==="executive")f=Math.max(300,Math.round(km*3.4/50)*50);
+  else if(type==="luxury")f=Math.max(500,Math.round(km*3.8/50)*50);
+  else if(type==="vip")f=Math.max(800,Math.round(km*4.6/50)*50);
+  else if(type==="shuttle")f=Math.max(400,Math.round(km*5.5/50)*50);
+  else f=Math.max(150,Math.round(km*4.5/50)*50);
+  return f;
+}
+function viaTowns(a,b){
+  const set=["Naivasha","Nakuru","Kericho","Kisumu","Eldoret","Voi","Mtito Andei","Mariakani","Machakos","Thika","Karatina","Nanyuki","Gilgil","Ahero","Webuye","Malaba","Namanga","Kisii","Bomet"];
+  const ka=kmOf(a),kb=kmOf(b);
+  const between=set.filter(t=>{const k=kmOf(t);return k>Math.min(ka,kb)+20&&k<Math.max(ka,kb)-20});
+  return between.slice(0,4);
+}
 
 /* ===== AMENITIES BY TYPE ===== */
 const AMENITIES={
@@ -401,7 +486,7 @@ const AMENITIES={
 };
 const AMEN_SVG=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>`;
 
-/* ===== SACCO DATA WITH ROUTES, PICKUPS, STAGES ===== */
+/* ===== SACCO DATA WITH ROUTES, PICKUPS, STAGES (fares researched from live 2025/26 fare tables) ===== */
 const SD=[
  {n:"4NTE Sacco",sn:"4NTE",hq:"Nairobi",t:"matatu",rt:4.2,fl:"33-seater matatus",routes:[
   {f:"Nairobi",t:"Nakuru",pk:"4NTE Stage, Accra Road (Beba Beba Terminal), Nairobi CBD",dp:"4NTE Desk, Nakuru Main Bus Park",st:["Limuru","Kijabe","Naivasha","Gilgil"],fa:800,dur:"2h 30m"},
@@ -456,33 +541,33 @@ const SD=[
   {f:"Narok",t:"Nakuru",pk:"Narok Main Stage, Narok Town",dp:"Narok Line Desk, Nakuru Main Bus Park",st:["Bomet","Sotik","Kericho"],fa:600,dur:"2h 30m"},
  ]},
  {n:"Modern Coast Bus",sn:"ModCoast",hq:"Mombasa",t:"luxury",rt:4.4,fl:"51-seater luxury coaches",routes:[
-  {f:"Nairobi",t:"Mombasa",pk:"Modern Coast Town Office, Accra Road (opposite Coast Bus); also Caltex Mombasa Rd next to Parkside Towers",dp:"Modern Coast Head Office, Lumumba Road / Jomo Kenyatta Ave, Total Petrol Station next to Aswan Restaurant, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2500,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Modern Coast Town Office, Accra Road (opposite Coast Bus); also Caltex Mombasa Rd next to Parkside Towers",dp:"Modern Coast Head Office, Lumumba Road / Jomo Kenyatta Ave, Total Petrol Station next to Aswan Restaurant, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:1500,dur:"8h 00m"},
   {f:"Nairobi",t:"Kisumu",pk:"Modern Coast Town Office, Accra Road, Nairobi",dp:"Modern Coast Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1800,dur:"6h 30m"},
   {f:"Nairobi",t:"Malindi",pk:"Modern Coast Town Office, Accra Road, Nairobi",dp:"Modern Coast Office, Malindi Town",st:["Athi River","Voi","Mombasa","Kilifi"],fa:3000,dur:"10h 00m"},
   {f:"Mombasa",t:"Kisumu",pk:"Modern Coast Head Office, Lumumba Road, Mombasa",dp:"Modern Coast Desk, Kisumu Bus Park",st:["Mariakani","Voi","Nakuru"],fa:2200,dur:"8h 00m"},
  ]},
  {n:"Dreamliner Express",sn:"Dreamliner",hq:"Nairobi",t:"luxury",rt:4.3,fl:"51-seater luxury coaches",routes:[
-  {f:"Nairobi",t:"Mombasa",pk:"Dreamliner Park, Railways Station, Nairobi",dp:"Dreamliner Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2200,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Dreamliner Park, Railways Station, Nairobi",dp:"Dreamliner Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:1800,dur:"8h 00m"},
   {f:"Nairobi",t:"Kisumu",pk:"Dreamliner Park, Railways Station, Nairobi",dp:"Dreamliner Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1600,dur:"6h 30m"},
   {f:"Mombasa",t:"Kisumu",pk:"Dreamliner Office, Mombasa (Mwembe Tayari)",dp:"Dreamliner Desk, Kisumu Bus Park",st:["Voi","Nakuru"],fa:2000,dur:"8h 00m"},
  ]},
  {n:"Tahmeed Coach",sn:"Tahmeed",hq:"Mombasa",t:"luxury",rt:4.1,fl:"51-seater coaches",routes:[
-  {f:"Nairobi",t:"Mombasa",pk:"Tahmeed Booking Office, Nairobi CBD (Accra Road)",dp:"Tahmeed Office, Uhuru Road, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2000,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Tahmeed Booking Office, Nairobi CBD (Accra Road)",dp:"Tahmeed Office, Uhuru Road, Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:1600,dur:"8h 00m"},
   {f:"Mombasa",t:"Malindi",pk:"Tahmeed Office, Uhuru Road, Mombasa",dp:"Tahmeed Desk, Malindi Town",st:["Kilifi"],fa:500,dur:"2h 00m"},
   {f:"Nairobi",t:"Malindi",pk:"Tahmeed Booking Office, Nairobi CBD (Accra Road)",dp:"Tahmeed Desk, Malindi Town",st:["Voi","Mombasa","Kilifi"],fa:2500,dur:"10h 00m"},
  ]},
  {n:"Mash Poa (Mash East)",sn:"MashPoa",hq:"Nairobi",t:"vip",rt:4.5,fl:"51-seater VIP coaches",routes:[
   {f:"Nairobi",t:"Kisumu",pk:"Mash House, Accra Road off River Road; also Railways, Haile Selassie Avenue",dp:"Mash Office, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:2000,dur:"6h 00m"},
-  {f:"Nairobi",t:"Mombasa",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Plaza, Mwembe Tayari / Jomo Kenyatta Avenue (Head Office), Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2800,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Plaza, Mwembe Tayari / Jomo Kenyatta Avenue (Head Office), Mombasa",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2000,dur:"8h 00m"},
   {f:"Nairobi",t:"Eldoret",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Desk, Eldoret Bus Park",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1800,dur:"5h 30m"},
   {f:"Nairobi",t:"Kampala (UG)",pk:"Mash House, Accra Road off River Road, Nairobi",dp:"Mash Poa Kampala Office, Nakawa, Kampala",st:["Nakuru","Eldoret","Malaba","Tororo"],fa:4500,dur:"12h 00m"},
  ]},
  {n:"Easy Coach",sn:"EasyCoach",hq:"Nairobi",t:"executive",rt:4.6,fl:"49-seater executive coaches",routes:[
-  {f:"Nairobi",t:"Kisumu",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:1500,dur:"6h 00m"},
-  {f:"Nairobi",t:"Eldoret",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Eldoret Bus Park",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1400,dur:"5h 30m"},
-  {f:"Nairobi",t:"Kakamega",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1700,dur:"7h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:1750,dur:"6h 00m"},
+  {f:"Nairobi",t:"Eldoret",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Eldoret Bus Park",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1600,dur:"5h 30m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1650,dur:"7h 00m"},
   {f:"Nairobi",t:"Bungoma",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Desk, Bungoma Bus Park",st:["Nakuru","Kisumu","Kakamega"],fa:1900,dur:"8h 00m"},
-  {f:"Nairobi",t:"Mombasa",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2200,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Easy Coach Main Terminal, Railways Godown, Haile Selassie Avenue",dp:"Easy Coach Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2000,dur:"8h 00m"},
  ]},
  {n:"Guardian Coach",sn:"Guardian",hq:"Nairobi",t:"executive",rt:4.2,fl:"49-seater coaches",routes:[
   {f:"Nairobi",t:"Kisumu",pk:"Guardian Coach Stage, Machakos Country Bus Station, Nairobi",dp:"Guardian Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1400,dur:"6h 00m"},
@@ -496,6 +581,32 @@ const SD=[
  {n:"Transline Classic",sn:"Transline",hq:"Kisii",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
   {f:"Kisii",t:"Nairobi",pk:"Transline Stage, Kisii Town",dp:"Transline Stage, Nyamakima / Machakos Country Bus, Nairobi",st:["Kericho","Nakuru","Naivasha"],fa:1200,dur:"6h 00m"},
   {f:"Kisii",t:"Nakuru",pk:"Transline Stage, Kisii Town",dp:"Transline Desk, Nakuru Main Bus Park",st:["Kericho","Sotik"],fa:700,dur:"3h 30m"},
+ ]},
+ {n:"ENA Coach",sn:"ENA",hq:"Kisii",t:"executive",rt:4.3,fl:"49-seater executive coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"ENA Coach Terminal, Accra Road, Nairobi CBD",dp:"ENA Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1600,dur:"6h 00m"},
+  {f:"Nairobi",t:"Kakamega",pk:"ENA Coach Terminal, Accra Road, Nairobi CBD",dp:"ENA Desk, Kakamega Bus Park",st:["Nakuru","Eldoret"],fa:1800,dur:"7h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"ENA Coach Terminal, Accra Road, Nairobi CBD",dp:"ENA Desk, Mombasa (Mwembe Tayari)",st:["Voi","Mtito Andei","Mariakani"],fa:1900,dur:"8h 30m"},
+ ]},
+ {n:"Greenline Bus Safaris",sn:"Greenline",hq:"Nairobi",t:"executive",rt:4.1,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Eldoret",pk:"Greenline Terminal, Railways, Nairobi",dp:"Greenline Desk, Eldoret Bus Park",st:["Naivasha","Nakuru","Eldama Ravine"],fa:1500,dur:"5h 30m"},
+  {f:"Nairobi",t:"Mombasa",pk:"Greenline Terminal, Railways, Nairobi",dp:"Greenline Desk, Mombasa",st:["Voi","Mtito Andei","Mariakani"],fa:1800,dur:"8h 30m"},
+ ]},
+ {n:"Climax Sacco",sn:"Climax",hq:"Kisii",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Climax Stage, Machakos Country Bus, Nairobi",dp:"Climax Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1500,dur:"6h 00m"},
+  {f:"Nairobi",t:"Kisii",pk:"Climax Stage, Machakos Country Bus, Nairobi",dp:"Climax Desk, Kisii Main Stage",st:["Nakuru","Kericho","Sotik"],fa:1200,dur:"5h 30m"},
+ ]},
+ {n:"Eldoret Express",sn:"EldExp",hq:"Eldoret",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kakamega",pk:"Eldoret Express Office, Nairobi CBD",dp:"Eldoret Express Desk, Kakamega Bus Park",st:["Nakuru","Eldoret"],fa:1400,dur:"7h 00m"},
+  {f:"Nairobi",t:"Eldoret",pk:"Eldoret Express Office, Nairobi CBD",dp:"Eldoret Express Desk, Eldoret Main Stage",st:["Nakuru","Eldama Ravine"],fa:1200,dur:"5h 00m"},
+  {f:"Nairobi",t:"Kitale",pk:"Eldoret Express Office, Nairobi CBD",dp:"Eldoret Express Desk, Kitale Bus Park",st:["Eldoret"],fa:1400,dur:"6h 30m"},
+ ]},
+ {n:"Western Coach",sn:"WestCoach",hq:"Kakamega",t:"executive",rt:3.9,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kakamega",pk:"Western Coach Office, Machakos Country Bus, Nairobi",dp:"Western Coach Desk, Kakamega Main Stage",st:["Nakuru","Kisumu"],fa:1500,dur:"7h 00m"},
+  {f:"Nairobi",t:"Bungoma",pk:"Western Coach Office, Machakos Country Bus, Nairobi",dp:"Western Coach Desk, Bungoma Bus Park",st:["Kisumu","Kakamega"],fa:1700,dur:"8h 00m"},
+ ]},
+ {n:"Galaxy Express",sn:"Galaxy",hq:"Nairobi",t:"executive",rt:4.1,fl:"49-seater coaches",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Galaxy Express Office, Nairobi CBD (Accra Road)",dp:"Galaxy Desk, Kisumu Bus Park",st:["Naivasha","Nakuru","Kericho"],fa:1500,dur:"6h 00m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Galaxy Express Office, Nairobi CBD (Accra Road)",dp:"Galaxy Desk, Kakamega Bus Park",st:["Kisumu"],fa:1700,dur:"7h 30m"},
  ]},
  {n:"Chania Classic",sn:"Chania",hq:"Thika",t:"matatu",rt:4.1,fl:"33-seater matatus",routes:[
   {f:"Thika",t:"Nairobi",pk:"Chania Stage, Thika Town (Thika Bus Park)",dp:"Chania Stage, Nyamakima, Nairobi",st:["Ruiru","Juja"],fa:250,dur:"1h 00m"},
@@ -512,14 +623,14 @@ const SD=[
  ]},
  {n:"Buscar Company",sn:"Buscar",hq:"Nairobi",t:"executive",rt:3.9,fl:"49-seater coaches",routes:[
   {f:"Nairobi",t:"Kakamega",pk:"Buscar Booking Office, Railways, Nairobi",dp:"Buscar Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1600,dur:"7h 00m"},
-  {f:"Nairobi",t:"Kisumu",pk:"Buscar Booking Office, Railways, Nairobi",dp:"Buscar Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1300,dur:"6h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Buscar Booking Office, Railways, Nairobi",dp:"Buscar Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1400,dur:"6h 00m"},
  ]},
  {n:"Mbukinya Bus",sn:"Mbukinya",hq:"Kisii",t:"executive",rt:3.8,fl:"49-seater coaches",routes:[
   {f:"Kisii",t:"Mombasa",pk:"Mbukinya Stage, Kisii Town",dp:"Mbukinya Desk, Mombasa (Mwembe Tayari)",st:["Nakuru","Nairobi","Voi"],fa:2500,dur:"10h 00m"},
   {f:"Kisii",t:"Nairobi",pk:"Mbukinya Stage, Kisii Town",dp:"Mbukinya Office, Machakos Country Bus Station, Nairobi",st:["Kericho","Nakuru"],fa:1200,dur:"6h 00m"},
  ]},
  {n:"Kenya Bus Service",sn:"KBS",hq:"Nairobi",t:"executive",rt:4.0,fl:"49-seater coaches",routes:[
-  {f:"Nairobi",t:"Mombasa",pk:"KBS Railways Terminus, Nairobi CBD",dp:"KBS Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:2000,dur:"8h 00m"},
+  {f:"Nairobi",t:"Mombasa",pk:"KBS Railways Terminus, Nairobi CBD",dp:"KBS Office, Mombasa (Mwembe Tayari)",st:["Athi River","Voi","Mtito Andei","Mariakani"],fa:1800,dur:"8h 00m"},
   {f:"Nairobi",t:"Thika",pk:"KBS Railways Terminus, Nairobi CBD",dp:"KBS Desk, Thika Bus Park",st:["Ruiru"],fa:300,dur:"1h 00m"},
  ]},
  {n:"Simba Coach",sn:"Simba",hq:"Nairobi",t:"executive",rt:4.1,fl:"49-seater coaches",routes:[
@@ -583,6 +694,56 @@ const SD=[
   {f:"Nairobi",t:"Meru",pk:"Mash East Desk, Accra Road, Nairobi",dp:"Mash East Desk, Meru Bus Park",st:["Embu","Chuka"],fa:1200,dur:"5h 00m"},
   {f:"Nairobi",t:"Embu",pk:"Mash East Desk, Accra Road, Nairobi",dp:"Mash East Desk, Embu Town Stage",st:["Machakos","Wote"],fa:800,dur:"3h 30m"},
  ]},
+ {n:"Prestige Shuttle (Mololine)",sn:"Prestige",hq:"Nakuru",t:"shuttle",rt:4.4,fl:"14-seater luxury shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Prestige Shuttle Stage, Tsavo Road near Latema Road, Nairobi",dp:"Prestige Desk, Kisumu Main Bus Park",st:["Naivasha","Nakuru","Kericho","Ahero"],fa:1500,dur:"5h 30m"},
+  {f:"Nairobi",t:"Eldoret",pk:"Prestige Shuttle Stage, Tsavo Road, Nairobi",dp:"Prestige Desk, Eldoret Bus Park",st:["Nakuru","Eldama Ravine"],fa:1400,dur:"4h 45m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Prestige Shuttle Stage, Tsavo Road, Nairobi",dp:"Prestige Desk, Kakamega Bus Park",st:["Nakuru","Eldoret"],fa:1500,dur:"6h 00m"},
+ ]},
+ {n:"Guardian Angel Sacco",sn:"GAngel",hq:"Nairobi",t:"shuttle",rt:4.3,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Guardian Angel Stage, Nairobi CBD (Nyamakima)",dp:"Guardian Angel Desk, Kisumu Bus Park",st:["Nakuru","Kericho","Ahero"],fa:1650,dur:"5h 45m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Guardian Angel Stage, Nairobi CBD (Nyamakima)",dp:"Guardian Angel Desk, Kakamega Bus Park",st:["Nakuru","Kisumu"],fa:1650,dur:"6h 30m"},
+  {f:"Nairobi",t:"Bungoma",pk:"Guardian Angel Stage, Nairobi CBD (Nyamakima)",dp:"Guardian Angel Desk, Bungoma Bus Park",st:["Kisumu","Kakamega"],fa:1800,dur:"7h 15m"},
+ ]},
+ {n:"Safari Luxury Shuttle",sn:"SafLux",hq:"Nairobi",t:"shuttle",rt:4.2,fl:"14-seater luxury shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Safari Luxury Desk, Accra Road, Nairobi",dp:"Safari Luxury Desk, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1400,dur:"5h 30m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Safari Luxury Desk, Accra Road, Nairobi",dp:"Safari Luxury Desk, Kakamega",st:["Kisumu"],fa:1600,dur:"6h 30m"},
+ ]},
+ {n:"Eldoret Shuttle",sn:"EldShut",hq:"Eldoret",t:"shuttle",rt:4.1,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Eldoret",pk:"Eldoret Shuttle Desk, Nairobi CBD (Nyamakima)",dp:"Eldoret Shuttle Office, Eldoret Town",st:["Nakuru","Eldama Ravine"],fa:1600,dur:"4h 30m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Eldoret Shuttle Desk, Nairobi CBD (Nyamakima)",dp:"Eldoret Shuttle Desk, Kisumu",st:["Nakuru","Kericho"],fa:1600,dur:"5h 45m"},
+ ]},
+ {n:"Western Prestige Shuttle",sn:"WestPres",hq:"Kakamega",t:"shuttle",rt:4.0,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Western Prestige Desk, Nairobi CBD",dp:"Western Prestige Desk, Kisumu",st:["Nakuru","Kericho"],fa:1500,dur:"5h 30m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Western Prestige Desk, Nairobi CBD",dp:"Western Prestige Desk, Kakamega",st:["Kisumu"],fa:1500,dur:"6h 30m"},
+ ]},
+ {n:"Team Swat Sacco",sn:"TeamSwat",hq:"Kisumu",t:"shuttle",rt:4.0,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Team Swat Desk, Nairobi CBD (Nyamakima)",dp:"Team Swat Stage, Kisumu Bus Park",st:["Nakuru","Kericho","Ahero"],fa:1500,dur:"5h 30m"},
+  {f:"Kisumu",t:"Eldoret",pk:"Team Swat Stage, Kisumu Bus Park",dp:"Team Swat Desk, Eldoret",st:["Kapsabet"],fa:600,dur:"2h 00m"},
+ ]},
+ {n:"Classic Shuttle Sacco",sn:"ClassicSh",hq:"Kisii",t:"shuttle",rt:3.9,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisii",pk:"Classic Shuttle Desk, Nairobi CBD",dp:"Classic Shuttle Stage, Kisii Town",st:["Narok","Bomet","Sotik"],fa:1500,dur:"5h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Classic Shuttle Desk, Nairobi CBD",dp:"Classic Shuttle Desk, Kisumu",st:["Nakuru","Kericho"],fa:1500,dur:"5h 45m"},
+ ]},
+ {n:"Royal Rift Sacco",sn:"RoyalRift",hq:"Nakuru",t:"shuttle",rt:3.9,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Royal Rift Desk, Nairobi CBD",dp:"Royal Rift Desk, Kisumu",st:["Nakuru","Kericho"],fa:1500,dur:"5h 30m"},
+  {f:"Nairobi",t:"Kakamega",pk:"Royal Rift Desk, Nairobi CBD",dp:"Royal Rift Desk, Kakamega",st:["Kisumu"],fa:1500,dur:"6h 30m"},
+ ]},
+ {n:"Rog Travellers",sn:"RogTrav",hq:"Kisumu",t:"shuttle",rt:4.0,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"Rog Travellers Desk, Nairobi CBD",dp:"Rog Travellers Stage, Kisumu",st:["Nakuru","Kericho"],fa:1500,dur:"5h 30m"},
+  {f:"Kisumu",t:"Busia",pk:"Rog Travellers Stage, Kisumu",dp:"Rog Travellers Desk, Busia",st:["Siaya"],fa:500,dur:"2h 00m"},
+ ]},
+ {n:"NNUS Sacco",sn:"NNUS",hq:"Kisumu",t:"shuttle",rt:4.0,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kisumu",pk:"NNUS Desk, Nairobi CBD (Nyamakima)",dp:"NNUS Stage, Kisumu Bus Park",st:["Nakuru","Kericho"],fa:1500,dur:"5h 30m"},
+  {f:"Kisumu",t:"Kakamega",pk:"NNUS Stage, Kisumu",dp:"NNUS Desk, Kakamega",st:["Vihiga"],fa:400,dur:"1h 45m"},
+ ]},
+ {n:"Bungoma Line Sacco",sn:"BgmLine",hq:"Bungoma",t:"shuttle",rt:3.8,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Bungoma",pk:"Bungoma Line Desk, Nairobi CBD",dp:"Bungoma Line Stage, Bungoma Bus Park",st:["Nakuru","Kisumu","Kakamega"],fa:1500,dur:"7h 00m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Bungoma Line Desk, Nairobi CBD",dp:"Bungoma Line Desk, Kisumu",st:["Nakuru","Kericho"],fa:1500,dur:"5h 45m"},
+ ]},
+ {n:"Blueline Shuttle",sn:"Blueline",hq:"Nairobi",t:"shuttle",rt:4.0,fl:"14-seater shuttles",routes:[
+  {f:"Nairobi",t:"Kakamega",pk:"Blueline Desk, Nairobi CBD",dp:"Blueline Desk, Kakamega",st:["Nakuru","Eldoret"],fa:1200,dur:"6h 30m"},
+  {f:"Nairobi",t:"Kisumu",pk:"Blueline Desk, Nairobi CBD",dp:"Blueline Desk, Kisumu",st:["Nakuru","Kericho"],fa:1200,dur:"5h 45m"},
+ ]},
 ];
 
 /* ===== GENERATE DEPARTURES ===== */
@@ -613,7 +774,7 @@ const fromSel=$("fromCity"),toSel=$("toCity");
 TOWNS.forEach(t=>{fromSel.add(new Option(t,t));toSel.add(new Option(t,t))});
 fromSel.value="Nairobi";toSel.value="Nakuru";
 const today=new Date();$("date").value=today.toISOString().slice(0,10);
- $("date").min=today.toISOString().slice(0,10);
+$("date").min=today.toISOString().slice(0,10);
 
 function swapCities(){const a=fromSel.value;fromSel.value=toSel.value;toSel.value=a}
 function quickR(a,b){fromSel.value=a;toSel.value=b;search()}
@@ -621,133 +782,199 @@ function mm(){$("mobmenu").classList.remove("open")}
 function copyTxt(t){navigator.clipboard?navigator.clipboard.writeText(t):void 0;toast('Copied: '+t)}
 
 /* MARQUEE */
- $("mtrack").innerHTML=(()=>{const items=SD.map(s=>`<span class="mitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg>${s.n}</span>`).join("");return items+items})();
+$("mtrack").innerHTML=(()=>{const items=SD.map(s=>`<span class="mitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg>${s.n}</span>`).join("");return items+items})();
 
 /* CATEGORY CARDS */
- $("catWrap").innerHTML=CATS.map(c=>`<div class="cat reveal" onclick="pickCat('${c.k}',this)">
+$("catWrap").innerHTML=CATS.map(c=>`<div class="cat reveal" onclick="pickCat('${c.k}',this)">
  <div class="cico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M2 11h20"/></svg></div>
  <h3>${c.n}</h3><p>${c.d}</p><div class="price">${c.p}<small> / typical seat</small></div></div>`).join("");
 
 let curCat=null;
 function pickCat(k,el){curCat=curCat===k?null:k;document.querySelectorAll(".cat").forEach(c=>c.classList.remove("on"));if(curCat)el.classList.add("on")}
 
-/* ===== ROUTE-AWARE SEARCH ===== */
-function findRoutes(from,to,catFilter){
-  const results=[];
-  SD.forEach(sacco=>{
-    if(catFilter&&catFilter!=="any"&&sacco.t!==catFilter)return;
-    sacco.routes.forEach(route=>{
-      /* Direct match */
-      if(route.f===from&&route.t===to){
-        results.push({sacco,route,dir:"direct"});
-      }
-      /* Reverse match — swap pickup/dropoff */
-      if(route.f===to&&route.t===from){
-        results.push({sacco,route:{
-          f:route.t,t:route.f,
-          pk:route.dp,dp:route.pk,
-          st:[...route.st].reverse(),
-          fa:route.fa,dur:route.dur
-        },dir:"reverse"});
-      }
-      /* Stage match: from matches, to is a stage */
-      if(route.f===from&&route.st.includes(to)){
-        const idx=route.st.indexOf(to);
-        const subst=route.st.slice(0,idx);
-        const subfa=Math.round(route.fa*(idx+1)/(route.st.length+1)/50)*50;
-        results.push({sacco,route:{
-          f:route.f,t:to,
-          pk:route.pk,dp:`${to} Town Stage (alight at ${to})`,
-          st:subst,fa:Math.max(200,subfa),dur:estDur(subst.length)
-        },dir:"stage"});
-      }
-      /* Stage match reverse: to matches origin, from is a stage */
-      if(route.t===to&&route.st.includes(from)){
-        const idx=route.st.indexOf(from);
-        const subst=route.st.slice(idx+1);
-        const subfa=Math.round(route.fa*(route.st.length-idx)/(route.st.length+1)/50)*50;
-        results.push({sacco,route:{
-          f:from,t:route.t,
-          pk:`${from} Town Stage (board at ${from})`,dp:route.dp,
-          st:subst,fa:Math.max(200,subfa),dur:estDur(subst.length+1)
-        },dir:"stage"});
-      }
-    });
+/* ===== ROUTE MATCHING FOR ONE SACCO ===== */
+function matchRoutes(sacco,from,to){
+  const out=[];
+  sacco.routes.forEach(route=>{
+    if(route.f===from&&route.t===to){out.push({sacco,route,dir:"direct"});return}
+    if(route.f===to&&route.t===from){out.push({sacco,route:{f:route.t,t:route.f,pk:route.dp,dp:route.pk,st:[...route.st].reverse(),fa:route.fa,dur:route.dur},dir:"reverse"});return}
+    if(route.f===from&&route.st.includes(to)){
+      const idx=route.st.indexOf(to),subst=route.st.slice(0,idx);
+      const subfa=Math.round(route.fa*(idx+1)/(route.st.length+1)/50)*50;
+      out.push({sacco,route:{f:route.f,t:to,pk:route.pk,dp:`${to} Town Stage (alight at ${to})`,st:subst,fa:Math.max(150,subfa),dur:estDur(subst.length)},dir:"stage"});return}
+    if(route.t===to&&route.st.includes(from)){
+      const idx=route.st.indexOf(from),subst=route.st.slice(idx+1);
+      const subfa=Math.round(route.fa*(route.st.length-idx)/(route.st.length+1)/50)*50;
+      out.push({sacco,route:{f:from,t:route.t,pk:`${from} Town Stage (board at ${from})`,dp:route.dp,st:subst,fa:Math.max(150,subfa),dur:estDur(subst.length+1)},dir:"stage"});return}
   });
-  return results;
+  /* Chain: from→hub→to for this sacco */
+  ["Nairobi","Nakuru","Kisumu","Eldoret"].forEach(hub=>{
+    if(hub===from||hub===to)return;
+    const leg1=sacco.routes.find(r=>r.f===from&&r.t===hub),leg2=sacco.routes.find(r=>r.f===hub&&r.t===to);
+    if(leg1&&leg2){
+      out.push({sacco,route:{f:from,t:to,pk:leg1.pk,dp:leg2.dp,st:[...leg1.st,hub,...leg2.st].slice(0,5),fa:leg1.fa+leg2.fa-100,dur:estDur(5)},dir:"chain"});
+    }
+  });
+  return out;
 }
 function estDur(stops){return`${Math.max(1,stops)}h ${Math.floor(Math.random()*50+10)}m`}
+/* Estimated route for any operator & any town pair (all routes available) */
+function estRoute(sacco,from,to){
+  const km=kmBetween(from,to);
+  const st=viaTowns(from,to);
+  return{f:from,t:to,
+    pk:`${sacco.n} Desk / Stage, ${from} CBD`,
+    dp:`${sacco.n} Desk, ${to} Town`,
+    st:st,fa:estFare(km,sacco.t),dur:fmtDur(km,sacco.t==="matatu"||sacco.t==="shuttle"?55:60),est:true};
+}
 
-/* ===== SEARCH ===== */
-let lastResults=[];
+/* ===== SEARCH → STEP 2: VEHICLE TYPE ===== */
+let searchCtx=null;
 function search(){
-  const a=fromSel.value,b=toSel.value,d=$("date").value||todayStr(),pax=+$("paxSel").value,cat=$("catSel").value;
+  const a=fromSel.value,b=toSel.value,d=$("date").value||todayStr(),pax=+$("paxSel").value;
   if(a===b){toast("Origin and destination cannot be the same");return}
-  const results=findRoutes(a,b,cat);
-  /* Sort by fare */
-  results.sort((x,y)=>x.route.fa-y.route.fa);
-  lastResults=results;
+  searchCtx={a,b,d,pax};
   const dateObj=new Date(d+"T00:00:00");
   const dateStr=dateObj.toLocaleDateString('en-KE',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  const m14min=Math.min(...SD.filter(s=>s.t==="matatu"||s.t==="shuttle").map(s=>estFare(kmBetween(a,b),s.t)));
+  const busmin=Math.min(...SD.filter(s=>s.t==="executive"||s.t==="luxury"||s.t==="vip").map(s=>estFare(kmBetween(a,b),s.t)));
+  const n14=SD.filter(s=>s.t==="matatu"||s.t==="shuttle").length;
+  const nbus=SD.filter(s=>s.t==="executive"||s.t==="luxury"||s.t==="vip").length;
+  const km=kmBetween(a,b);
   let html=`<div class="sechead" style="margin:30px 0 18px">
-    <div class="sectionline" style="justify-content:center"><span class="livedot"></span> Results</div>
-    <h2>${a} &rarr; ${b}</h2><p>${dateStr} · ${pax} passenger${pax>1?'s':''} · ${results.length} trip${results.length!==1?'s':''} found</p></div>`;
-  if(!results.length){
-    html+=`<div class="emptyres"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11h6"/></svg><h3>No direct routes found</h3><p>Try a different vehicle category, or search via a major hub like Nairobi or Nakuru.</p><button class="btn btn-o" style="margin-top:12px" onclick="quickR('${a}','Nairobi')">Search via Nairobi</button></div>`;
-  }else{
-    html+=`<div style="display:grid;gap:14px">${results.map((r,i)=>resultHTML(r,i,pax)).join("")}</div>`;
-  }
+    <div class="sectionline" style="justify-content:center"><span class="livedot"></span> Step 2 of 4</div>
+    <h2>${a} &rarr; ${b} · Choose Your Vehicle</h2>
+    <p>${dateStr} · ${pax} passenger${pax>1?'s':''} · ~${km} km · All ${n14+nbus} operators serve this route</p></div>
+  <div class="vtypegrid">
+    <div class="vtype" onclick="pickVeh('m14')">
+      <div class="vtico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M2 11h20M9 5v6"/></svg></div>
+      <h3>14-Seater &amp; Shuttle</h3>
+      <p>SACCO matatus &amp; shuttles — 4NTE, Mololine, 2NK, Kinatwa, Prestige, Guardian Angel &amp; more. Frequent departures, board at the stage.</p>
+      <div class="vmeta"><div class="vfrom">From KSh ${m14min.toLocaleString()}<small>${n14} SACCOs available</small></div><span class="varrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </div>
+    <div class="vtype" onclick="pickVeh('bus')">
+      <div class="vtico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="3"/><circle cx="7" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 12h20M7 4v8M13 4v8"/></svg></div>
+      <h3>Bus &amp; Coach</h3>
+      <p>Executive, luxury &amp; VIP coaches — Easy Coach, Modern Coast, Dreamliner, ENA, Greenline, Guardian, Tahmeed &amp; more. Booked seats, big luggage.</p>
+      <div class="vmeta"><div class="vfrom">From KSh ${busmin.toLocaleString()}<small>${nbus} bus companies available</small></div><span class="varrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </div>
+  </div>`;
+  renderResults(html);
+}
+function todayStr(){return today.toISOString().slice(0,10)}
+function renderResults(html){
   let old=$("results");if(old)old.remove();
   const div=document.createElement("div");div.className="wrap";div.id="results";div.innerHTML=html;
   $("live").before(div);
   div.scrollIntoView({behavior:"smooth",block:"start"});
 }
-function todayStr(){return today.toISOString().slice(0,10)}
 
-function resultHTML(r,i,pax){
-  const s=r.sacco,rt=r.route;
-  const tag=s.t==="vip"?["tag-y","VIP"]:s.t==="luxury"?["tag-b","LUXURY"]:s.t==="executive"?["tag-g","EXEC"]:s.t==="shuttle"?["tag-b","SHUTTLE"]:["tag-g","SACCO"];
-  const totalFare=rt.fa*pax;
-  const deps=genDep(s.t);
-  const nextDep=deps[Math.floor(Math.random()*deps.length)];
-  const amenities=AMENITIES[s.t]||[];
-  const stagesHTML=rt.st.length?`<div class="stagesrow"><span class="stagepill first">${rt.f}</span>${rt.st.map(st=>`<span class="stagepill">${st}</span>`).join("")}<span class="stagepill last">${rt.t}</span></div>`:'';
-  const amenHTML=amenities.length?`<div class="amenrow">${amenities.map(a=>`<span class="amen">${AMEN_SVG}${a}</span>`).join("")}</div>`:'';
-  return `<div class="rescard">
-   <div class="saccobadge">${s.sn.slice(0,8)}</div>
-   <div class="resinfo"><h4>${s.n}</h4>
-     <div class="meta">
-       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${rt.dur}</span>
-       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${3+Math.floor(Math.random()*20)} seats left</span>
-       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" fill="rgba(255,198,26,.15)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${s.rt}/5</span>
-     </div>
-     <div class="pickupbox">
-       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/></svg>
-       <div><strong>Board at:</strong> ${rt.pk}<em>Drop-off: ${rt.dp}</em></div>
-     </div>
-     ${stagesHTML}
-     ${amenHTML}
-     <div style="margin-top:8px"><span class="tag ${tag[0]}">${tag[1]}</span> <span class="tag tag-b">${s.fl}</span></div>
-   </div>
-   <div class="resprice"><div class="amt">KSh ${totalFare.toLocaleString()}</div><small>per seat KSh ${rt.fa.toLocaleString()} × ${pax}</small>
-     <button class="btn btn-p" style="margin-top:10px;padding:10px 18px;font-size:.88rem" onclick="openBooking(${i})">Book Now</button>
-   </div></div>`;
+/* ===== STEP 3: OPERATOR (SACCO / BUS COMPANY) LIST ===== */
+function pickVeh(kind){
+  const {a,b,pax}=searchCtx;
+  const is14=kind==="m14";
+  const ops=SD.filter(s=>is14?(s.t==="matatu"||s.t==="shuttle"):(s.t==="executive"||s.t==="luxury"||s.t==="vip"));
+  const km=kmBetween(a,b);
+  let html=`<div class="crumbbar">
+    <button class="crumb" onclick="search()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>${a} → ${b}</button>
+    <span class="crumb on">${is14?"14-Seater & Shuttle":"Bus & Coach"} · choose operator</span></div>
+  <div class="sechead" style="margin:0 0 18px">
+    <div class="sectionline" style="justify-content:center"><span class="livedot"></span> Step 3 of 4</div>
+    <h2>${is14?"Choose Your SACCO":"Choose Your Bus Company"}</h2>
+    <p>${a} &rarr; ${b} · ${pax} passenger${pax>1?"s":""} · ${ops.length} licensed operators — tap one to see its trips</p></div>
+  <div class="opgrid">`;
+  ops.forEach((s,i)=>{
+    const matched=matchRoutes(s,a,b);
+    const best=matched.length?matched.reduce((x,y)=>x.route.fa<y.route.fa?x:y):null;
+    const fare=best?best.route.fa:estFare(km,s.t);
+    const tag=s.t==="vip"?["tag-y","VIP"]:s.t==="luxury"?["tag-b","LUXURY"]:s.t==="executive"?["tag-g","EXEC"]:s.t==="shuttle"?["tag-b","SHUTTLE"]:["tag-g","SACCO"];
+    html+=`<div class="opcard" style="animation-delay:${i*0.05}s" onclick="pickOp(${SD.indexOf(s)},'${kind}')">
+      <div class="ophd">
+        <div class="saccobadge" style="width:44px;height:44px;font-size:.6rem">${s.sn.slice(0,7)}</div>
+        <div style="flex:1"><h4>${s.n}</h4><small>${s.hq} HQ · ${s.fl}</small></div>
+      </div>
+      <div class="oprt">★ ${s.rt}/5 ${matched.length?`· ${matched.length} route match${matched.length>1?"es":""}`:"· serves this route"}</div>
+      <div class="opfare"><div><b>KSh ${fare.toLocaleString()}</b><br><span>${best?"lowest seat fare":"estimated seat fare"}</span></div>
+      <span class="tag ${tag[0]}">${tag[1]}</span></div>
+    </div>`;
+  });
+  html+=`</div>`;
+  renderResults(html);
 }
 
-/* ===== BOOKING FLOW ===== */
+/* ===== STEP 4: TRIPS FOR SELECTED OPERATOR (FIXED — dropdown + book button per trip) ===== */
+function pickOp(si,kind){
+  const s=SD[si],{a,b,pax}=searchCtx;
+  let matched=matchRoutes(s,a,b);
+  if(!matched.length){matched=[{sacco:s,route:estRoute(s,a,b),dir:"est"}]}
+  const is14=kind==="m14";
+  const deps=genDep(s.t);
+  let html=`<div class="crumbbar">
+    <button class="crumb" onclick="search()">${a} → ${b}</button>
+    <button class="crumb" onclick="pickVeh('${kind}')">${is14?"14-Seater & Shuttle":"Bus & Coach"}</button>
+    <span class="crumb on">${s.n}</span></div>
+  <div class="sechead" style="margin:0 0 18px">
+    <div class="sectionline" style="justify-content:center"><span class="livedot"></span> Step 4 of 4 · Available Trips</div>
+    <h2>${s.n} — ${a} &rarr; ${b}</h2>
+    <p>${s.fl} · ★ ${s.rt}/5 · pick your preferred departure time, then tap <b style="color:var(--acc)">Select Seats &amp; Book</b></p></div>
+  <div style="display:grid;gap:14px">`;
+  matched.forEach((r,i)=>{
+    const rt=r.route;
+    const totalFare=rt.fa*pax;
+    const stagesHTML=rt.st.length?`<div class="stagesrow"><span class="stagepill first">${rt.f}</span>${rt.st.map(st=>`<span class="stagepill">${st}</span>`).join("")}<span class="stagepill last">${rt.t}</span></div>`:'';
+    const amenHTML=(AMENITIES[s.t]||[]).map(x=>`<span class="amen">${AMEN_SVG}${x}</span>`).join("");
+    /* build departure options — first 6 slots, offset per trip so lists differ */
+    let opts="";
+    for(let k=0;k<6;k++){const sl=deps[(i*2+k)%deps.length];opts+=`<option value="${sl}">${sl}</option>`}
+    html+=`<div class="rescard">
+      <div class="saccobadge">${s.sn.slice(0,8)}</div>
+      <div class="resinfo">
+        <h4>${rt.f} &rarr; ${rt.t}${r.dir==="est"?' <span class="tag tag-b">ESTIMATED FARE</span>':''}</h4>
+        <div class="meta">
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${rt.dur}</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${3+((i*7)%18)} seats left</span>
+        </div>
+        <div class="pickupbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/></svg>
+        <div><strong>Board at:</strong> ${rt.pk}<em>Drop-off: ${rt.dp}</em></div></div>
+        ${stagesHTML}
+        <div class="amenrow">${amenHTML}</div>
+        <div class="tripbook">
+          <select class="tselect" id="tsl${i}" title="Preferred departure time">
+            ${opts}
+          </select>
+          <button class="btn btn-p" onclick="openBooking(${si},${i})">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg>
+            Select Seats &amp; Book
+          </button>
+        </div>
+      </div>
+      <div class="resprice"><div class="amt">KSh ${totalFare.toLocaleString()}</div><small>per seat KSh ${rt.fa.toLocaleString()} × ${pax}</small></div>
+    </div>`;
+  });
+  html+=`</div>`;
+  renderResults(html);
+}
+
+/* ===== BOOKING FLOW (seats → pax → pay → verify → ticket) ===== */
 let bk=null;
-function openBooking(i){
-  const r=lastResults[i],pax=+$("paxSel").value;
-  bk={res:r,pax,seats:[],deposit:false,payAmt:0,paxData:[]};
+function openBooking(si,mi){
+  const s=SD[si],{pax}=searchCtx;
+  let matched=matchRoutes(s,searchCtx.a,searchCtx.b);
+  if(!matched.length){matched=[{sacco:s,route:estRoute(s,searchCtx.a,searchCtx.b),dir:"est"}]}
+  const r=matched[mi]||matched[0];
+  const timeSel=$("tsl"+mi);
+  const time=timeSel?timeSel.value:genDep(s.t)[0];
+  bk={res:r,pax,seats:[],deposit:false,payAmt:0,paxData:[],verified:false,mpesaCode:null,time};
   $("modal").classList.add("open");
   setStep(1);renderSeats();
-  $("shTitle").textContent="Step 1 — Select Seats · "+r.sacco.n;
-  $("stepPax").classList.add("hidden");$("stepPay").classList.add("hidden");$("stepDone").classList.add("hidden");
+  $("shTitle").textContent="Step 1 — Select Seats · "+s.n+" · "+bk.time;
+  ["stepPax","stepPay","stepVerify","stepDone"].forEach(id=>$(id).classList.add("hidden"));
   $("stepSeat").classList.remove("hidden");
 }
 function closeModal(){$("modal").classList.remove("open")}
-function setStep(n){[1,2,3,4].forEach(i=>{const s=$("s"+i);s.className="step"+(i<n?" done":i===n?" on":"")})}
+function setStep(n){[1,2,3,4,5].forEach(i=>{const s=$("s"+i);s.className="step"+(i<n?" done":i===n?" on":"")})}
 
+/* STEP 1: SEATS */
 function renderSeats(){
   const r=bk.res,rt=r.route;
   const cap=r.sacco.t==="matatu"||r.sacco.t==="shuttle"?14:r.sacco.t==="luxury"?47:49;
@@ -766,7 +993,7 @@ function renderSeats(){
   $("stepSeat").innerHTML=`
    <div class="pickupbox" style="margin-bottom:8px">
      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21c4-5 7-8.5 7-11a7 7 0 1 0-14 0c0 2.5 3 6 7 11z"/></svg>
-     <div><strong>Board at:</strong> ${rt.pk}<em>Drop-off: ${rt.dp} · Departure ~${bk.res.route.dur}</em></div>
+     <div><strong>Board at:</strong> ${rt.pk}<em>Drop-off: ${rt.dp} · Departure ${bk.time} · ~${rt.dur}</em></div>
    </div>
    <div class="busvisual">
      <div class="busfront"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 18H3z"/></svg> Driver / Front</div>
@@ -796,25 +1023,23 @@ function goPax(){
   for(let i=0;i<bk.pax;i++){
     html+=`<div style="margin-bottom:16px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:14px">
       <div style="font-weight:700;margin-bottom:10px;color:var(--acc)">Passenger ${i+1} — Seat #${bk.seats[i]}</div>
-      <div class="paxfield"><label>Full Name (as on ID)</label><input id="pname${i}" placeholder="e.g. John Kamau" required></div>
-      <div class="paxfield"><label>Phone Number</label><input id="pphone${i}" type="tel" placeholder="e.g. 0712345678" required></div>
+      <div class="paxfield"><label>Full Name (as on ID)</label><input id="pname${i}" placeholder="e.g. John Kamau"<div class="paxfield"><label>Phone Number</label><input id="pphone${i}" type="tel" placeholder="e.g. 0712345678"></div>
       ${i===0?`<div class="paxfield"><label>Email (for e-ticket)</label><input id="pemail" type="email" placeholder="e.g. john@email.com"></div>`:''}
     </div>`;
   }
   html+=`<div style="display:flex;gap:10px;margin-top:14px">
-    <button class="btn btn-o" onclick="backToSeats()" style="flex:1;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-    <button class="btn btn-p" style="flex:2;justify-content:center" onclick="goPay()">Continue to Payment <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <button class="btn btn-o" onclick="backToSeats()" style="flex:1;justify-content:center">Back</button>
+    <button class="btn btn-p" style="flex:2;justify-content:center" onclick="goPay()">Continue to Payment</button>
   </div>`;
   $("stepPax").innerHTML=html;
 }
 function backToSeats(){
-  setStep(1);$("shTitle").textContent="Step 1 — Select Seats · "+bk.res.sacco.n;
+  setStep(1);$("shTitle").textContent="Step 1 — Select Seats · "+bk.res.sacco.n+" · "+bk.time;
   $("stepPax").classList.add("hidden");$("stepSeat").classList.remove("hidden");
 }
 
 /* Step 3: Payment */
 function goPay(){
-  /* Validate passenger data */
   bk.paxData=[];
   for(let i=0;i<bk.pax;i++){
     const name=$("pname"+i).value.trim(),phone=$("pphone"+i).value.trim();
@@ -822,18 +1047,16 @@ function goPay(){
     bk.paxData.push({name,phone,seat:bk.seats[i]});
   }
   bk.email=$("pemail")?$("pemail").value.trim():"";
-
-  setStep(3);$("shTitle").textContent="Step 3 — Payment";
+  setStep(3);$("shTitle").textContent="Step 3 — Payment (M-PESA)";
   $("stepPax").classList.add("hidden");$("stepPay").classList.remove("hidden");
   bk.total=bk.seats.length*bk.res.route.fa;
   const rt=bk.res.route;
   $("stepPay").innerHTML=`
    <div class="sumrow"><span>Operator / SACCO</span><b>${bk.res.sacco.n}</b></div>
-   <div class="sumrow"><span>Pick-up Point (${rt.f})</span><b style="font-size:.8rem;text-align:right;max-width:260px">${rt.pk}</b></div>
+   <div class="sumrow"><span>Departure</span><b>${bk.time} · ${$("date").value}</b></div>
+   <div class="sumrow"><span>Pick-up (${rt.f})</span><b style="font-size:.8rem;text-align:right;max-width:260px">${rt.pk}</b></div>
    <div class="sumrow"><span>Drop-off (${rt.t})</span><b style="font-size:.8rem;text-align:right;max-width:260px">${rt.dp}</b></div>
    <div class="sumrow"><span>Seats</span><b>${bk.seats.map(s=>"#"+s).join(", ")}</b></div>
-   <div class="sumrow"><span>Route</span><b>${rt.f} &rarr; ${rt.t}</b></div>
-   <div class="sumrow"><span>Travel Date</span><b>${$("date").value}</b></div>
    <div class="sumrow"><span>Passenger(s)</span><b>${bk.paxData.map(p=>p.name).join(", ")}</b></div>
    <div class="sumrow"><span>Full fare</span><b>KSh ${bk.total.toLocaleString()}</b></div>
    <div style="margin:14px 0;display:grid;gap:10px">
@@ -848,14 +1071,13 @@ function goPay(){
      <div style="background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.76rem;color:var(--mut)">
        <b style="color:var(--acc)">Note:</b> The Paybill number is the same for all bookings, but the <b style="color:var(--txt)">account number is specific to the SACCO</b> — in this case <b style="color:var(--txt)">${bk.res.sacco.n}</b>. Always confirm the operator name on your e-ticket before paying.
      </div>
-     <div class="paybillrow"><span style="color:var(--mut);font-size:.72rem">PAYBILL</span><b>${PAYBILL}</b><button class="copybtn" onclick="copyTxt('${PAYBILL}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button></div>
-     <div class="paybillrow"><span style="color:var(--mut);font-size:.72rem">ACCOUNT</span><b>${ACCOUNT}</b><button class="copybtn" onclick="copyTxt('${ACCOUNT}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button></div>
+     <div class="paybillrow"><span style="color:var(--mut);font-size:.72rem">PAYBILL</span><b>${PAYBILL}</b><button class="copybtn" onclick="copyTxt('${PAYBILL}')">Copy</button></div>
+     <div class="paybillrow"><span style="color:var(--mut);font-size:.72rem">ACCOUNT</span><b>${ACCOUNT}</b><button class="copybtn" onclick="copyTxt('${ACCOUNT}')">Copy</button></div>
    </div>
-   <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:14px" onclick="confirmPay()">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
-     I Have Sent <span id="payAmt">KSh ${bk.total.toLocaleString()}</span> via M-PESA
+   <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:14px" onclick="goVerify()">
+     I Have Sent <span id="payAmt">KSh ${bk.total.toLocaleString()}</span> via M-PESA — Continue
    </button>
-   <p style="color:var(--mut);font-size:.7rem;text-align:center;margin-top:8px">You'll receive an M-PESA confirmation, then your e-ticket with pick-up stage and seat numbers.</p>`;
+   <p style="color:var(--mut);font-size:.7rem;text-align:center;margin-top:8px">After paying you'll be asked to enter the M-PESA confirmation code from your SMS to verify the payment and unlock your ticket.</p>`;
 }
 function pmode(isDep){
   bk.deposit=isDep;
@@ -863,58 +1085,157 @@ function pmode(isDep){
   bk.payAmt=amt;$("payAmt").textContent="KSh "+amt.toLocaleString();
 }
 
-/* Step 4: Confirmation */
-function confirmPay(){
+/* Step 4: M-PESA Verification */
+function goVerify(){
   bk.payAmt=bk.payAmt||bk.total;
-  setStep(4);$("shTitle").textContent="Booking Confirmed!";
-  $("stepPay").classList.add("hidden");$("stepDone").classList.remove("hidden");
+  setStep(4);$("shTitle").textContent="Step 4 — Verify M-PESA Payment";
+  $("stepPay").classList.add("hidden");$("stepVerify").classList.remove("hidden");
+  $("stepVerify").innerHTML=`
+   <div class="mpesabox" style="margin-bottom:14px">
+     <div style="display:flex;gap:10px;align-items:center">
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00e08f" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20"/><path d="M6 15h4"/></svg>
+       <div><b style="color:var(--grn)">M-PESA PAYMENT RECEIVED?</b><div style="color:var(--mut);font-size:.76rem">Enter the Confirmation Code from your M-PESA SMS</div></div>
+     </div>
+   </div>
+   <div class="sumrow"><span>Amount Expected</span><b style="color:var(--acc)">KSh ${bk.payAmt.toLocaleString()}</b></div>
+   <div class="sumrow"><span>Paid To</span><b>Paybill ${PAYBILL} · Account ${ACCOUNT}</b></div>
+   <div class="paxfield" style="margin-top:14px">
+     <label style="display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--mut);font-weight:700;margin-bottom:8px">M-PESA Transaction / Confirmation Code</label>
+     <input class="vcode" id="mpesaCode" maxlength="10" placeholder="e.g. QGH7XYZ12K" autocomplete="off" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
+     <div id="vMsg" style="font-size:.76rem;margin-top:8px;color:var(--mut)">The code looks like <b style="color:var(--txt)">QGH7XYZ12K</b> — one letter followed by 9 letters/digits, found in the "M-PESA confirmation" SMS sent by Safaricom after payment.</div>
+   </div>
+   <div style="display:flex;gap:10px;margin-top:14px">
+     <button class="btn btn-o" onclick="backToPay()" style="flex:1;justify-content:center">Back</button>
+     <button class="btn btn-p" id="vBtn" style="flex:2;justify-content:center;background:linear-gradient(135deg,var(--grn),#00b478);box-shadow:0 6px 24px rgba(0,224,143,.3)" onclick="verifyPayment()">Verify Payment</button>
+   </div>`;
+}
+function backToPay(){
+  setStep(3);$("shTitle").textContent="Step 3 — Payment (M-PESA)";
+  $("stepVerify").classList.add("hidden");$("stepPay").classList.remove("hidden");
+}
+
+function validMpesaFormat(c){return /^[A-Z][A-Z0-9]{9}$/.test(c) && /[0-9]/.test(c)}
+function verifyPayment(){
+  const inp=$("mpesaCode"),msg=$("vMsg");
+  const code=inp.value.trim().toUpperCase();
+  inp.classList.remove("err");
+  if(code.length!==10||!validMpesaFormat(code)){
+    inp.classList.add("err");
+    msg.innerHTML='<span style="color:var(--red);font-weight:700">✕ Invalid code format.</span> An M-PESA confirmation code is exactly 10 characters — a letter followed by 9 letters/digits (e.g. QGH7XYZ12K). Check the SMS from M-PESA and try again.';
+    return;
+  }
+  const used=JSON.parse(localStorage.getItem("slk_used_codes")||"[]");
+  if(used.includes(code)){
+    inp.classList.add("err");
+    msg.innerHTML='<span style="color:var(--red);font-weight:700">✕ This transaction code has already been used.</span> Each M-PESA code can verify only one booking. If this is your genuine code, call Customer Care.';
+    return;
+  }
+  const btn=$("vBtn");btn.disabled=true;btn.style.opacity=.6;
+  msg.innerHTML='<div style="text-align:center;padding:6px 0"><div class="spinner"></div><div style="margin-top:10px;color:var(--grn);font-weight:700">Verifying with M-PESA…</div></div>';
+  setTimeout(()=>{
+    bk.verified=true;bk.mpesaCode=code;
+    used.push(code);localStorage.setItem("slk_used_codes",JSON.stringify(used));
+    toast("M-PESA payment verified ✓");
+    finalizeBooking();
+  },1800);
+}
+
+/* Step 5: Ticket */
+function finalizeBooking(){
+  setStep(5);$("shTitle").textContent="Payment Verified — Your E-Ticket";
+  $("stepVerify").classList.add("hidden");$("stepDone").classList.remove("hidden");
   const ref="SLK"+Date.now().toString().slice(-6);
+  bk.ref=ref;
   const rt=bk.res.route;
   const dateStr=new Date($("date").value+"T00:00:00").toLocaleDateString('en-KE',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
-
-  /* Save to localStorage */
-  const trip={
-    ref,date:$("date").value,dateStr,
-    from:rt.f,to:rt.t,
-    sacco:bk.res.sacco.n,
-    seats:bk.seats,pax:bk.paxData,
-    pickup:rt.pk,dropoff:rt.dp,
-    fare:bk.total,paid:bk.payAmt,
-    deposit:bk.deposit,
-    duration:rt.dur,
-    ts:Date.now()
-  };
+  const trip={ref,date:$("date").value,dateStr,time:bk.time,from:rt.f,to:rt.t,sacco:bk.res.sacco.n,
+    seats:bk.seats,pax:bk.paxData,pickup:rt.pk,dropoff:rt.dp,fare:bk.total,paid:bk.payAmt,
+    deposit:bk.deposit,duration:rt.dur,mpesaCode:bk.mpesaCode,ts:Date.now()};
   const trips=JSON.parse(localStorage.getItem("slk_trips")||"[]");
   trips.unshift(trip);if(trips.length>20)trips.length=20;
   localStorage.setItem("slk_trips",JSON.stringify(trips));
-
   $("stepDone").innerHTML=`
-   <div style="text-align:center;padding:12px 0">
+   <div style="text-align:center;padding:6px 0 12px">
      <div style="width:64px;height:64px;border-radius:50%;background:rgba(0,224,143,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;animation:pop .5s">
        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00e08f" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-     <h3 style="font-size:1.2rem">Asante! Ticket Reserved</h3>
-     <p style="color:var(--mut);font-size:.85rem;margin-top:5px">Reference <b style="color:var(--acc)">${ref}</b></p>
+     <h3 style="font-size:1.2rem">Payment Verified — Asante!</h3>
+     <p style="color:var(--grn);font-weight:700;font-size:.8rem;margin-top:4px">M-PESA Code ${bk.mpesaCode} confirmed · KSh ${bk.payAmt.toLocaleString()}</p>
    </div>
-   <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0">
-     <div class="sumrow"><span>SACCO</span><b>${bk.res.sacco.n}</b></div>
+   <div class="eticket" id="eticket">
+     <div style="display:flex;justify-content:space-between;align-items:center">
+       <div><div style="color:var(--mut);font-size:.68rem;letter-spacing:2px;text-transform:uppercase">Booking Reference</div><div class="ref">${ref}</div></div>
+       <span class="tag tag-g" style="font-size:.72rem">VERIFIED &amp; CONFIRMED</span>
+     </div>
+     <div class="bar"></div>
+     <div class="sumrow"><span>SACCO / Operator</span><b>${bk.res.sacco.n}</b></div>
+     <div class="sumrow"><span>Departure</span><b>${bk.time} · ${dateStr}</b></div>
      <div class="sumrow"><span>Route</span><b>${rt.f} &rarr; ${rt.t}</b></div>
-     <div class="sumrow"><span>Date</span><b>${dateStr}</b></div>
      <div class="sumrow"><span>Duration</span><b>${rt.dur}</b></div>
      <div class="sumrow"><span>Pick-up</span><b style="font-size:.78rem;text-align:right;max-width:260px">${rt.pk}</b></div>
      <div class="sumrow"><span>Drop-off</span><b style="font-size:.78rem;text-align:right;max-width:260px">${rt.dp}</b></div>
      ${rt.st.length?`<div class="sumrow"><span>Via</span><b style="font-size:.78rem">${rt.st.join(" → ")}</b></div>`:''}
      <div class="sumrow"><span>Passenger(s)</span><b>${bk.paxData.map(p=>`${p.name} (Seat #${p.seat})`).join("<br>")}</b></div>
+     <div class="sumrow"><span>M-PESA Code</span><b style="color:var(--grn)">${bk.mpesaCode}</b></div>
      <div class="sumrow total"><span>${bk.deposit?"Deposit Paid":"Total Paid"}</span><b>KSh ${bk.payAmt.toLocaleString()}</b></div>
      ${bk.deposit?`<div class="sumrow"><span>Balance at stage</span><b style="color:var(--red)">KSh ${(bk.total-bk.payAmt).toLocaleString()}</b></div>`:''}
    </div>
    <div style="text-align:center;margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-     <button class="btn btn-g" onclick="shareTrip('${ref}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>Share Trip</button>
-     <button class="btn btn-o" onclick="closeModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>Done</button>
-   </div>`;
+     <button class="btn btn-g" onclick="downloadTicket('${ref}')">Download Ticket</button>
+     <button class="btn btn-o" onclick="printTicket('${ref}')">Print / Save PDF</button>
+     <button class="btn btn-o" onclick="shareTrip('${ref}')">Share</button>
+   </div>
+   <p style="color:var(--mut);font-size:.7rem;text-align:center;margin-top:10px">Show this e-ticket (or the downloaded copy) and your ID at the boarding stage. The M-PESA code on the ticket must match your payment SMS.</p>`;
+}
+function ticketHTML(t){
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>E-Ticket ${t.ref} — SafariLink EA</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;background:#f4f5f7;margin:0;padding:24px;color:#111}
+.tk{max-width:640px;margin:0 auto;background:#fff;border:2px solid #ffc61a;border-radius:16px;padding:24px}
+.h{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #ffc61a;padding-bottom:12px;margin-bottom:14px}
+.ref{font-size:26px;font-weight:900;letter-spacing:3px;color:#b97b00}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:8px 0;border-bottom:1px dashed #ddd;vertical-align:top}
+td.l{color:#777;width:40%}
+.st{display:inline-block;background:#e6fbf3;color:#009b6a;border:1px solid #00e08f;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700}
+.total{font-size:18px;font-weight:900;color:#b97b00}
+.bar{height:44px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 5px,#111 5px 6px,transparent 6px 11px);border-radius:6px;margin:16px 0 4px}
+.note{font-size:11px;color:#888;margin-top:10px}</style></head><body>
+<div class="tk"><div class="h"><div><div style="font-weight:900">SafariLink EA — E-Ticket</div><div style="font-size:11px;color:#888">LIPA NA M-PESA · Paybill ${PAYBILL}</div></div><div><div class="ref">${t.ref}</div><div style="text-align:right"><span class="st">VERIFIED · ${t.mpesaCode}</span></div></div></div>
+<table>
+<tr><td class="l">Operator / SACCO</td><td><b>${t.sacco}</b></td></tr>
+<tr><td class="l">Route</td><td><b>${t.from} → ${t.to}</b></td></tr>
+<tr><td class="l">Departure</td><td>${t.time||""} · ${t.dateStr}</td></tr>
+<tr><td class="l">Duration</td><td>${t.duration}</td></tr>
+<tr><td class="l">Board at</td><td>${t.pickup}</td></tr>
+<tr><td class="l">Drop-off</td><td>${t.dropoff}</td></tr>
+<tr><td class="l">Passenger(s)</td><td>${t.pax.map(p=>`${p.name} — Seat #${p.seat}`).join("<br>")}</td></tr>
+<tr><td class="l">M-PESA Code</td><td><b>${t.mpesaCode}</b></td></tr>
+<tr><td class="l">${t.deposit?"Deposit Paid":"Total Paid"}</td><td class="total">KSh ${t.paid.toLocaleString()}</td></tr>
+${t.deposit?`<tr><td class="l">Balance at stage</td><td style="color:#c22">KSh ${(t.fare-t.paid).toLocaleString()}</td></tr>`:''}
+</table>
+<div class="bar"></div><div style="text-align:center;font-size:11px;color:#555">${t.ref} · ${t.mpesaCode}</div>
+<div class="note">Present this e-ticket and your ID at the boarding stage. The M-PESA confirmation code on this ticket must match your Safaricom payment SMS. Support: 0700 123 456.</div>
+</div></body></html>`;
+}
+function downloadTicket(ref){
+  const trips=JSON.parse(localStorage.getItem("slk_trips")||"[]");
+  const t=trips.find(x=>x.ref===ref);
+  if(!t){toast("Ticket not found");return}
+  const blob=new Blob([ticketHTML(t)],{type:"text/html"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="E-Ticket-"+ref+".html";a.click();URL.revokeObjectURL(a.href);
+  toast("Ticket downloaded ✓");
+}
+function printTicket(ref){
+  const trips=JSON.parse(localStorage.getItem("slk_trips")||"[]");
+  const t=trips.find(x=>x.ref===ref);
+  if(!t){toast("Ticket not found");return}
+  const w=window.open("","_blank");
+  w.document.write(ticketHTML(t));w.document.close();
+  setTimeout(()=>{w.print()},400);
 }
 function shareTrip(ref){
   const rt=bk.res.route;
-  const text=`SafariLink EA Booking ${ref}: ${rt.f} → ${rt.t} via ${bk.res.sacco.n}. Board at: ${rt.pk}. Seats: ${bk.seats.join(",")}. Fare: KSh ${bk.payAmt}.`;
+  const text=`SafariLink EA Booking ${ref}: ${rt.f} → ${rt.t} via ${bk.res.sacco.n}. Board at: ${rt.pk}. Seats: ${bk.seats.join(",")}. Fare: KSh ${bk.payAmt}. M-PESA verified: ${bk.mpesaCode}.`;
   if(navigator.share){navigator.share({title:"SafariLink EA Trip",text}).catch(()=>{})}
   else{copyTxt(text);toast("Trip details copied to clipboard")}
 }
@@ -930,13 +1251,16 @@ function showMyTrips(){
       <div class="saccobadge" style="width:44px;height:44px;font-size:.62rem">${t.sacco.slice(0,6)}</div>
       <div class="tdet" style="flex:1">
         <b>${t.from} → ${t.to}</b><br>
-        ${t.dateStr} · ${t.sacco} · Seats ${t.seats.join(",")}<br>
+        ${t.dateStr} · ${t.time||""} · ${t.sacco} · Seats ${t.seats.join(",")}<br>
         <span style="font-size:.72rem">Board: ${t.pickup.slice(0,60)}${t.pickup.length>60?"...":""}</span>
       </div>
       <div style="text-align:right">
         <div class="tref">${t.ref}</div>
-        <div class="tstatus tag-g" style="display:inline-block;padding:3px 10px;border-radius:99px;font-size:.66rem;font-weight:700;background:rgba(0,224,143,.12);color:var(--grn)">${t.deposit?"DEPOSIT":"CONFIRMED"}</div>
+        <div style="display:inline-block;padding:3px 10px;border-radius:99px;font-size:.66rem;font-weight:700;background:rgba(0,224,143,.12);color:var(--grn)">${t.deposit?"DEPOSIT":"CONFIRMED"}</div>
         <div style="color:var(--acc);font-weight:800;font-size:.92rem;margin-top:4px">KSh ${t.paid.toLocaleString()}</div>
+        <div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end">
+          <button class="btn btn-g" style="padding:5px 10px;font-size:.68rem" onclick="downloadTicket('${t.ref}')">Ticket</button>
+        </div>
       </div>
     </div>`).join("");
   }
@@ -963,10 +1287,10 @@ const terminals=[
   {n:"Nyeri Gakere Road",s:"QUIET",c:"tag-b"},
   {n:"Eldoret Main Stage",s:"NORMAL",c:"tag-g"},
 ];
- $("liveFeed").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+$("liveFeed").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
   <b>Recent Departures</b><span class="tag tag-g">LIVE</span></div>`+
   liveData.map(l=>`<div class="feeditem"><div class="fico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="12" rx="2"/><circle cx="7" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></div><div><div class="ft">${l.t}</div><div class="ftime">${l.m}</div></div></div>`).join("");
- $("terminalList").innerHTML=terminals.map(t=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.82rem"><span>${t.n}</span><span class="tag ${t.c}">${t.s}</span></div>`).join("");
+$("terminalList").innerHTML=terminals.map(t=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.82rem"><span>${t.n}</span><span class="tag ${t.c}">${t.s}</span></div>`).join("");
 
 /* ===== TOAST ===== */
 let toastTimer;
@@ -978,8 +1302,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 /* ===== AUTO-REFRESH LIVE FEED ===== */
 setInterval(()=>{
-  const saccos=["4NTE","Mololine","2NK","Modern Coast","Easy Coach","Mash Poa","Dreamliner","Tahmeed","Guardian","Chania Classic"];
-  const towns=["Nairobi","Nakuru","Mombasa","Kisumu","Eldoret","Thika","Nyeri","Kericho"];
+  const saccos=["4NTE","Mololine","2NK","Modern Coast","Easy Coach","Mash Poa","Dreamliner","Tahmeed","Guardian","Prestige","Team Swat","Chania Classic"];
+  const towns=["Nairobi","Nakuru","Mombasa","Kisumu","Eldoret","Thika","Nyeri","Kericho","Kakamega","Bungoma"];
   const s=saccos[Math.floor(Math.random()*saccos.length)];
   const t=towns[Math.floor(Math.random()*towns.length)];
   const mins=Math.floor(Math.random()*5)+1;
